@@ -26,6 +26,14 @@ manuscript/*.blg
 manuscript/*.synctex.gz
 manuscript/*.fls
 manuscript/*.fdb_latexmk
+manuscript/preprint_submission/*.aux
+manuscript/preprint_submission/*.log
+manuscript/preprint_submission/*.out
+manuscript/preprint_submission/*.bbl
+manuscript/preprint_submission/*.blg
+manuscript/preprint_submission/*.synctex.gz
+manuscript/preprint_submission/*.fls
+manuscript/preprint_submission/*.fdb_latexmk
 
 # OS
 .DS_Store

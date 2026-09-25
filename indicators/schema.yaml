@@ -1,0 +1,82 @@
+# Controlled vocabularies and required fields for indicator records.
+required_fields:
+  - id
+  - name
+  - domain
+  - state_component
+  - matrix_construct
+  - evidence_level
+  - ai_types
+  - definition
+  - formula
+  - data_required
+  - frequency
+  - baseline
+  - alert_rule
+  - detection_method
+  - governance_action
+  - clinical_importance
+  - validation
+
+domains:
+  A: Clinical Context Assurance
+  B: Performance and Uncertainty Assurance
+  C: Human Oversight Assurance
+  D: Operational and Workflow Assurance
+  E: Lifecycle Assurance
+
+state_components:
+  C: Clinical-context validity
+  P: Performance
+  U: Uncertainty and calibration
+  H: Human oversight
+  O: Operational safety
+  L: Lifecycle stability
+
+evidence_levels:
+  1: System evidence
+  2: Performance evidence
+  3: Human-interaction evidence
+  4: Workflow evidence
+  5: Clinical outcome evidence
+
+ai_types: [predictive, generative, agentic]
+
+# Green means within the validated envelope: routine monitoring, no action field.
+trigger_levels: [yellow, orange, red]
+
+# Domain-to-component consistency enforced by the validator.
+domain_components:
+  A: [C]
+  B: [P, U]
+  C: [H]
+  D: [O]
+  E: [L]
+
+# Constructs of Evidence-and-measurement-matrix.md section 1. Each record links to one, which carries the
+# governance objective and clinical risk. Keep in sync with the matrix (scripts/check_consistency.py verifies).
+matrix_constructs:
+  - Context validity
+  - Input integrity
+  - Predictive performance
+  - Calibration
+  - Uncertainty reliability
+  - Robustness
+  - Effective human oversight
+  - Appropriate acceptance
+  - Intervention latency
+  - Evidence transparency
+  - Decision traceability
+  - Workflow integrity
+  - Alert burden
+  - Safety event rate
+  - Subgroup reliability
+  - Change impact
+  - Groundedness
+  - Action compliance
+  - Trajectory integrity
+  - Accountability completeness
+
+# Constructs with no indicator on purpose, with the reason. Shown in the rendered coverage table.
+out_of_scope_constructs:
+  Evidence transparency: Predictive models in this program return a score, not a source-attributed explanation, and explanation completeness has no agreed measure. Recorded as a limitation.

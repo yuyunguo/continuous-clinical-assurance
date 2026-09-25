@@ -1,0 +1,47 @@
+[
+  {
+    "source_id": "S1",
+    "file": "nist_ai_100_1.txt",
+    "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+    "retrieved": "2026-09-19",
+    "raw_sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+    "extraction": "pdftotext reading-order text of the PDF",
+    "chars": 106437
+  },
+  {
+    "source_id": "S2",
+    "file": "eu_ai_act_art14.txt",
+    "url": "https://artificialintelligenceact.eu/article/14/",
+    "retrieved": "2026-09-19",
+    "raw_sha256": "aff83cdea5e60f31e6c621a5812ce17b8f1108d408a25c05a2c1102337ac6121",
+    "extraction": "text of the page (UNOFFICIAL mirror; EUR-Lex blocked automated access)",
+    "chars": 14072
+  },
+  {
+    "source_id": "S2",
+    "file": "eu_ai_act_art72.txt",
+    "url": "https://artificialintelligenceact.eu/article/72/",
+    "retrieved": "2026-09-19",
+    "raw_sha256": "b94c70995069c8bc8d8afd063991463ab3f2b9cc3e3049c49510899e0a7f3a1d",
+    "extraction": "text of the page (UNOFFICIAL mirror; EUR-Lex blocked automated access)",
+    "chars": 6141
+  },
+  {
+    "source_id": "S3",
+    "file": "fda_pccp_guidance.txt",
+    "url": "https://www.fda.gov/media/166704/download",
+    "retrieved": "2026-09-19",
+    "raw_sha256": "80f0f423efe0c8104460a9064615a2093e9a620deae013db670792c7f599e4d9",
+    "extraction": "pdftotext text of the PDF",
+    "chars": 157490
+  },
+  {
+    "source_id": "S4",
+    "file": "who_2021_page.txt",
+    "url": "https://www.who.int/publications/i/item/9789240029200",
+    "retrieved": "2026-09-19",
+    "raw_sha256": "c34366946f40997b872be9151cc61af67ef314d9119ba343e44263df6bf1b647",
+    "extraction": "text of the publication landing page only (full PDF not retrievable)",
+    "chars": 1545
+  }
+]

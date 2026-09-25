@@ -1,0 +1,80 @@
+seed: 20260919
+generator:
+  n_features: 6
+  prevalence: 0.15
+  separation: 1.19
+  feature_weights:
+  - 0.5
+  - 0.4
+  - 0.35
+  - 0.3
+  - 0.25
+  - 0.2
+  subgroup_share: 0.1
+  subgroup_separation_scale: 0.85
+  train_size: 20000
+  target_sensitivity: 0.75
+stream:
+  cases_per_window: 500
+  baseline_windows: 52
+  monitored_windows: 104
+  label_lag: 2
+  horizon: 40
+  s0_low: 20
+  s0_high_abrupt: 60
+  s0_high_ramped: 40
+  ramp_windows: 20
+harm:
+  severity_cutoff: 2
+  weights:
+  - 1.0
+  - 1.0
+  - 1.0
+  fn_factor: 1.0
+  severity_probs_positive:
+  - 0.5
+  - 0.35
+  - 0.15
+  severity_probs_negative:
+  - 0.85
+  - 0.12
+  - 0.03
+  kappa: 0.25
+  min_subgroup_share: 0.05
+reviewer:
+  coverage: 1.0
+  beta0: 1.0
+  beta_confidence: 2.0
+  beta_severity: 0.5
+budget:
+  false_alarms_per_1000_windows: 30.0
+routing:
+  persistence_k: 2
+  hysteresis_j: 2
+  corroboration: true
+m1_bands:
+  seeds: 100
+  ece_max: 0.03
+  auroc_min: 0.77
+  auroc_max: 0.83
+  sensitivity_tolerance: 0.03
+tolerances:
+  population_cases: 400000
+  rate_abs: 0.01
+  auroc_abs: 0.005
+  input_mean_abs: 0.01
+workflow:
+  p_deliver: 0.98
+  tat_median: 1.0
+  tat_sigma: 0.5
+  tat_limit: 4.0
+  time_critical_share: 0.2
+  completion: 0.98
+  abandon_after_failed_escalation: 0.5
+  verify: 0.5
+  sentinel_severity: 3
+  action_base: 0.7
+  fatigue: 0.15
+  fatigue_bias: 0.0
+context:
+  baseline_out_of_scope: 0.02

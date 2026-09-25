@@ -1,0 +1,33 @@
+/Users/yyu/.pyenv/versions/3.12.5/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1170: UserWarning: Setting penalty=None will ignore the C and l1_ratio parameters
+  warnings.warn(
+INFO: SC02 low    target 1.15: '1.2x' -> '2.1x'
+WARNING: SC02 medium: target 1.35 is 0.075 above the maximum 1.275, using the cap 3
+INFO: SC02 medium target 1.35: '1.44x' -> '3x'
+WARNING: SC02 high: target 1.75 is 0.475 above the maximum 1.275, using the cap 3
+INFO: SC02 high   target 1.75: '1.95x' -> '3x'
+INFO: SC04 low    target 1.15: 'lambda 0.137' -> 'lambda 0.323'
+WARNING: SC04 medium: target 1.28 is 0.006 above the maximum 1.274, using the cap 0.6
+INFO: SC04 medium target 1.28: 'lambda 0.279' -> 'lambda 0.6'
+WARNING: SC04 high: target 1.35 is 0.076 above the maximum 1.274, using the cap 0.6
+INFO: SC04 high   target 1.35: 'lambda 0.367' -> 'lambda 0.6'
+INFO: SC07 low    target 1.15: '2.12x' -> '1.94x'
+INFO: SC07 medium target 1.35: '3.51x' -> '2.85x'
+INFO: SC07 high   target 1.75: '8.41x' -> '4.72x'
+INFO: SC08 low    target 1.15: '5.67 pct relative Se loss' -> '11.4 pct relative Se loss'
+INFO: SC08 medium target 1.35: '13.6 pct' -> '26.6 pct'
+WARNING: SC08 high: target 1.75 is 0.163 above the maximum 1.587, using the cap 0.45
+INFO: SC08 high   target 1.75: '28.8 pct' -> '45 pct'
+INFO: SC09 low    target 1.15: '5.81 pct' -> '12.6 pct'
+INFO: SC09 medium target 1.35: '14.9 pct' -> '31.1 pct'
+WARNING: SC09 high: target 1.71 is 0.207 above the maximum 1.503, using the cap 0.45
+INFO: SC09 high   target 1.71: '30.3 pct' -> '45 pct'
+INFO: SC17 low    target 1.15: '50.4 pct of weights replaced' -> '48.3 pct of weights replaced'
+INFO: SC17 medium target 1.35: '65.3 pct' -> '64.3 pct'
+INFO: SC17 high   target 1.74: '90 pct' -> '89.3 pct'
+INFO: SC19 low    target 1.15: '20 pct' -> '16.7 pct'
+INFO: SC19 medium target 1.35: '48.4 pct' -> '38.7 pct'
+INFO: SC19 high   target 1.50: '69.9 pct' -> '55.5 pct'
+INFO: SC25 low    target 1.22: '12.9 pct relative Se loss on a 0.5 SD shift' -> '0 pct relative Se loss on a 0.5 SD shift'
+INFO: SC25 medium target 1.35: '19.6 pct' -> '2.87 pct'
+INFO: SC25 high   target 1.75: '42.4 pct' -> '29.1 pct'
+INFO: Wrote /Users/yyu/workspace/Continuous-Clinical-Assurance/phase2/results/d3/flat/scenarios.yaml

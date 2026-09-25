@@ -1,0 +1,1723 @@
+{
+ "eicu": {
+  "eicu_crd.admissiondrug": {
+   "columns": [
+    {
+     "name": "admissiondrugid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "drugoffset",
+     "type": "integer"
+    },
+    {
+     "name": "drugenteredoffset",
+     "type": "integer"
+    },
+    {
+     "name": "drugnotetype",
+     "type": "character varying"
+    },
+    {
+     "name": "specialtytype",
+     "type": "character varying"
+    },
+    {
+     "name": "usertype",
+     "type": "character varying"
+    },
+    {
+     "name": "rxincluded",
+     "type": "character varying"
+    },
+    {
+     "name": "writtenineicu",
+     "type": "character varying"
+    },
+    {
+     "name": "drugname",
+     "type": "character varying"
+    },
+    {
+     "name": "drugdosage",
+     "type": "numeric"
+    },
+    {
+     "name": "drugunit",
+     "type": "character varying"
+    },
+    {
+     "name": "drugadmitfrequency",
+     "type": "character varying"
+    },
+    {
+     "name": "drughiclseqno",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 875052
+  },
+  "eicu_crd.admissiondx": {
+   "columns": [
+    {
+     "name": "admissiondxid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "admitdxenteredoffset",
+     "type": "integer"
+    },
+    {
+     "name": "admitdxpath",
+     "type": "character varying"
+    },
+    {
+     "name": "admitdxname",
+     "type": "character varying"
+    },
+    {
+     "name": "admitdxtext",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 626858
+  },
+  "eicu_crd.allergy": {
+   "columns": [
+    {
+     "name": "allergyid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "allergyoffset",
+     "type": "integer"
+    },
+    {
+     "name": "allergyenteredoffset",
+     "type": "integer"
+    },
+    {
+     "name": "allergynotetype",
+     "type": "character varying"
+    },
+    {
+     "name": "specialtytype",
+     "type": "character varying"
+    },
+    {
+     "name": "usertype",
+     "type": "character varying"
+    },
+    {
+     "name": "rxincluded",
+     "type": "character varying"
+    },
+    {
+     "name": "writtenineicu",
+     "type": "character varying"
+    },
+    {
+     "name": "drugname",
+     "type": "character varying"
+    },
+    {
+     "name": "allergytype",
+     "type": "character varying"
+    },
+    {
+     "name": "allergyname",
+     "type": "character varying"
+    },
+    {
+     "name": "drughiclseqno",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 251949
+  },
+  "eicu_crd.apacheapsvar": {
+   "columns": [
+    {
+     "name": "apacheapsvarid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "intubated",
+     "type": "smallint"
+    },
+    {
+     "name": "vent",
+     "type": "smallint"
+    },
+    {
+     "name": "dialysis",
+     "type": "smallint"
+    },
+    {
+     "name": "eyes",
+     "type": "smallint"
+    },
+    {
+     "name": "motor",
+     "type": "smallint"
+    },
+    {
+     "name": "verbal",
+     "type": "smallint"
+    },
+    {
+     "name": "meds",
+     "type": "smallint"
+    },
+    {
+     "name": "urine",
+     "type": "double precision"
+    },
+    {
+     "name": "wbc",
+     "type": "double precision"
+    },
+    {
+     "name": "temperature",
+     "type": "double precision"
+    },
+    {
+     "name": "respiratoryrate",
+     "type": "double precision"
+    },
+    {
+     "name": "sodium",
+     "type": "double precision"
+    },
+    {
+     "name": "heartrate",
+     "type": "double precision"
+    },
+    {
+     "name": "meanbp",
+     "type": "double precision"
+    },
+    {
+     "name": "ph",
+     "type": "double precision"
+    },
+    {
+     "name": "hematocrit",
+     "type": "double precision"
+    },
+    {
+     "name": "creatinine",
+     "type": "double precision"
+    },
+    {
+     "name": "albumin",
+     "type": "double precision"
+    },
+    {
+     "name": "pao2",
+     "type": "double precision"
+    },
+    {
+     "name": "pco2",
+     "type": "double precision"
+    },
+    {
+     "name": "bun",
+     "type": "double precision"
+    },
+    {
+     "name": "glucose",
+     "type": "double precision"
+    },
+    {
+     "name": "bilirubin",
+     "type": "double precision"
+    },
+    {
+     "name": "fio2",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 171177
+  },
+  "eicu_crd.apachepatientresult": {
+   "columns": [
+    {
+     "name": "apachepatientresultsid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "physicianspeciality",
+     "type": "character varying"
+    },
+    {
+     "name": "physicianinterventioncategory",
+     "type": "character varying"
+    },
+    {
+     "name": "acutephysiologyscore",
+     "type": "integer"
+    },
+    {
+     "name": "apachescore",
+     "type": "integer"
+    },
+    {
+     "name": "apacheversion",
+     "type": "character varying"
+    },
+    {
+     "name": "predictedicumortality",
+     "type": "character varying"
+    },
+    {
+     "name": "actualicumortality",
+     "type": "character varying"
+    },
+    {
+     "name": "predictediculos",
+     "type": "double precision"
+    },
+    {
+     "name": "actualiculos",
+     "type": "double precision"
+    },
+    {
+     "name": "predictedhospitalmortality",
+     "type": "character varying"
+    },
+    {
+     "name": "actualhospitalmortality",
+     "type": "character varying"
+    },
+    {
+     "name": "predictedhospitallos",
+     "type": "double precision"
+    },
+    {
+     "name": "actualhospitallos",
+     "type": "double precision"
+    },
+    {
+     "name": "preopmi",
+     "type": "integer"
+    },
+    {
+     "name": "preopcardiaccath",
+     "type": "integer"
+    },
+    {
+     "name": "ptcawithin24h",
+     "type": "integer"
+    },
+    {
+     "name": "unabridgedunitlos",
+     "type": "double precision"
+    },
+    {
+     "name": "unabridgedhosplos",
+     "type": "double precision"
+    },
+    {
+     "name": "actualventdays",
+     "type": "double precision"
+    },
+    {
+     "name": "predventdays",
+     "type": "double precision"
+    },
+    {
+     "name": "unabridgedactualventdays",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 297064
+  },
+  "eicu_crd.apachepredvar": {
+   "columns": [
+    {
+     "name": "apachepredvarid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "sicuday",
+     "type": "smallint"
+    },
+    {
+     "name": "saps3day1",
+     "type": "smallint"
+    },
+    {
+     "name": "saps3today",
+     "type": "smallint"
+    },
+    {
+     "name": "saps3yesterday",
+     "type": "smallint"
+    },
+    {
+     "name": "gender",
+     "type": "smallint"
+    },
+    {
+     "name": "teachtype",
+     "type": "smallint"
+    },
+    {
+     "name": "region",
+     "type": "smallint"
+    },
+    {
+     "name": "bedcount",
+     "type": "smallint"
+    },
+    {
+     "name": "admitsource",
+     "type": "smallint"
+    },
+    {
+     "name": "graftcount",
+     "type": "smallint"
+    },
+    {
+     "name": "meds",
+     "type": "smallint"
+    },
+    {
+     "name": "verbal",
+     "type": "smallint"
+    },
+    {
+     "name": "motor",
+     "type": "smallint"
+    },
+    {
+     "name": "eyes",
+     "type": "smallint"
+    },
+    {
+     "name": "age",
+     "type": "smallint"
+    },
+    {
+     "name": "admitdiagnosis",
+     "type": "character varying"
+    },
+    {
+     "name": "thrombolytics",
+     "type": "smallint"
+    },
+    {
+     "name": "diedinhospital",
+     "type": "smallint"
+    },
+    {
+     "name": "aids",
+     "type": "smallint"
+    },
+    {
+     "name": "hepaticfailure",
+     "type": "smallint"
+    },
+    {
+     "name": "lymphoma",
+     "type": "smallint"
+    },
+    {
+     "name": "metastaticcancer",
+     "type": "smallint"
+    },
+    {
+     "name": "leukemia",
+     "type": "smallint"
+    },
+    {
+     "name": "immunosuppression",
+     "type": "smallint"
+    },
+    {
+     "name": "cirrhosis",
+     "type": "smallint"
+    },
+    {
+     "name": "electivesurgery",
+     "type": "smallint"
+    },
+    {
+     "name": "activetx",
+     "type": "smallint"
+    },
+    {
+     "name": "readmit",
+     "type": "smallint"
+    },
+    {
+     "name": "ima",
+     "type": "smallint"
+    },
+    {
+     "name": "midur",
+     "type": "smallint"
+    },
+    {
+     "name": "ventday1",
+     "type": "smallint"
+    },
+    {
+     "name": "oobventday1",
+     "type": "smallint"
+    },
+    {
+     "name": "oobintubday1",
+     "type": "smallint"
+    },
+    {
+     "name": "diabetes",
+     "type": "smallint"
+    },
+    {
+     "name": "managementsystem",
+     "type": "smallint"
+    },
+    {
+     "name": "var03hspxlos",
+     "type": "double precision"
+    },
+    {
+     "name": "pao2",
+     "type": "double precision"
+    },
+    {
+     "name": "fio2",
+     "type": "double precision"
+    },
+    {
+     "name": "ejectfx",
+     "type": "double precision"
+    },
+    {
+     "name": "creatinine",
+     "type": "double precision"
+    },
+    {
+     "name": "dischargelocation",
+     "type": "smallint"
+    },
+    {
+     "name": "visitnumber",
+     "type": "smallint"
+    },
+    {
+     "name": "amilocation",
+     "type": "smallint"
+    },
+    {
+     "name": "day1meds",
+     "type": "smallint"
+    },
+    {
+     "name": "day1verbal",
+     "type": "smallint"
+    },
+    {
+     "name": "day1motor",
+     "type": "smallint"
+    },
+    {
+     "name": "day1eyes",
+     "type": "smallint"
+    },
+    {
+     "name": "day1pao2",
+     "type": "double precision"
+    },
+    {
+     "name": "day1fio2",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 171177
+  },
+  "eicu_crd.careplancareprovider": {
+   "columns": [
+    {
+     "name": "cplcareprovderid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "careprovidersaveoffset",
+     "type": "integer"
+    },
+    {
+     "name": "providertype",
+     "type": "character varying"
+    },
+    {
+     "name": "specialty",
+     "type": "character varying"
+    },
+    {
+     "name": "interventioncategory",
+     "type": "character varying"
+    },
+    {
+     "name": "managingphysician",
+     "type": "character varying"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 502765
+  },
+  "eicu_crd.careplaneol": {
+   "columns": [
+    {
+     "name": "cpleolid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "cpleolsaveoffset",
+     "type": "integer"
+    },
+    {
+     "name": "cpleoldiscussionoffset",
+     "type": "integer"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 1433
+  },
+  "eicu_crd.careplangeneral": {
+   "columns": [
+    {
+     "name": "cplgeneralid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    },
+    {
+     "name": "cplitemoffset",
+     "type": "integer"
+    },
+    {
+     "name": "cplgroup",
+     "type": "character varying"
+    },
+    {
+     "name": "cplitemvalue",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 3115018
+  },
+  "eicu_crd.careplangoal": {
+   "columns": [
+    {
+     "name": "cplgoalid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "cplgoaloffset",
+     "type": "integer"
+    },
+    {
+     "name": "cplgoalcategory",
+     "type": "character varying"
+    },
+    {
+     "name": "cplgoalvalue",
+     "type": "character varying"
+    },
+    {
+     "name": "cplgoalstatus",
+     "type": "character varying"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 504139
+  },
+  "eicu_crd.careplaninfectiousdisease": {
+   "columns": [
+    {
+     "name": "cplinfectid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    },
+    {
+     "name": "cplinfectdiseaseoffset",
+     "type": "integer"
+    },
+    {
+     "name": "infectdiseasesite",
+     "type": "character varying"
+    },
+    {
+     "name": "infectdiseaseassessment",
+     "type": "character varying"
+    },
+    {
+     "name": "responsetotherapy",
+     "type": "character varying"
+    },
+    {
+     "name": "treatment",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 8056
+  },
+  "eicu_crd.customlab": {
+   "columns": [
+    {
+     "name": "customlabid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "labotheroffset",
+     "type": "integer"
+    },
+    {
+     "name": "labothertypeid",
+     "type": "integer"
+    },
+    {
+     "name": "labothername",
+     "type": "character varying"
+    },
+    {
+     "name": "labotherresult",
+     "type": "character varying"
+    },
+    {
+     "name": "labothervaluetext",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 1082
+  },
+  "eicu_crd.diagnosis": {
+   "columns": [
+    {
+     "name": "diagnosisid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    },
+    {
+     "name": "diagnosisoffset",
+     "type": "integer"
+    },
+    {
+     "name": "diagnosisstring",
+     "type": "character varying"
+    },
+    {
+     "name": "icd9code",
+     "type": "character varying"
+    },
+    {
+     "name": "diagnosispriority",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 2710672
+  },
+  "eicu_crd.hospital": {
+   "columns": [
+    {
+     "name": "hospitalid",
+     "type": "integer"
+    },
+    {
+     "name": "numbedscategory",
+     "type": "character varying"
+    },
+    {
+     "name": "teachingstatus",
+     "type": "boolean"
+    },
+    {
+     "name": "region",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 208
+  },
+  "eicu_crd.infusiondrug": {
+   "columns": [
+    {
+     "name": "infusiondrugid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "infusionoffset",
+     "type": "integer"
+    },
+    {
+     "name": "drugname",
+     "type": "character varying"
+    },
+    {
+     "name": "drugrate",
+     "type": "character varying"
+    },
+    {
+     "name": "infusionrate",
+     "type": "character varying"
+    },
+    {
+     "name": "drugamount",
+     "type": "character varying"
+    },
+    {
+     "name": "volumeoffluid",
+     "type": "character varying"
+    },
+    {
+     "name": "patientweight",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 4802842
+  },
+  "eicu_crd.intakeoutput": {
+   "columns": [
+    {
+     "name": "intakeoutputid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "intakeoutputoffset",
+     "type": "integer"
+    },
+    {
+     "name": "intaketotal",
+     "type": "numeric"
+    },
+    {
+     "name": "outputtotal",
+     "type": "numeric"
+    },
+    {
+     "name": "dialysistotal",
+     "type": "numeric"
+    },
+    {
+     "name": "nettotal",
+     "type": "numeric"
+    },
+    {
+     "name": "intakeoutputentryoffset",
+     "type": "integer"
+    },
+    {
+     "name": "cellpath",
+     "type": "character varying"
+    },
+    {
+     "name": "celllabel",
+     "type": "character varying"
+    },
+    {
+     "name": "cellvaluenumeric",
+     "type": "numeric"
+    },
+    {
+     "name": "cellvaluetext",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 12040502
+  },
+  "eicu_crd.lab": {
+   "columns": [
+    {
+     "name": "labid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "labresultoffset",
+     "type": "integer"
+    },
+    {
+     "name": "labtypeid",
+     "type": "numeric"
+    },
+    {
+     "name": "labname",
+     "type": "character varying"
+    },
+    {
+     "name": "labresult",
+     "type": "numeric"
+    },
+    {
+     "name": "labresulttext",
+     "type": "character varying"
+    },
+    {
+     "name": "labmeasurenamesystem",
+     "type": "character varying"
+    },
+    {
+     "name": "labmeasurenameinterface",
+     "type": "character varying"
+    },
+    {
+     "name": "labresultrevisedoffset",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 39132532
+  },
+  "eicu_crd.medication": {
+   "columns": [
+    {
+     "name": "medicationid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "drugorderoffset",
+     "type": "integer"
+    },
+    {
+     "name": "drugstartoffset",
+     "type": "integer"
+    },
+    {
+     "name": "drugivadmixture",
+     "type": "character varying"
+    },
+    {
+     "name": "drugordercancelled",
+     "type": "character varying"
+    },
+    {
+     "name": "drugname",
+     "type": "character varying"
+    },
+    {
+     "name": "drughiclseqno",
+     "type": "integer"
+    },
+    {
+     "name": "dosage",
+     "type": "character varying"
+    },
+    {
+     "name": "routeadmin",
+     "type": "character varying"
+    },
+    {
+     "name": "frequency",
+     "type": "character varying"
+    },
+    {
+     "name": "loadingdose",
+     "type": "character varying"
+    },
+    {
+     "name": "prn",
+     "type": "character varying"
+    },
+    {
+     "name": "drugstopoffset",
+     "type": "integer"
+    },
+    {
+     "name": "gtc",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 7303726
+  },
+  "eicu_crd.microlab": {
+   "columns": [
+    {
+     "name": "microlabid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "culturetakenoffset",
+     "type": "integer"
+    },
+    {
+     "name": "culturesite",
+     "type": "character varying"
+    },
+    {
+     "name": "organism",
+     "type": "character varying"
+    },
+    {
+     "name": "antibiotic",
+     "type": "character varying"
+    },
+    {
+     "name": "sensitivitylevel",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 16996
+  },
+  "eicu_crd.note": {
+   "columns": [
+    {
+     "name": "noteid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "noteoffset",
+     "type": "integer"
+    },
+    {
+     "name": "noteenteredoffset",
+     "type": "integer"
+    },
+    {
+     "name": "notetype",
+     "type": "character varying"
+    },
+    {
+     "name": "notepath",
+     "type": "character varying"
+    },
+    {
+     "name": "notevalue",
+     "type": "character varying"
+    },
+    {
+     "name": "notetext",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 2253988
+  },
+  "eicu_crd.nurseassessment": {
+   "columns": [
+    {
+     "name": "nurseassessid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "nurseassessoffset",
+     "type": "integer"
+    },
+    {
+     "name": "nurseassessentryoffset",
+     "type": "integer"
+    },
+    {
+     "name": "cellattributepath",
+     "type": "character varying"
+    },
+    {
+     "name": "celllabel",
+     "type": "character varying"
+    },
+    {
+     "name": "cellattribute",
+     "type": "character varying"
+    },
+    {
+     "name": "cellattributevalue",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 15605963
+  },
+  "eicu_crd.nursecare": {
+   "columns": [
+    {
+     "name": "nursecareid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "celllabel",
+     "type": "character varying"
+    },
+    {
+     "name": "nursecareoffset",
+     "type": "integer"
+    },
+    {
+     "name": "nursecareentryoffset",
+     "type": "integer"
+    },
+    {
+     "name": "cellattributepath",
+     "type": "character varying"
+    },
+    {
+     "name": "cellattribute",
+     "type": "character varying"
+    },
+    {
+     "name": "cellattributevalue",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 8310393
+  },
+  "eicu_crd.nursecharting": {
+   "columns": [
+    {
+     "name": "nursingchartid",
+     "type": "bigint"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "nursingchartoffset",
+     "type": "integer"
+    },
+    {
+     "name": "nursingchartentryoffset",
+     "type": "integer"
+    },
+    {
+     "name": "nursingchartcelltypecat",
+     "type": "character varying"
+    },
+    {
+     "name": "nursingchartcelltypevallabel",
+     "type": "character varying"
+    },
+    {
+     "name": "nursingchartcelltypevalname",
+     "type": "character varying"
+    },
+    {
+     "name": "nursingchartvalue",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 151612750
+  },
+  "eicu_crd.pasthistory": {
+   "columns": [
+    {
+     "name": "pasthistoryid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "pasthistoryoffset",
+     "type": "integer"
+    },
+    {
+     "name": "pasthistoryenteredoffset",
+     "type": "integer"
+    },
+    {
+     "name": "pasthistorynotetype",
+     "type": "character varying"
+    },
+    {
+     "name": "pasthistorypath",
+     "type": "character varying"
+    },
+    {
+     "name": "pasthistoryvalue",
+     "type": "character varying"
+    },
+    {
+     "name": "pasthistoryvaluetext",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 1149180
+  },
+  "eicu_crd.patient": {
+   "columns": [
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "patienthealthsystemstayid",
+     "type": "integer"
+    },
+    {
+     "name": "gender",
+     "type": "character varying"
+    },
+    {
+     "name": "age",
+     "type": "character varying"
+    },
+    {
+     "name": "ethnicity",
+     "type": "character varying"
+    },
+    {
+     "name": "hospitalid",
+     "type": "integer"
+    },
+    {
+     "name": "wardid",
+     "type": "integer"
+    },
+    {
+     "name": "apacheadmissiondx",
+     "type": "character varying"
+    },
+    {
+     "name": "admissionheight",
+     "type": "numeric"
+    },
+    {
+     "name": "hospitaladmittime24",
+     "type": "character varying"
+    },
+    {
+     "name": "hospitaladmitoffset",
+     "type": "integer"
+    },
+    {
+     "name": "hospitaladmitsource",
+     "type": "character varying"
+    },
+    {
+     "name": "hospitaldischargeyear",
+     "type": "smallint"
+    },
+    {
+     "name": "hospitaldischargetime24",
+     "type": "character varying"
+    },
+    {
+     "name": "hospitaldischargeoffset",
+     "type": "integer"
+    },
+    {
+     "name": "hospitaldischargelocation",
+     "type": "character varying"
+    },
+    {
+     "name": "hospitaldischargestatus",
+     "type": "character varying"
+    },
+    {
+     "name": "unittype",
+     "type": "character varying"
+    },
+    {
+     "name": "unitadmittime24",
+     "type": "character varying"
+    },
+    {
+     "name": "unitadmitsource",
+     "type": "character varying"
+    },
+    {
+     "name": "unitvisitnumber",
+     "type": "integer"
+    },
+    {
+     "name": "unitstaytype",
+     "type": "character varying"
+    },
+    {
+     "name": "admissionweight",
+     "type": "numeric"
+    },
+    {
+     "name": "dischargeweight",
+     "type": "numeric"
+    },
+    {
+     "name": "unitdischargetime24",
+     "type": "character varying"
+    },
+    {
+     "name": "unitdischargeoffset",
+     "type": "integer"
+    },
+    {
+     "name": "unitdischargelocation",
+     "type": "character varying"
+    },
+    {
+     "name": "unitdischargestatus",
+     "type": "character varying"
+    },
+    {
+     "name": "uniquepid",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 200859
+  },
+  "eicu_crd.physicalexam": {
+   "columns": [
+    {
+     "name": "physicalexamid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "physicalexamoffset",
+     "type": "integer"
+    },
+    {
+     "name": "physicalexampath",
+     "type": "character varying"
+    },
+    {
+     "name": "physicalexamvalue",
+     "type": "character varying"
+    },
+    {
+     "name": "physicalexamtext",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 9215068
+  },
+  "eicu_crd.respiratorycare": {
+   "columns": [
+    {
+     "name": "respcareid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "respcarestatusoffset",
+     "type": "integer"
+    },
+    {
+     "name": "currenthistoryseqnum",
+     "type": "integer"
+    },
+    {
+     "name": "airwaytype",
+     "type": "character varying"
+    },
+    {
+     "name": "airwaysize",
+     "type": "character varying"
+    },
+    {
+     "name": "airwayposition",
+     "type": "character varying"
+    },
+    {
+     "name": "cuffpressure",
+     "type": "numeric"
+    },
+    {
+     "name": "ventstartoffset",
+     "type": "integer"
+    },
+    {
+     "name": "ventendoffset",
+     "type": "integer"
+    },
+    {
+     "name": "priorventstartoffset",
+     "type": "integer"
+    },
+    {
+     "name": "priorventendoffset",
+     "type": "integer"
+    },
+    {
+     "name": "apneaparams",
+     "type": "character varying"
+    },
+    {
+     "name": "lowexhmvlimit",
+     "type": "numeric"
+    },
+    {
+     "name": "hiexhmvlimit",
+     "type": "numeric"
+    },
+    {
+     "name": "lowexhtvlimit",
+     "type": "numeric"
+    },
+    {
+     "name": "hipeakpreslimit",
+     "type": "numeric"
+    },
+    {
+     "name": "lowpeakpreslimit",
+     "type": "numeric"
+    },
+    {
+     "name": "hirespratelimit",
+     "type": "numeric"
+    },
+    {
+     "name": "lowrespratelimit",
+     "type": "numeric"
+    },
+    {
+     "name": "sighpreslimit",
+     "type": "numeric"
+    },
+    {
+     "name": "lowironoxlimit",
+     "type": "numeric"
+    },
+    {
+     "name": "highironoxlimit",
+     "type": "numeric"
+    },
+    {
+     "name": "meanairwaypreslimit",
+     "type": "numeric"
+    },
+    {
+     "name": "peeplimit",
+     "type": "numeric"
+    },
+    {
+     "name": "cpaplimit",
+     "type": "numeric"
+    },
+    {
+     "name": "setapneainterval",
+     "type": "character varying"
+    },
+    {
+     "name": "setapneatv",
+     "type": "character varying"
+    },
+    {
+     "name": "setapneaippeephigh",
+     "type": "character varying"
+    },
+    {
+     "name": "setapnearr",
+     "type": "character varying"
+    },
+    {
+     "name": "setapneapeakflow",
+     "type": "character varying"
+    },
+    {
+     "name": "setapneainsptime",
+     "type": "character varying"
+    },
+    {
+     "name": "setapneaie",
+     "type": "character varying"
+    },
+    {
+     "name": "setapneafio2",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 865381
+  },
+  "eicu_crd.respiratorycharting": {
+   "columns": [
+    {
+     "name": "respchartid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "respchartoffset",
+     "type": "integer"
+    },
+    {
+     "name": "respchartentryoffset",
+     "type": "integer"
+    },
+    {
+     "name": "respcharttypecat",
+     "type": "character varying"
+    },
+    {
+     "name": "respchartvaluelabel",
+     "type": "character varying"
+    },
+    {
+     "name": "respchartvalue",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 20163994
+  },
+  "eicu_crd.treatment": {
+   "columns": [
+    {
+     "name": "treatmentid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "treatmentoffset",
+     "type": "integer"
+    },
+    {
+     "name": "treatmentstring",
+     "type": "character varying"
+    },
+    {
+     "name": "activeupondischarge",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 3689411
+  },
+  "eicu_crd.vitalaperiodic": {
+   "columns": [
+    {
+     "name": "vitalaperiodicid",
+     "type": "integer"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "observationoffset",
+     "type": "integer"
+    },
+    {
+     "name": "noninvasivesystolic",
+     "type": "double precision"
+    },
+    {
+     "name": "noninvasivediastolic",
+     "type": "double precision"
+    },
+    {
+     "name": "noninvasivemean",
+     "type": "double precision"
+    },
+    {
+     "name": "paop",
+     "type": "double precision"
+    },
+    {
+     "name": "cardiacoutput",
+     "type": "double precision"
+    },
+    {
+     "name": "cardiacinput",
+     "type": "double precision"
+    },
+    {
+     "name": "svr",
+     "type": "double precision"
+    },
+    {
+     "name": "svri",
+     "type": "double precision"
+    },
+    {
+     "name": "pvr",
+     "type": "double precision"
+    },
+    {
+     "name": "pvri",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 25094122
+  },
+  "eicu_crd.vitalperiodic": {
+   "columns": [
+    {
+     "name": "vitalperiodicid",
+     "type": "bigint"
+    },
+    {
+     "name": "patientunitstayid",
+     "type": "integer"
+    },
+    {
+     "name": "observationoffset",
+     "type": "integer"
+    },
+    {
+     "name": "temperature",
+     "type": "numeric"
+    },
+    {
+     "name": "sao2",
+     "type": "integer"
+    },
+    {
+     "name": "heartrate",
+     "type": "integer"
+    },
+    {
+     "name": "respiration",
+     "type": "integer"
+    },
+    {
+     "name": "cvp",
+     "type": "integer"
+    },
+    {
+     "name": "etco2",
+     "type": "integer"
+    },
+    {
+     "name": "systemicsystolic",
+     "type": "integer"
+    },
+    {
+     "name": "systemicdiastolic",
+     "type": "integer"
+    },
+    {
+     "name": "systemicmean",
+     "type": "integer"
+    },
+    {
+     "name": "pasystolic",
+     "type": "integer"
+    },
+    {
+     "name": "padiastolic",
+     "type": "integer"
+    },
+    {
+     "name": "pamean",
+     "type": "integer"
+    },
+    {
+     "name": "st1",
+     "type": "double precision"
+    },
+    {
+     "name": "st2",
+     "type": "double precision"
+    },
+    {
+     "name": "st3",
+     "type": "double precision"
+    },
+    {
+     "name": "icp",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 146707230
+  }
+ }
+}

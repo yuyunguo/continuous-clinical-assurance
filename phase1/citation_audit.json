@@ -1,0 +1,1769 @@
+[
+  {
+    "key": "vancalster2019",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1186/s12916-019-1466-7",
+    "doi_agreement": true,
+    "best": {
+      "title": "Calibration: the Achilles heel of predictive analytics",
+      "authors": [
+        "",
+        "Van Calster",
+        "McLernon",
+        "van Smeden",
+        "Wynants",
+        "Steyerberg"
+      ],
+      "year": 2019,
+      "doi": "10.1186/s12916-019-1466-7",
+      "venue": "BMC Medicine",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Calibration: the Achilles heel of predictive analytics",
+      "query_author": "Van Calster",
+      "query_year": 2019,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1186/s12916-019-1466-7",
+        "openalex": "10.1186/s12916-019-1466-7"
+      }
+    }
+  },
+  {
+    "key": "finlayson2021",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1056/nejmc2104626",
+    "doi_agreement": true,
+    "best": {
+      "title": "The Clinician and Dataset Shift in Artificial Intelligence",
+      "authors": [
+        "Finlayson",
+        "Subbaswamy",
+        "Singh",
+        "Bowers",
+        "Kupke",
+        "Zittrain",
+        "Kohane",
+        "Saria"
+      ],
+      "year": 2021,
+      "doi": "10.1056/nejmc2104626",
+      "venue": "New England Journal of Medicine",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "The Clinician and Dataset Shift in Artificial Intelligence",
+      "query_author": "Finlayson",
+      "query_year": 2021,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1056/nejmc2104626",
+        "openalex": "10.1056/nejmc2104626"
+      }
+    }
+  },
+  {
+    "key": "davis2017",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1093/jamia/ocx030",
+    "doi_agreement": true,
+    "best": {
+      "title": "Calibration drift in regression and machine learning models for acute kidney injury",
+      "authors": [
+        "Davis",
+        "Lasko",
+        "Chen",
+        "Siew",
+        "Matheny"
+      ],
+      "year": 2017,
+      "doi": "10.1093/jamia/ocx030",
+      "venue": "Journal of the American Medical Informatics Association",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Calibration drift in regression and machine learning models for acute kidney injury",
+      "query_author": "Davis",
+      "query_year": 2017,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1093/jamia/ocx030",
+        "openalex": "10.1093/jamia/ocx030"
+      }
+    }
+  },
+  {
+    "key": "youssef2023",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1038/s41591-023-02540-z",
+    "doi_agreement": true,
+    "best": {
+      "title": "External validation of AI models in health should be replaced with recurring local validation",
+      "authors": [
+        "Youssef",
+        "Pencina",
+        "Thakur",
+        "Zhu",
+        "Clifton",
+        "Shah"
+      ],
+      "year": 2023,
+      "doi": "10.1038/s41591-023-02540-z",
+      "venue": "Nature Medicine",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "External validation of AI models in health should be replaced with recurring local validation",
+      "query_author": "Youssef",
+      "query_year": 2023,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1038/s41591-023-02540-z",
+        "openalex": "10.1038/s41591-023-02540-z"
+      }
+    }
+  },
+  {
+    "key": "wong2021",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1001/jamainternmed.2021.2626",
+    "doi_agreement": true,
+    "best": {
+      "title": "External Validation of a Widely Implemented Proprietary Sepsis Prediction Model in Hospitalized Patients",
+      "authors": [
+        "Wong",
+        "Otles",
+        "Donnelly",
+        "Krumm",
+        "McCullough",
+        "DeTroyer-Cooley",
+        "Pestrue",
+        "Phillips",
+        "Konye",
+        "Penoza",
+        "Ghous",
+        "Singh"
+      ],
+      "year": 2021,
+      "doi": "10.1001/jamainternmed.2021.2626",
+      "venue": "JAMA Internal Medicine",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "External Validation of a Widely Implemented Proprietary Sepsis Prediction Model in Hospitalized Patients",
+      "query_author": "Wong",
+      "query_year": 2021,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1001/jamainternmed.2021.2626",
+        "openalex": "10.1001/jamainternmed.2021.2626"
+      }
+    }
+  },
+  {
+    "key": "guo2017",
+    "status": "VALID",
+    "matched_sources": [
+      "datacite",
+      "openalex"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.48550/arxiv.1706.04599",
+    "doi_agreement": true,
+    "best": {
+      "title": "On Calibration of Modern Neural Networks",
+      "authors": [
+        "Guo",
+        "Pleiss",
+        "Sun",
+        "Weinberger"
+      ],
+      "year": 2017,
+      "doi": "10.48550/arxiv.1706.04599",
+      "venue": null,
+      "source": "openalex"
+    },
+    "detail": {
+      "query_title": "On Calibration of Modern Neural Networks",
+      "query_author": "Guo",
+      "query_year": 2017,
+      "matched_via_doi": [
+        "openalex",
+        "datacite"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "openalex": "10.48550/arxiv.1706.04599",
+        "datacite": "10.48550/arxiv.1706.04599"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "vasey2022",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1136/bmj-2022-070904",
+    "doi_agreement": true,
+    "best": {
+      "title": "Reporting guideline for the early stage clinical evaluation of decision support systems driven by artificial intelligence: DECIDE-AI",
+      "authors": [
+        "Vasey",
+        "Nagendran",
+        "Campbell",
+        "Clifton",
+        "Collins",
+        "Denaxas",
+        "Denniston",
+        "Faes",
+        "Geerts",
+        "Ibrahim",
+        "Liu",
+        "Mateen",
+        "Mathur",
+        "McCradden",
+        "Morgan",
+        "Ordish",
+        "Rogers",
+        "Saria",
+        "Ting",
+        "Watkinson",
+        "Weber",
+        "Wheatstone",
+        "McCulloch"
+      ],
+      "year": 2022,
+      "doi": "10.1136/bmj-2022-070904",
+      "venue": "BMJ",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Reporting guideline for the early-stage clinical evaluation of decision support systems driven by artificial intelligence: DECIDE-AI",
+      "query_author": "Vasey",
+      "query_year": 2022,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1136/bmj-2022-070904",
+        "openalex": "10.1136/bmj-2022-070904"
+      }
+    }
+  },
+  {
+    "key": "collins2024",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "semanticscholar"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1136/bmj.q902",
+    "doi_agreement": true,
+    "best": {
+      "title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods",
+      "authors": [],
+      "year": 2024,
+      "doi": "10.1136/bmj.q902",
+      "venue": "BMJ",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods",
+      "query_author": "Collins",
+      "query_year": 2024,
+      "matched_via_doi": [
+        "semanticscholar"
+      ],
+      "author_unchecked": [
+        "crossref"
+      ],
+      "dois_by_source": {
+        "crossref": "10.1136/bmj.q902",
+        "semanticscholar": "10.1136/bmj.q902"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "parasuraman2010",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1177/0018720810376055",
+    "doi_agreement": true,
+    "best": {
+      "title": "Complacency and Bias in Human Use of Automation: An Attentional Integration",
+      "authors": [
+        "Parasuraman",
+        "Manzey"
+      ],
+      "year": 2010,
+      "doi": "10.1177/0018720810376055",
+      "venue": "Human Factors: The Journal of the Human Factors and Ergonomics Society",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Complacency and Bias in Human Use of Automation: An Attentional Integration",
+      "query_author": "Parasuraman",
+      "query_year": 2010,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1177/0018720810376055",
+        "openalex": "10.1177/0018720810376055"
+      }
+    }
+  },
+  {
+    "key": "goddard2012",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1136/amiajnl-2011-000089",
+    "doi_agreement": true,
+    "best": {
+      "title": "Automation bias: a systematic review of frequency, effect mediators, and mitigators",
+      "authors": [
+        "Goddard",
+        "Roudsari",
+        "Wyatt"
+      ],
+      "year": 2012,
+      "doi": "10.1136/amiajnl-2011-000089",
+      "venue": "Journal of the American Medical Informatics Association",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Automation bias: a systematic review of frequency, effect mediators, and mitigators",
+      "query_author": "Goddard",
+      "query_year": 2012,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1136/amiajnl-2011-000089",
+        "openalex": "10.1136/amiajnl-2011-000089"
+      }
+    }
+  },
+  {
+    "key": "lyell2017",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1093/jamia/ocw105",
+    "doi_agreement": true,
+    "best": {
+      "title": "Automation bias and verification complexity: a systematic review",
+      "authors": [
+        "Lyell",
+        "Coiera"
+      ],
+      "year": 2016,
+      "doi": "10.1093/jamia/ocw105",
+      "venue": "Journal of the American Medical Informatics Association",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Automation bias and verification complexity: a systematic review",
+      "query_author": "Lyell",
+      "query_year": 2017,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1093/jamia/ocw105",
+        "openalex": "10.1093/jamia/ocw105"
+      }
+    }
+  },
+  {
+    "key": "green2022",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.1016/j.clsr.2022.105681",
+    "doi_agreement": false,
+    "best": {
+      "title": "The Flaws of Policies Requiring Human Oversight of Government Algorithms",
+      "authors": [
+        "Green"
+      ],
+      "year": 2021,
+      "doi": "10.2139/ssrn.3921216",
+      "venue": null,
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "The flaws of policies requiring human oversight of government algorithms",
+      "query_author": "Green",
+      "query_year": 2022,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.2139/ssrn.3921216",
+        "openalex": "10.1016/j.clsr.2022.105681"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "dratsch2023",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1148/radiol.222176",
+    "doi_agreement": true,
+    "best": {
+      "title": "Automation Bias in Mammography: The Impact of Artificial Intelligence                     BI-RADS Suggestions on Reader Performance",
+      "authors": [
+        "Dratsch",
+        "Chen",
+        "Rezazade Mehrizi",
+        "Kloeckner",
+        "M\u00e4hringer-Kunz",
+        "P\u00fcsken",
+        "Bae\u00dfler",
+        "Sauer",
+        "Maintz",
+        "Pinto dos Santos"
+      ],
+      "year": 2023,
+      "doi": "10.1148/radiol.222176",
+      "venue": "Radiology",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Automation Bias in Mammography: The Impact of Artificial Intelligence BI-RADS Suggestions on Reader Performance",
+      "query_author": "Dratsch",
+      "query_year": 2023,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1148/radiol.222176",
+        "openalex": "10.1148/radiol.222176"
+      }
+    }
+  },
+  {
+    "key": "rabanser2019",
+    "status": "VALID",
+    "matched_sources": [
+      "datacite",
+      "openalex",
+      "semanticscholar"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.48550/arxiv.1810.11953",
+    "doi_agreement": true,
+    "best": {
+      "title": "Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift",
+      "authors": [
+        "Rabanser",
+        "G\u00fcnnemann",
+        "Lipton"
+      ],
+      "year": 2018,
+      "doi": "10.48550/arxiv.1810.11953",
+      "venue": null,
+      "source": "openalex"
+    },
+    "detail": {
+      "query_title": "Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift",
+      "query_author": "Rabanser",
+      "query_year": 2019,
+      "matched_via_doi": [
+        "openalex",
+        "datacite"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "semanticscholar": null,
+        "openalex": "10.48550/arxiv.1810.11953",
+        "datacite": "10.48550/arxiv.1810.11953"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "gama2014",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1145/2523813",
+    "doi_agreement": true,
+    "best": {
+      "title": "A survey on concept drift adaptation",
+      "authors": [
+        "Gama",
+        "\u017dliobait\u0117",
+        "Bifet",
+        "Pechenizkiy",
+        "Bouchachia"
+      ],
+      "year": 2014,
+      "doi": "10.1145/2523813",
+      "venue": "ACM Computing Surveys",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "A survey on concept drift adaptation",
+      "query_author": "Gama",
+      "query_year": 2014,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1145/2523813",
+        "openalex": "10.1145/2523813"
+      }
+    }
+  },
+  {
+    "key": "lu2019",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1109/tkde.2018.2876857",
+    "doi_agreement": true,
+    "best": {
+      "title": "Learning under Concept Drift: A Review",
+      "authors": [
+        "Lu",
+        "Liu",
+        "Dong",
+        "Gu",
+        "Gama",
+        "Zhang"
+      ],
+      "year": 2018,
+      "doi": "10.1109/tkde.2018.2876857",
+      "venue": "IEEE Transactions on Knowledge and Data Engineering",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Learning under Concept Drift: A Review",
+      "query_author": "Lu",
+      "query_year": 2019,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1109/tkde.2018.2876857",
+        "openalex": "10.1109/tkde.2018.2876857"
+      }
+    }
+  },
+  {
+    "key": "feng2022",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1038/s41746-022-00611-y",
+    "doi_agreement": true,
+    "best": {
+      "title": "Clinical artificial intelligence quality improvement: towards continual monitoring and updating of AI algorithms in healthcare",
+      "authors": [
+        "Feng",
+        "Phillips",
+        "Malenica",
+        "Bishara",
+        "Hubbard",
+        "Celi",
+        "Pirracchio"
+      ],
+      "year": 2022,
+      "doi": "10.1038/s41746-022-00611-y",
+      "venue": "npj Digital Medicine",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Clinical artificial intelligence quality improvement: towards continual monitoring and updating of AI algorithms in healthcare",
+      "query_author": "Feng",
+      "query_year": 2022,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1038/s41746-022-00611-y",
+        "openalex": "10.1038/s41746-022-00611-y"
+      }
+    }
+  },
+  {
+    "key": "sendak2020",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.2196/15182",
+    "doi_agreement": false,
+    "best": {
+      "title": "Real-World Integration of a Sepsis Deep Learning Technology Into Routine Clinical Care: Implementation Study (Preprint)",
+      "authors": [
+        "Sendak",
+        "Ratliff",
+        "Sarro",
+        "Alderton",
+        "Futoma",
+        "Gao",
+        "Nichols",
+        "Revoir",
+        "Yashar",
+        "Miller",
+        "Kester",
+        "Sandhu",
+        "Corey",
+        "Brajer",
+        "Tan",
+        "Lin",
+        "Brown",
+        "Engelbosch",
+        "Anstrom",
+        "Elish",
+        "Heller",
+        "Donohoe",
+        "Theiling",
+        "Poon",
+        "Balu",
+        "Bedoya",
+        "O'Brien"
+      ],
+      "year": 2019,
+      "doi": "10.2196/preprints.15182",
+      "venue": null,
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Real-World Integration of a Sepsis Deep Learning Technology Into Routine Clinical Care: Implementation Study",
+      "query_author": "Sendak",
+      "query_year": 2020,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.2196/preprints.15182",
+        "openalex": "10.2196/15182"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "page1954",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.2307/2333009",
+    "doi_agreement": true,
+    "best": {
+      "title": "Continuous Inspection Schemes",
+      "authors": [
+        "Page"
+      ],
+      "year": 1954,
+      "doi": "10.2307/2333009",
+      "venue": "Biometrika",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Continuous Inspection Schemes",
+      "query_author": "Page",
+      "query_year": 1954,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.2307/2333009",
+        "openalex": "10.2307/2333009"
+      }
+    }
+  },
+  {
+    "key": "roberts1959",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1080/00401706.1959.10489860",
+    "doi_agreement": true,
+    "best": {
+      "title": "Control Chart Tests Based on Geometric Moving Averages",
+      "authors": [
+        "Roberts"
+      ],
+      "year": 1959,
+      "doi": "10.1080/00401706.1959.10489860",
+      "venue": "Technometrics",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Control Chart Tests Based on Geometric Moving Averages",
+      "query_author": "Roberts",
+      "query_year": 1959,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1080/00401706.1959.10489860",
+        "openalex": "10.1080/00401706.1959.10489860"
+      }
+    }
+  },
+  {
+    "key": "wald1945",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1214/aoms/1177731118",
+    "doi_agreement": true,
+    "best": {
+      "title": "Sequential Tests of Statistical Hypotheses",
+      "authors": [
+        "Wald"
+      ],
+      "year": 1945,
+      "doi": "10.1214/aoms/1177731118",
+      "venue": "The Annals of Mathematical Statistics",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Sequential Tests of Statistical Hypotheses",
+      "query_author": "Wald",
+      "query_year": 1945,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1214/aoms/1177731118",
+        "openalex": "10.1214/aoms/1177731118"
+      }
+    }
+  },
+  {
+    "key": "benjamini1995",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1111/j.2517-6161.1995.tb02031.x",
+    "doi_agreement": true,
+    "best": {
+      "title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing",
+      "authors": [
+        "Benjamini",
+        "Hochberg"
+      ],
+      "year": 1995,
+      "doi": "10.1111/j.2517-6161.1995.tb02031.x",
+      "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing",
+      "query_author": "Benjamini",
+      "query_year": 1995,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1111/j.2517-6161.1995.tb02031.x",
+        "openalex": "10.1111/j.2517-6161.1995.tb02031.x"
+      }
+    }
+  },
+  {
+    "key": "holm1979",
+    "status": "VALID",
+    "matched_sources": [
+      "openalex",
+      "semanticscholar"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.2307/4615733",
+    "doi_agreement": true,
+    "best": {
+      "title": "A Simple Sequentially Rejective Multiple Test Procedure",
+      "authors": [
+        "Holm"
+      ],
+      "year": 1979,
+      "doi": "10.2307/4615733",
+      "venue": null,
+      "source": "openalex"
+    },
+    "detail": {
+      "query_title": "A Simple Sequentially Rejective Multiple Test Procedure",
+      "query_author": "Holm",
+      "query_year": 1979,
+      "matched_via_doi": [
+        "openalex",
+        "semanticscholar"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "openalex": "10.2307/4615733",
+        "semanticscholar": "10.2307/4615733"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "gretton2012",
+    "status": "WARNING",
+    "matched_sources": [
+      "publisher"
+    ],
+    "unavailable_sources": [
+      "openalex",
+      "semanticscholar"
+    ],
+    "doi": null,
+    "doi_agreement": null,
+    "best": {
+      "title": "A Kernel Two-Sample Test",
+      "authors": [
+        "Gretton"
+      ],
+      "year": 2012,
+      "doi": null,
+      "venue": "https://jmlr.org/papers/v13/gretton12a.html",
+      "source": "publisher"
+    },
+    "detail": {
+      "query_title": "A Kernel Two-Sample Test",
+      "query_author": "Gretton",
+      "query_year": 2012,
+      "matched_via_doi": [],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "publisher": null
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "rubner2000",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1023/a:1026543900054",
+    "doi_agreement": true,
+    "best": {
+      "title": "The Earth Mover's Distance as a Metric for Image Retrieval",
+      "authors": [
+        "Rubner",
+        "Tomasi",
+        "Guibas"
+      ],
+      "year": 2000,
+      "doi": "10.1023/a:1026543900054",
+      "venue": "International Journal of Computer Vision",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "The Earth Mover's Distance as a Metric for Image Retrieval",
+      "query_author": "Rubner",
+      "query_year": 2000,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1023/a:1026543900054",
+        "openalex": "10.1023/a:1026543900054"
+      }
+    }
+  },
+  {
+    "key": "delong1988",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.2307/2531595",
+    "doi_agreement": true,
+    "best": {
+      "title": "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves: A Nonparametric Approach",
+      "authors": [
+        "DeLong",
+        "DeLong",
+        "Clarke-Pearson"
+      ],
+      "year": 1988,
+      "doi": "10.2307/2531595",
+      "venue": "Biometrics",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves: A Nonparametric Approach",
+      "query_author": "DeLong",
+      "query_year": 1988,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.2307/2531595",
+        "openalex": "10.2307/2531595"
+      }
+    }
+  },
+  {
+    "key": "brier1950",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1175/1520-0493(1950)078<0001:vofeit>2.0.co;2",
+    "doi_agreement": true,
+    "best": {
+      "title": "VERIFICATION OF FORECASTS EXPRESSED IN TERMS OF PROBABILITY",
+      "authors": [
+        "BRIER"
+      ],
+      "year": 1950,
+      "doi": "10.1175/1520-0493(1950)078<0001:vofeit>2.0.co;2",
+      "venue": "Monthly Weather Review",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Verification of forecasts expressed in terms of probability",
+      "query_author": "Brier",
+      "query_year": 1950,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1175/1520-0493(1950)078<0001:vofeit>2.0.co;2",
+        "openalex": "10.1175/1520-0493(1950)078<0001:vofeit>2.0.co;2"
+      }
+    }
+  },
+  {
+    "key": "naeini2015",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1609/aaai.v29i1.9602",
+    "doi_agreement": true,
+    "best": {
+      "title": "Obtaining Well Calibrated Probabilities Using Bayesian Binning",
+      "authors": [
+        "Pakdaman Naeini",
+        "Cooper",
+        "Hauskrecht"
+      ],
+      "year": 2015,
+      "doi": "10.1609/aaai.v29i1.9602",
+      "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Obtaining Well Calibrated Probabilities Using Bayesian Binning",
+      "query_author": "Naeini",
+      "query_year": 2015,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1609/aaai.v29i1.9602",
+        "openalex": "10.1609/aaai.v29i1.9602"
+      }
+    }
+  },
+  {
+    "key": "steyerberg2010",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1097/ede.0b013e3181c30fb2",
+    "doi_agreement": true,
+    "best": {
+      "title": "Assessing the Performance of Prediction Models",
+      "authors": [
+        "Steyerberg",
+        "Vickers",
+        "Cook",
+        "Gerds",
+        "Gonen",
+        "Obuchowski",
+        "Pencina",
+        "Kattan"
+      ],
+      "year": 2010,
+      "doi": "10.1097/ede.0b013e3181c30fb2",
+      "venue": "Epidemiology",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Assessing the Performance of Prediction Models: A Framework for Traditional and Novel Measures",
+      "query_author": "Steyerberg",
+      "query_year": 2010,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1097/ede.0b013e3181c30fb2",
+        "openalex": "10.1097/ede.0b013e3181c30fb2"
+      }
+    }
+  },
+  {
+    "key": "horvitz1952",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1080/01621459.1952.10483446",
+    "doi_agreement": true,
+    "best": {
+      "title": "A Generalization of Sampling Without Replacement from a Finite Universe",
+      "authors": [
+        "Horvitz",
+        "Thompson"
+      ],
+      "year": 1952,
+      "doi": "10.1080/01621459.1952.10483446",
+      "venue": "Journal of the American Statistical Association",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "A Generalization of Sampling Without Replacement from a Finite Universe",
+      "query_author": "Horvitz",
+      "query_year": 1952,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1080/01621459.1952.10483446",
+        "openalex": "10.1080/01621459.1952.10483446"
+      }
+    }
+  },
+  {
+    "key": "kaplan1958",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.1080/01621459.1958.10501452",
+    "doi_agreement": false,
+    "best": {
+      "title": "Nonparametric Estimation Based on Incomplete Observations",
+      "authors": [],
+      "year": null,
+      "doi": "10.1007/springerreference_205495",
+      "venue": "SpringerReference",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Nonparametric Estimation from Incomplete Observations",
+      "query_author": "Kaplan",
+      "query_year": 1958,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [
+        "crossref"
+      ],
+      "dois_by_source": {
+        "crossref": "10.1007/springerreference_205495",
+        "openalex": "10.1080/01621459.1958.10501452"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "cox1972",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1111/j.2517-6161.1972.tb00899.x",
+    "doi_agreement": true,
+    "best": {
+      "title": "Regression Models and Life-Tables",
+      "authors": [
+        "Cox"
+      ],
+      "year": 1972,
+      "doi": "10.1111/j.2517-6161.1972.tb00899.x",
+      "venue": "Journal of the Royal Statistical Society Series B: Statistical Methodology",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Regression Models and Life-Tables",
+      "query_author": "Cox",
+      "query_year": 1972,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1111/j.2517-6161.1972.tb00899.x",
+        "openalex": "10.1111/j.2517-6161.1972.tb00899.x"
+      }
+    }
+  },
+  {
+    "key": "royston2013",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1186/1471-2288-13-152",
+    "doi_agreement": true,
+    "best": {
+      "title": "Restricted mean survival time: an alternative to the hazard ratio for the design and analysis of randomized trials with a time-to-event outcome",
+      "authors": [
+        "Royston",
+        "Parmar"
+      ],
+      "year": 2013,
+      "doi": "10.1186/1471-2288-13-152",
+      "venue": "BMC Medical Research Methodology",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Restricted mean survival time: an alternative to the hazard ratio for the design and analysis of randomized trials with a time-to-event outcome",
+      "query_author": "Royston",
+      "query_year": 2013,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1186/1471-2288-13-152",
+        "openalex": "10.1186/1471-2288-13-152"
+      }
+    }
+  },
+  {
+    "key": "efron1979",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1214/aos/1176344552",
+    "doi_agreement": true,
+    "best": {
+      "title": "Bootstrap Methods: Another Look at the Jackknife",
+      "authors": [
+        "Efron"
+      ],
+      "year": 1979,
+      "doi": "10.1214/aos/1176344552",
+      "venue": "The Annals of Statistics",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Bootstrap Methods: Another Look at the Jackknife",
+      "query_author": "Efron",
+      "query_year": 1979,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1214/aos/1176344552",
+        "openalex": "10.1214/aos/1176344552"
+      }
+    }
+  },
+  {
+    "key": "kunsch1989",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1214/aos/1176347265",
+    "doi_agreement": true,
+    "best": {
+      "title": "The Jackknife and the Bootstrap for General Stationary Observations",
+      "authors": [
+        "Kunsch"
+      ],
+      "year": 1989,
+      "doi": "10.1214/aos/1176347265",
+      "venue": "The Annals of Statistics",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "The Jackknife and the Bootstrap for General Stationary Observations",
+      "query_author": "Kunsch",
+      "query_year": 1989,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1214/aos/1176347265",
+        "openalex": "10.1214/aos/1176347265"
+      }
+    }
+  },
+  {
+    "key": "vickers2006",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1177/0272989x06295361",
+    "doi_agreement": true,
+    "best": {
+      "title": "Decision Curve Analysis: A Novel Method for Evaluating Prediction Models",
+      "authors": [
+        "Vickers",
+        "Elkin"
+      ],
+      "year": 2006,
+      "doi": "10.1177/0272989x06295361",
+      "venue": "Medical Decision Making",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Decision Curve Analysis: A Novel Method for Evaluating Prediction Models",
+      "query_author": "Vickers",
+      "query_year": 2006,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1177/0272989x06295361",
+        "openalex": "10.1177/0272989x06295361"
+      }
+    }
+  },
+  {
+    "key": "johnson2023",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1038/s41597-022-01899-x",
+    "doi_agreement": true,
+    "best": {
+      "title": "MIMIC-IV, a freely accessible electronic health record dataset",
+      "authors": [
+        "Johnson",
+        "Bulgarelli",
+        "Shen",
+        "Gayles",
+        "Shammout",
+        "Horng",
+        "Pollard",
+        "Hao",
+        "Moody",
+        "Gow",
+        "Lehman",
+        "Celi",
+        "Mark"
+      ],
+      "year": 2023,
+      "doi": "10.1038/s41597-022-01899-x",
+      "venue": "Scientific Data",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "MIMIC-IV, a freely accessible electronic health record dataset",
+      "query_author": "Johnson",
+      "query_year": 2023,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1038/s41597-022-01899-x",
+        "openalex": "10.1038/s41597-022-01899-x"
+      }
+    }
+  },
+  {
+    "key": "nist2023",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.6028/NIST.AI.100-1",
+    "doi_agreement": true,
+    "best": {
+      "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "authors": [
+        "Tabassi"
+      ],
+      "year": 2023,
+      "doi": "10.6028/nist.ai.100-1",
+      "venue": null,
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+      "query_author": "Tabassi",
+      "query_year": 2023,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.6028/nist.ai.100-1",
+        "openalex": "10.6028/NIST.AI.100-1"
+      }
+    }
+  },
+  {
+    "key": "pollard2018",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.1038/sdata.2018.178",
+    "doi_agreement": true,
+    "best": {
+      "title": "The eICU Collaborative Research Database, a freely available multi-center database for critical care research",
+      "authors": [
+        "Pollard",
+        "Johnson",
+        "Raffa",
+        "Celi",
+        "Mark",
+        "Badawi"
+      ],
+      "year": 2018,
+      "doi": "10.1038/sdata.2018.178",
+      "venue": "Scientific Data",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "The eICU Collaborative Research Database, a freely available multi-center database for critical care research",
+      "query_author": "Pollard",
+      "query_year": 2018,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.1038/sdata.2018.178",
+        "openalex": "10.1038/sdata.2018.178"
+      }
+    }
+  },
+  {
+    "key": "yu2026operational",
+    "status": "WARNING",
+    "matched_sources": [
+      "datacite"
+    ],
+    "unavailable_sources": [
+      "openalex",
+      "semanticscholar"
+    ],
+    "doi": "10.6084/m9.figshare.32869604.v1",
+    "doi_agreement": null,
+    "best": {
+      "title": "Toward an Operational Science of Clinical AI: From Model Evaluation to the Study of Operational Trajectories",
+      "authors": [
+        "Yu"
+      ],
+      "year": 2026,
+      "doi": "10.6084/m9.figshare.32869604.v1",
+      "venue": "figshare",
+      "source": "datacite"
+    },
+    "detail": {
+      "query_title": "Toward an Operational Science of Clinical AI: From Model Evaluation to the Study of Operational Trajectories",
+      "query_author": "Yu",
+      "query_year": 2026,
+      "matched_via_doi": [
+        "datacite"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "datacite": "10.6084/m9.figshare.32869604.v1"
+      }
+    }
+  },
+  {
+    "key": "yu2026monitoring",
+    "status": "WARNING",
+    "matched_sources": [
+      "datacite"
+    ],
+    "unavailable_sources": [
+      "openalex",
+      "semanticscholar"
+    ],
+    "doi": "10.17605/OSF.IO/5TDUJ",
+    "doi_agreement": null,
+    "best": {
+      "title": "From Monitoring to Action: A Scoping Review of Post-Deployment Clinical AI Surveillance, Risk Assessment, and Lifecycle Management",
+      "authors": [
+        "Yunguo Yu"
+      ],
+      "year": 2026,
+      "doi": "10.17605/OSF.IO/5TDUJ",
+      "venue": "OSF Registries",
+      "source": "datacite"
+    },
+    "detail": {
+      "query_title": "From Monitoring to Action: A Scoping Review of Post-Deployment Clinical AI Surveillance, Risk Assessment, and Lifecycle Management",
+      "query_author": "Yu",
+      "query_year": 2026,
+      "matched_via_doi": [
+        "datacite"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "datacite": "10.17605/OSF.IO/5TDUJ"
+      }
+    }
+  },
+  {
+    "key": "yu2026deferral",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [],
+    "doi": "10.21203/rs.3.rs-9887494/v1",
+    "doi_agreement": true,
+    "best": {
+      "title": "The Deferral Frontier: Reliability-Gated Selective Prediction for Clinical AI",
+      "authors": [
+        "Yunguo"
+      ],
+      "year": 2026,
+      "doi": "10.21203/rs.3.rs-9887494/v1",
+      "venue": null,
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "The Deferral Frontier: Reliability-Gated Selective Prediction for Clinical AI",
+      "query_author": "Yu",
+      "query_year": 2026,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.21203/rs.3.rs-9887494/v1",
+        "openalex": "10.21203/rs.3.rs-9887494/v1"
+      },
+      "merged_with_previous_run": true
+    }
+  },
+  {
+    "key": "yu2026evaluator",
+    "status": "WARNING",
+    "matched_sources": [
+      "datacite"
+    ],
+    "unavailable_sources": [
+      "openalex",
+      "semanticscholar"
+    ],
+    "doi": "10.6084/m9.figshare.32886083.v1",
+    "doi_agreement": null,
+    "best": {
+      "title": "Evaluating the Evaluator: A Protocol for Measuring Evaluator Dependence in LLM-Based Safety Assessment",
+      "authors": [
+        "Yu"
+      ],
+      "year": 2026,
+      "doi": "10.6084/m9.figshare.32886083.v1",
+      "venue": "figshare",
+      "source": "datacite"
+    },
+    "detail": {
+      "query_title": "Evaluating the Evaluator: A Protocol for Measuring Evaluator Dependence in LLM-Based Safety Assessment",
+      "query_author": "Yu",
+      "query_year": 2026,
+      "matched_via_doi": [
+        "datacite"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "datacite": "10.6084/m9.figshare.32886083.v1"
+      }
+    }
+  },
+  {
+    "key": "yu2025trust",
+    "status": "VALID",
+    "matched_sources": [
+      "crossref",
+      "openalex"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.3390/diagnostics15172204",
+    "doi_agreement": true,
+    "best": {
+      "title": "Enhancing Clinician Trust in AI Diagnostics: A Dynamic Framework for Confidence Calibration and Transparency",
+      "authors": [
+        "Yu",
+        "Gomez-Cabello",
+        "Haider",
+        "Genovese",
+        "Prabha",
+        "Trabilsy",
+        "Collaco",
+        "Wood",
+        "Bagaria",
+        "Tao",
+        "Forte"
+      ],
+      "year": 2025,
+      "doi": "10.3390/diagnostics15172204",
+      "venue": "Diagnostics",
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "Enhancing Clinician Trust in AI Diagnostics: A Dynamic Framework for Confidence Calibration and Transparency",
+      "query_author": "Yu",
+      "query_year": 2025,
+      "matched_via_doi": [
+        "openalex"
+      ],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.3390/diagnostics15172204",
+        "openalex": "10.3390/diagnostics15172204"
+      }
+    }
+  },
+  {
+    "key": "yu2026missingness",
+    "status": "WARNING",
+    "matched_sources": [
+      "crossref"
+    ],
+    "unavailable_sources": [
+      "openalex"
+    ],
+    "doi": "10.20944/preprints202606.1130.v1",
+    "doi_agreement": null,
+    "best": {
+      "title": "What the Doctor Didn\u2019t Order: Informative Missingness as a Clinical Signal in ICU Prediction Models",
+      "authors": [
+        "Yu"
+      ],
+      "year": 2026,
+      "doi": "10.20944/preprints202606.1130.v1",
+      "venue": null,
+      "source": "crossref"
+    },
+    "detail": {
+      "query_title": "What the Doctor Didn\u2019t Order: Informative Missingness as a Clinical Signal in ICU Prediction Models",
+      "query_author": "Yu",
+      "query_year": 2026,
+      "matched_via_doi": [],
+      "author_unchecked": [],
+      "dois_by_source": {
+        "crossref": "10.20944/preprints202606.1130.v1"
+      }
+    }
+  }
+]

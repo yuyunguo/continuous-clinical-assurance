@@ -1,0 +1,114 @@
+# Phase II scenario catalog (predictive-AI anchor). Expectations are set BEFORE any simulation is run
+# and may be changed only by a dated amendment. Level values are an initial grid, to be locked in the protocol.
+# primary: indicators that must respond by mechanism. secondary: expected to respond downstream.
+# held_stable: held constant by construction (a generator constraint, checked as such).
+# expected_null: indicators the mechanism does not touch (negative controls; a response counts as a false attribution).
+# primary_tafd: false when the scenario has no clinically meaningful harm deviation (process deviations).
+- {id: SC00, name: No perturbation, family: control, purpose: control, hypotheses: [RH1], primary_tafd: false, label_dependence: none,
+   perturbation: {type: none, levels: {low: none, medium: none, high: none}, shapes: [none]},
+   primary: [], secondary: [], held_stable: [], expected_null: all,
+   note: "Null streams. Used only to calibrate false-alarm rates and to check nominal alert rates."}
+- {id: SC01, name: Covariate shift, family: context, purpose: harmless_drift, hypotheses: [RH1], primary_tafd: false, label_dependence: label_free,
+   perturbation: {type: covariate_mean_shift, levels: {low: 0.15 SD, medium: 0.3 SD, high: 0.45 SD}, shapes: [abrupt, gradual]},
+   primary: [C1, C2], secondary: [P1, P2, P4, U1, U2], held_stable: [], expected_null: [C4, C5, H1, L1, L4],
+   note: "Input shift precedes outcome-based degradation, so label-free indicators should lead. Harmless-drift scenario: even at 0.45 SD the harm ratio is about 1.15, and it never exceeds 1.31 at 1.5 SD, so alerts here are alerts on drift that does no meaningful harm."}
+- {id: SC02, name: Prevalence shift at fixed class-conditional distributions, family: context, purpose: blind_spot, hypotheses: [RH1, RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: class_prior_shift, levels: {low: 1.19x, medium: 1.4x, high: 1.86x}, shapes: [abrupt, gradual]},
+   harm_targets: [1.15, 1.35, 1.75],
+   primary: [C1, P3, U1, U3], secondary: [U2, O6], held_stable: [P1, P2, P4], expected_null: [L1, H1],
+   note: "Se, Sp, and AUROC are invariant by construction while calibration-in-the-large and predictive values move."}
+- {id: SC04, name: Degraded but calibrated model output, family: performance, purpose: fair_test, hypotheses: [RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: shrink_scores_to_base_rate_recalibrated, levels: {low: lambda 0.128, medium: lambda 0.262, high: lambda 0.344}, shapes: [abrupt]},
+   harm_targets: [1.15, 1.28, 1.35],
+   primary: [P4, P1, P2], secondary: [U2, P5, O6], held_stable: [U1, U3], expected_null: [C1, C2, C4],
+   note: "Boundary case. Discrimination falls at maintained calibration, so calibration indicators are expected NOT to lead. Reported in full."}
+- {id: SC05, name: Random missingness increase, family: context, purpose: harmless_drift, hypotheses: [RH1], primary_tafd: false, label_dependence: label_free,
+   perturbation: {type: mcar_missingness, levels: {low: 5 pct, medium: 15 pct, high: 30 pct}, shapes: [abrupt, gradual]},
+   primary: [C4], secondary: [C2, P4, U1], held_stable: [], expected_null: [C1, H1, L1],
+   note: "Missingness in one VOE-critical variable with the deployed imputation rule unchanged. Even at 30 percent the harm ratio is 1.03, so there is no harm-defined onset. Reported as detection of low-harm input degradation."}
+- {id: SC06, name: Informative missingness in one subgroup, family: context, purpose: harmless_drift, hypotheses: [RH1], primary_tafd: false, label_dependence: label_free,
+   perturbation: {type: subgroup_informative_missingness, levels: {low: 10 pct, medium: 25 pct, high: 40 pct}, shapes: [abrupt]},
+   primary: [C4, P6], secondary: [P1, P4], held_stable: [], expected_null: [L1, H1],
+   note: "Pooled metrics dilute a subgroup effect, so stratified indicators should lead. Provisional harmless drift, expected benign because missingness in the pooled cohort (SC05) reaches a harm ratio of only 1.05 at 50 percent. To be confirmed when built."}
+- {id: SC07, name: Unit or scale change in one input, family: data_quality, purpose: fair_test, hypotheses: [RH1], primary_tafd: true, label_dependence: label_free,
+   perturbation: {type: variable_rescale, levels: {low: 2.17x, medium: 3.65x, high: 9.94x}, shapes: [abrupt]},
+   harm_targets: [1.15, 1.35, 1.75],
+   primary: [C5, C2], secondary: [P1, P2, P4, U1, U4], held_stable: [], expected_null: [C1, C3, H1, L1],
+   note: "A schema or unit change should be caught by rule-based data-quality checks before outcomes accrue."}
+- {id: SC08, name: Concept drift, family: performance, purpose: fair_test, hypotheses: [RH1, RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: outcome_model_change, levels: {low: 5.41 pct relative Se loss, medium: 12.9 pct, high: 27.4 pct}, shapes: [abrupt, gradual]},
+   harm_targets: [1.15, 1.35, 1.75],
+   primary: [P1, P2, P4, U1, U3, P5], secondary: [U2, U4, O5, O6], held_stable: [], expected_null: [C1, C2, C4, C5, L1],
+   note: "Inputs unchanged, so input-shift indicators are expected NOT to respond (a label-free blind spot). Levels are solved on the harm scale (targets 1.15, 1.35, 1.75). The incremental shape was dropped because it adds little beyond abrupt and gradual."}
+- {id: SC09, name: Subgroup-specific drift, family: performance, purpose: fair_test, hypotheses: [RH1, RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: subgroup_outcome_model_change, levels: {low: 5.56 pct, medium: 14 pct, high: 29 pct}, shapes: [abrupt, gradual]},
+   harm_targets: [1.15, 1.35, 1.71],
+   primary: [P6], secondary: [P1, P4, U1, P5], held_stable: [], expected_null: [C1, L1, H1],
+   note: "Subgroup share is a factor (10 and 30 percent of cases). Onset follows decision D18: pooled harm or the harm of the predefined subgroup reaching 1.25 times its own baseline. The pooled harm ratio never exceeds 1.08, but the subgroup ratio reaches 1.15, 1.35, and 1.71 at relative sensitivity losses of 10, 22, and 45 percent within the subgroup."}
+- {id: SC10, name: Reviewer automation bias increase, family: oversight, purpose: blind_spot, hypotheses: [RH3], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: reviewer_acceptance_of_ai_errors, levels: {low: +10 pct, medium: +25 pct, high: +40 pct}, shapes: [abrupt, gradual]},
+   primary: [H4, H5, H2], secondary: [H3, O5, O6], held_stable: [H1], expected_null: [P1, P2, P4, U1, U3, C1, C2],
+   note: "Model behavior is unchanged and documented review continues, so conventional monitoring cannot detect this by construction."}
+- {id: SC11, name: Review bypass, family: oversight, purpose: blind_spot, hypotheses: [RH3], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: review_coverage_drop, levels: {low: 90 pct coverage, medium: 70 pct, high: 40 pct}, shapes: [abrupt, gradual]},
+   primary: [H1, H5], secondary: [H2, O5, O6], held_stable: [], expected_null: [P1, P2, P4, U1, C1],
+   note: "Tests the coverage decomposition of EHOR (Cov_R versus the conditional variant)."}
+- {id: SC12, name: Reviewer distrust with indiscriminate rejection, family: oversight, purpose: process, hypotheses: [RH3], primary_tafd: false, label_dependence: label_dependent,
+   perturbation: {type: blanket_rejection, levels: {low: +10 pct, medium: +25 pct, high: +50 pct}, shapes: [abrupt]},
+   primary: [H2, H3], secondary: [H5, O1, O4, H6], held_stable: [], expected_null: [P1, P2, P4, U1, C1],
+   note: "EHOR rises while IIR rises. The system must not read this as improved oversight. Harm exposure may fall, so this is not a TAFD scenario."}
+- {id: SC13, name: Reviewer queue delay, family: oversight, purpose: blind_spot, hypotheses: [RH3, RH4], primary_tafd: true, label_dependence: label_free,
+   perturbation: {type: review_latency_increase, levels: {low: 2x median, medium: 4x, high: 10x}, shapes: [abrupt, gradual]},
+   primary: [H6], secondary: [H5, O4, O5], held_stable: [], expected_null: [P1, P2, P4, U1, C1],
+   note: "Interceptions that arrive after the point of no return count as missed."}
+- {id: SC14, name: Escalation routing failure, family: workflow, purpose: blind_spot, hypotheses: [RH4], primary_tafd: true, label_dependence: label_free,
+   perturbation: {type: escalation_delivery_failure, levels: {low: 5 pct, medium: 15 pct, high: 40 pct}, shapes: [abrupt]},
+   primary: [O2, H7, O1], secondary: [O5, O6], held_stable: [], expected_null: [P1, P2, P4, U1, C1, H2],
+   note: "Correct alerts fail to reach the responsible clinician. Model metrics are unchanged."}
+- {id: SC15, name: Duplicate alert burden from an integration fault, family: workflow, purpose: process, hypotheses: [RH4], primary_tafd: false, label_dependence: label_free,
+   perturbation: {type: alert_duplication, levels: {low: 1.5x, medium: 3x, high: 6x}, shapes: [abrupt]},
+   primary: [O3], secondary: [O1, H2, H6], held_stable: [], expected_null: [P1, P2, P4, U1, C1],
+   note: "Harm is indirect (fatigue), so the scenario measures detection delay without a harm-defined onset."}
+- {id: SC16, name: Infrastructure latency increase, family: workflow, purpose: blind_spot, hypotheses: [RH4], primary_tafd: true, label_dependence: label_free,
+   perturbation: {type: turnaround_time_increase, levels: {low: 1.5x, medium: 3x, high: 8x}, shapes: [abrupt, gradual]},
+   primary: [O4], secondary: [H6, O1], held_stable: [], expected_null: [P1, P2, P4, U1, C1],
+   note: "Delay matters only for time-critical pathways, and a share of cases is flagged time-critical."}
+- {id: SC17, name: Model version update with regression, family: lifecycle, purpose: fair_test, hypotheses: [RH1, RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: version_swap_with_regression, levels: {low: 51.2 pct of weights replaced, medium: 66 pct, high: 90 pct}, shapes: [abrupt]},
+   harm_targets: [1.15, 1.35, 1.74],
+   primary: [L1, P1, P2, P4, U1], secondary: [P5, U2], held_stable: [], expected_null: [C1, C2, C4, C5],
+   note: "Compared with and without shadow-mode evaluation before release. World unchanged, model weights regressed, threshold fixed. Calibration and performance both move, so it also tests RH2. Levels are the fraction of the weight vector replaced, solved on the harm scale."}
+- {id: SC18, name: Uncontrolled change with no performance effect, family: lifecycle, purpose: process, hypotheses: [RH1], primary_tafd: false, label_dependence: label_free,
+   perturbation: {type: unapproved_change_no_effect, levels: {low: minor config, medium: threshold edit within tolerance, high: retrained model within tolerance}, shapes: [abrupt]},
+   primary: [L4], secondary: [], held_stable: [P1, P2, P4], expected_null: [C1, C2, U1, U3],
+   note: "Process deviation with no harm. Detection delay is reported, and the scenario is excluded from the primary TAFD analysis."}
+- {id: SC19, name: Scope creep, family: context, purpose: fair_test, hypotheses: [RH1], primary_tafd: true, label_dependence: label_free,
+   perturbation: {type: out_of_scope_use_share, levels: {low: 17.6 pct, medium: 50.1 pct, high: 73.4 pct}, shapes: [gradual]},
+   harm_targets: [1.15, 1.35, 1.5],
+   primary: [C3], secondary: [C1, P1, P2, P6, O5], held_stable: [], expected_null: [L1],
+   note: "A growing share of invocations falls outside the VOE indication, with worse model performance outside it. P1 and P2 are secondary responders, because a harm-defined onset needs performance to fall. Levels are solved on the harm scale and are large (about 22, 48, and 70 percent of invocations), because the model is assumed only moderately worse outside the indication."}
+- {id: SC20, name: Uncertainty-estimator degradation, family: uncertainty, purpose: blind_spot, hypotheses: [RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: confidence_collapse, levels: {low: 10 pct, medium: 25 pct, high: 50 pct}, shapes: [abrupt, gradual]},
+   primary: [U6, U4, U5], secondary: [U1, P5], held_stable: [P4], expected_null: [C1, C2, L1],
+   note: "The deferral rule stops routing uncertain cases to humans while ranking is unchanged."}
+- {id: SC21, name: Logging degradation, family: lifecycle, purpose: process, hypotheses: [RH1], primary_tafd: false, label_dependence: label_free,
+   perturbation: {type: trace_element_loss, levels: {low: 5 pct, medium: 15 pct, high: 40 pct}, shapes: [abrupt]},
+   primary: [L3], secondary: [], held_stable: [P1, P2, P4], expected_null: [U1, C1],
+   note: "Traceability loss has no direct patient effect. Reported as a process deviation."}
+- {id: SC22, name: Downstream propagation of AI errors, family: workflow, purpose: blind_spot, hypotheses: [RH4], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: error_propagation_unchecked, levels: {low: 10 pct, medium: 25 pct, high: 50 pct}, shapes: [abrupt]},
+   primary: [O5, O6], secondary: [H5], held_stable: [P1, P2, P4], expected_null: [C1, C2, U1],
+   note: "AI outputs are unchanged, but errors pass through orders and documentation without verification. O6 is sparse and reported with its event counts."}
+- {id: SC23, name: Overconfident displayed confidence in the reporting layer, family: uncertainty, purpose: process, hypotheses: [RH2], primary_tafd: false, label_dependence: label_dependent,
+   perturbation: {type: slope_and_intercept_drift, mode: output_transform, levels: {low: slope 0.9, medium: slope 0.75, high: slope 0.6}, shapes: [abrupt]},
+   primary: [U1, U2, U3, U4, U5], secondary: [H4], held_stable: [P1, P2, P4], expected_null: [C1, C2, C4, C5, L1],
+   note: "Demonstration of a blind spot, not RH2 evidence. Only the displayed confidence drifts, so ranking, decisions, sensitivity, and specificity are exactly unchanged and conventional performance metrics cannot see it by construction. Harm arises only through reviewer trust, which is an assumption, so there is no harm-defined onset."}
+- {id: SC24, name: Accountability lapse, family: lifecycle, purpose: process, hypotheses: [RH1], primary_tafd: false, label_dependence: none,
+   perturbation: {type: accountability_lapse, levels: {low: 1 element missing, medium: 2 elements missing, high: 3 elements missing}, shapes: [abrupt]},
+   primary: [L5], secondary: [], held_stable: [P1, P2, P4], expected_null: [C1, C2, U1, U3],
+   note: "The named owner, escalation path, or decision authority in the VOE lapses. A governance-record deviation with no patient effect, so it is a process deviation and is excluded from the primary TAFD analysis."}
+- {id: SC25, name: Covariate shift and concept drift together, family: performance, purpose: fair_test, hypotheses: [RH1, RH2], primary_tafd: true, label_dependence: label_dependent,
+   perturbation: {type: covariate_and_concept_drift, levels: {low: 14.7 pct relative Se loss on a 0.5 SD shift, medium: 21.4 pct, high: 44 pct}, shapes: [abrupt, gradual]},
+   harm_targets: [1.22, 1.35, 1.75],
+   primary: [C2, U5, P1, P2, P4, U1, U3], secondary: [P3, P5, U2, U4, O5, O6], held_stable: [], expected_null: [C4, C5, L1, H1],
+   note: "Compound scenario: a fixed 0.5 SD covariate shift plus an outcome-link weakening. Label-free indicators should see the shift and label-dependent ones the drift. The shift raises sensitivity and offsets part of the loss. The shift alone gives a harm ratio of about 1.16, so the low level stays below the threshold and the medium and high levels target ratios of about 1.35 and 1.75."}

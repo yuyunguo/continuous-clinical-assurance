@@ -1,0 +1,146 @@
+{
+ "min_cell": 10,
+ "results": {
+  "cohort_by_period": [
+   {
+    "period": "2008 - 2010",
+    "n": 26669,
+    "deaths": 2333
+   },
+   {
+    "period": "2011 - 2013",
+    "n": 17280,
+    "deaths": 1548
+   },
+   {
+    "period": "2014 - 2016",
+    "n": 16008,
+    "deaths": 1493
+   },
+   {
+    "period": "2017 - 2019",
+    "n": 14157,
+    "deaths": 1294
+   },
+   {
+    "period": "2020 - 2022",
+    "n": 9361,
+    "deaths": 1040
+   }
+  ],
+  "sepsis_icd_by_period": [
+   {
+    "period": "2008 - 2010",
+    "n": 26669,
+    "sepsis_icd": 3866
+   },
+   {
+    "period": "2011 - 2013",
+    "n": 17280,
+    "sepsis_icd": 2494
+   },
+   {
+    "period": "2014 - 2016",
+    "n": 16008,
+    "sepsis_icd": 2206
+   },
+   {
+    "period": "2017 - 2019",
+    "n": 14157,
+    "sepsis_icd": 1601
+   },
+   {
+    "period": "2020 - 2022",
+    "n": 9361,
+    "sepsis_icd": 1304
+   }
+  ],
+  "cohort_row_number": [
+   {
+    "rn": 1,
+    "n": 83475
+   }
+  ],
+  "sepsis_by_period": [
+   {
+    "period": "2008 - 2010",
+    "n": 26669,
+    "sepsis": 12909
+   },
+   {
+    "period": "2011 - 2013",
+    "n": 17280,
+    "sepsis": 8159
+   },
+   {
+    "period": "2014 - 2016",
+    "n": 16008,
+    "sepsis": 7261
+   },
+   {
+    "period": "2017 - 2019",
+    "n": 14157,
+    "sepsis": 5188
+   },
+   {
+    "period": "2020 - 2022",
+    "n": 9361,
+    "sepsis": 3271
+   }
+  ],
+  "admissions_by_period": [
+   {
+    "period": "2008 - 2010",
+    "n": 227719,
+    "deaths": 3885
+   },
+   {
+    "period": "2011 - 2013",
+    "n": 114880,
+    "deaths": 2317
+   },
+   {
+    "period": "2014 - 2016",
+    "n": 91088,
+    "deaths": 2170
+   },
+   {
+    "period": "2017 - 2019",
+    "n": 69850,
+    "deaths": 1879
+   },
+   {
+    "period": "2020 - 2022",
+    "n": 42491,
+    "deaths": 1550
+   }
+  ],
+  "readmission_30d_by_period": [
+   {
+    "period": "2008 - 2010",
+    "n": 223834,
+    "readmitted": 50715
+   },
+   {
+    "period": "2011 - 2013",
+    "n": 112563,
+    "readmitted": 21662
+   },
+   {
+    "period": "2014 - 2016",
+    "n": 88918,
+    "readmitted": 17019
+   },
+   {
+    "period": "2017 - 2019",
+    "n": 67971,
+    "readmitted": 12750
+   },
+   {
+    "period": "2020 - 2022",
+    "n": 40941,
+    "readmitted": 7244
+   }
+  ]
+ }
+}

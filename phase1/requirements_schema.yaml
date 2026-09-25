@@ -1,0 +1,18 @@
+measurability:
+  measure_unspecified: Requires monitoring, assessment, or documentation without naming a measure, cadence, or threshold.
+  capability_unmeasured: Specifies a capability of the human overseer without a way to measure whether it is achieved.
+  trigger_unspecified: Requires predefined triggers without a metric or threshold.
+  action_named: Names an intervention type (for example recalibration) without a monitored signal that would trigger it.
+  principles_only: Principle-level statement only.
+sources:
+  S1: NIST AI RMF 1.0 (NIST AI 100-1), January 2023, full text
+  S2: EU AI Act Articles 14 and 72, unofficial mirror text (official EUR-Lex text not retrieved)
+  S3: FDA PCCP guidance for AI-enabled device software functions, issued 2025-08-18 (originally 2024-12-04), full text
+  S4: WHO Ethics and governance of artificial intelligence for health (2021), landing page only
+not_retrieved:
+  - IMDRF Good Machine Learning Practice guiding principles (document N88): host unreachable during this session
+  - FDA, Health Canada, MHRA GMLP guiding principles (2021): page retrieved but principle text not recoverable
+  - NIST AI 600-1 generative AI profile: not fetched
+  - WHO guidance on large multimodal models: not fetched
+  - EU AI Act official text on EUR-Lex: automated access blocked
+  - WHO 2021 full guidance PDF: repository returned a stub page

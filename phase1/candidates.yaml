@@ -1,0 +1,48 @@
+# Search queries only. Nothing here is a verified citation until it passes
+# scripts/verify_citations.py. first_author is a family name (null = skip author check).
+- {key: vancalster2019, title: "Calibration: the Achilles heel of predictive analytics", first_author: Van Calster, year: 2019}
+- {key: finlayson2021, title: "The Clinician and Dataset Shift in Artificial Intelligence", first_author: Finlayson, year: 2021}
+- {key: davis2017, title: "Calibration drift in regression and machine learning models for acute kidney injury", first_author: Davis, year: 2017}
+- {key: youssef2023, title: "External validation of AI models in health should be replaced with recurring local validation", first_author: Youssef, year: 2023}
+- {key: wong2021, title: "External Validation of a Widely Implemented Proprietary Sepsis Prediction Model in Hospitalized Patients", first_author: Wong, year: 2021}
+- {key: guo2017, title: "On Calibration of Modern Neural Networks", first_author: Guo, year: 2017, doi_hint: "10.48550/arxiv.1706.04599"}
+- {key: vasey2022, title: "Reporting guideline for the early-stage clinical evaluation of decision support systems driven by artificial intelligence: DECIDE-AI", first_author: Vasey, year: 2022}
+- {key: collins2024, title: "TRIPOD+AI statement: updated guidance for reporting clinical prediction models that use regression or machine learning methods", first_author: Collins, year: 2024}
+- {key: parasuraman2010, title: "Complacency and Bias in Human Use of Automation: An Attentional Integration", first_author: Parasuraman, year: 2010}
+- {key: goddard2012, title: "Automation bias: a systematic review of frequency, effect mediators, and mitigators", first_author: Goddard, year: 2012}
+- {key: lyell2017, title: "Automation bias and verification complexity: a systematic review", first_author: Lyell, year: 2017}
+- {key: green2022, title: "The flaws of policies requiring human oversight of government algorithms", first_author: Green, year: 2022, doi_hint: "10.1016/j.clsr.2022.105681"}
+- {key: dratsch2023, title: "Automation Bias in Mammography: The Impact of Artificial Intelligence BI-RADS Suggestions on Reader Performance", first_author: Dratsch, year: 2023}
+- {key: rabanser2019, title: "Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift", first_author: Rabanser, year: 2019, doi_hint: "10.48550/arxiv.1810.11953"}
+- {key: gama2014, title: "A survey on concept drift adaptation", first_author: Gama, year: 2014}
+- {key: lu2019, title: "Learning under Concept Drift: A Review", first_author: Lu, year: 2019}
+- {key: feng2022, title: "Clinical artificial intelligence quality improvement: towards continual monitoring and updating of AI algorithms in healthcare", first_author: Feng, year: 2022}
+- {key: sendak2020, title: "Real-World Integration of a Sepsis Deep Learning Technology Into Routine Clinical Care: Implementation Study", first_author: Sendak, year: 2020, doi_hint: "10.2196/15182"}
+- {key: page1954, title: "Continuous Inspection Schemes", first_author: Page, year: 1954}
+- {key: roberts1959, title: "Control Chart Tests Based on Geometric Moving Averages", first_author: Roberts, year: 1959}
+- {key: wald1945, title: "Sequential Tests of Statistical Hypotheses", first_author: Wald, year: 1945}
+- {key: benjamini1995, title: "Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing", first_author: Benjamini, year: 1995}
+- {key: holm1979, title: "A Simple Sequentially Rejective Multiple Test Procedure", first_author: Holm, year: 1979, doi_hint: "10.2307/4615733", manual_bib: true}
+- {key: gretton2012, title: "A Kernel Two-Sample Test", first_author: Gretton, year: 2012, publisher_url: "https://jmlr.org/papers/v13/gretton12a.html", manual_bib: true}
+- {key: rubner2000, title: "The Earth Mover's Distance as a Metric for Image Retrieval", first_author: Rubner, year: 2000}
+- {key: delong1988, title: "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves: A Nonparametric Approach", first_author: DeLong, year: 1988}
+- {key: brier1950, title: "Verification of forecasts expressed in terms of probability", first_author: Brier, year: 1950}
+- {key: naeini2015, title: "Obtaining Well Calibrated Probabilities Using Bayesian Binning", first_author: Naeini, year: 2015}
+- {key: steyerberg2010, title: "Assessing the Performance of Prediction Models: A Framework for Traditional and Novel Measures", first_author: Steyerberg, year: 2010}
+- {key: horvitz1952, title: "A Generalization of Sampling Without Replacement from a Finite Universe", first_author: Horvitz, year: 1952}
+- {key: kaplan1958, title: "Nonparametric Estimation from Incomplete Observations", first_author: Kaplan, year: 1958, doi_hint: "10.1080/01621459.1958.10501452"}
+- {key: cox1972, title: "Regression Models and Life-Tables", first_author: Cox, year: 1972}
+- {key: royston2013, title: "Restricted mean survival time: an alternative to the hazard ratio for the design and analysis of randomized trials with a time-to-event outcome", first_author: Royston, year: 2013}
+- {key: efron1979, title: "Bootstrap Methods: Another Look at the Jackknife", first_author: Efron, year: 1979}
+- {key: kunsch1989, title: "The Jackknife and the Bootstrap for General Stationary Observations", first_author: Kunsch, year: 1989}
+- {key: vickers2006, title: "Decision Curve Analysis: A Novel Method for Evaluating Prediction Models", first_author: Vickers, year: 2006}
+- {key: johnson2023, title: "MIMIC-IV, a freely accessible electronic health record dataset", first_author: Johnson, year: 2023}
+- {key: nist2023, title: "Artificial Intelligence Risk Management Framework (AI RMF 1.0)", first_author: Tabassi, year: 2023, doi_hint: "10.6028/NIST.AI.100-1"}
+- {key: pollard2018, title: "The eICU Collaborative Research Database, a freely available multi-center database for critical care research", first_author: Pollard, year: 2018}
+# The project lead's own related work (from works.bib). Self-citation: keep the proportion of the reference list low.
+- {key: yu2026operational, title: "Toward an Operational Science of Clinical AI: From Model Evaluation to the Study of Operational Trajectories", first_author: Yu, year: 2026, doi_hint: "10.6084/m9.figshare.32869604.v1"}
+- {key: yu2026monitoring, title: "From Monitoring to Action: A Scoping Review of Post-Deployment Clinical AI Surveillance, Risk Assessment, and Lifecycle Management", first_author: Yu, year: 2026, doi_hint: "10.17605/OSF.IO/5TDUJ"}
+- {key: yu2026deferral, title: "The Deferral Frontier: Reliability-Gated Selective Prediction for Clinical AI", first_author: Yu, year: 2026, doi_hint: "10.21203/rs.3.rs-9887494/v1", first_author_alt: Yunguo}
+- {key: yu2026evaluator, title: "Evaluating the Evaluator: A Protocol for Measuring Evaluator Dependence in LLM-Based Safety Assessment", first_author: Yu, year: 2026, doi_hint: "10.6084/m9.figshare.32886083.v1"}
+- {key: yu2025trust, title: "Enhancing Clinician Trust in AI Diagnostics: A Dynamic Framework for Confidence Calibration and Transparency", first_author: Yu, year: 2025, doi_hint: "10.3390/diagnostics15172204"}
+- {key: yu2026missingness, title: "What the Doctor Didn’t Order: Informative Missingness as a Clinical Signal in ICU Prediction Models", first_author: Yu, year: 2026, doi_hint: "10.20944/preprints202606.1130.v1"}

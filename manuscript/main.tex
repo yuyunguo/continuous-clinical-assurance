@@ -1,0 +1,209 @@
+%=================================================================
+\documentclass[apajournal,article,submit,moreauthors]{Definitions/mdpi}
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2026}
+\copyrightyear{2026}
+\datereceived{ }
+\daterevised{ }
+\dateaccepted{ }
+\datepublished{ }
+
+%=================================================================
+% Full title of the paper (Capitalized) -- DRAFT, written last per the project's own writing-order convention
+% (CLAUDE.md Sec. 03); placeholder until Results/Discussion are drafted.
+\Title{Continuous Clinical Assurance: Label-Free Monitoring for Real-World Drift in Deployed Clinical AI [DRAFT TITLE]}
+
+% Author ORCID: not yet supplied -- fill in or remove \orcidA{} below.
+\newcommand{\orcidauthorA}{0000-0000-0000-000X}
+
+% Authors -- affiliation and ORCID not yet confirmed; placeholders marked explicitly rather than guessed.
+\Author{Yunguo Yu $^{1,}$*}
+
+\AuthorNames{Yunguo Yu}
+
+\address{%
+$^{1}$ \quad Center for Digital Health, Mayo Clinic; yuyunguo@gmail.com}
+
+\corres{Correspondence: yuyunguo@gmail.com}
+
+% Abstract -- written LAST per the project's writing-order convention (CLAUDE.md Sec. 03: Methods, Results,
+% Discussion, Introduction, Conclusions, Title/Abstract). Placeholder retained intentionally.
+\abstract{[ABSTRACT -- TO BE WRITTEN LAST, after Results and Discussion are drafted, per the project's writing-order convention.]}
+
+\keyword{clinical AI monitoring; continuous assurance; dataset shift; label-free indicators; post-deployment surveillance; MIMIC-IV; eICU}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+[DRAFT PENDING -- written after Results and Discussion, per the project's writing-order convention.]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+
+This section reports only procedures that were actually specified and executed for this study, as recorded in the project's implementation and validation record. Where a detail needed for independent reproduction is not present in that record, it is marked [NEEDS INPUT] rather than assumed; every [NEEDS INPUT] marker in this section is repeated in a consolidated list at the end of the manuscript's working draft for the corresponding author to resolve.
+
+\subsection{Research Design and Setting}
+
+This is a retrospective, computational evaluation of a post-deployment monitoring framework for clinical prediction models, Continuous Clinical Assurance (CCA). No prospective patients were enrolled and no clinical decisions were made on the basis of this study; all analyses re-use previously collected, de-identified electronic health record (EHR) data from two publicly available critical care databases, functioning as a stand-in for a live monitoring stream.
+
+The evaluation is organized in two tiers, reported as separate manuscripts by design: Tier 1's fully synthetic, confirmatory architecture and Tier 2's real-data, exploratory validation rest on different evidentiary standards (Sec.~\ref{sec:stats}), and keeping them separate avoids the real-data findings borrowing the confirmatory framework's pre-registered rigor. \textbf{Tier 1} is a fully synthetic simulation environment in which the data-generating process, the deployed model, and every perturbation scenario are known exactly, supporting a pre-specified, multiplicity-corrected confirmatory hypothesis test; it is reported separately (citation to follow on completion of that manuscript). \textbf{Tier 2}, reported in this manuscript, re-implements the identical monitoring, calibration, and detection procedures against real EHR data, where the true data-generating process is not known and no procedure may assert a counterfactual outcome for a real, already-observed patient (Sec.~\ref{sec:scenarios}).
+
+The data source is the Medical Information Mart for Intensive Care, version IV (MIMIC-IV) \citep{johnson2023}, database version 3.2, and, for one scenario only (Sec.~\ref{sec:scopecreep}), the eICU Collaborative Research Database (eICU-CRD) \citep{pollard2018}, database version 2.0. Both are de-identified, retrospective, multi-center intensive care unit (ICU) databases released for secondary research use under their own data use agreements; neither involved data collection for this study. The MIMIC-IV cohort's stay-inclusion logic (first ICU stay per hospital admission, described in Sec.~\ref{sec:cohort}) was originally defined for a prior study on an earlier MIMIC-IV release (v2.2) and reused unchanged here against v3.2. The reused cohort's computed age range is 18--103 years, several years above the 18--100 cap stated for the prior study's own cohort; the difference is small in absolute terms (a handful of stays above 100) and is noted here as an acknowledged minor discrepancy between database releases rather than a cohort-definition error, since the inclusion query itself was not changed.
+
+\subsection{Clinical Use Case and System}
+
+The system under assurance is a deployed clinical risk-prediction model: a binary classifier that outputs a probability of an adverse outcome from a fixed set of vital-sign and laboratory features collected in the first 24 hours of an ICU stay, thresholded to a flag/no-flag decision at a pre-specified operating point (Sec.~\ref{sec:model}). Three clinical prediction tasks (use cases) are evaluated, each with its own model instance, in a fixed order set before any real-data run: sepsis onset, using the Sepsis-3 consensus clinical criteria \citep{singer2016}, a syndrome definition combining suspected infection with an acute increase in organ-dysfunction score; 30-day unplanned hospital readmission among patients who survived their index admission; and 30-day in-hospital mortality. No real clinical workflow, clinician user, or downstream intervention was implemented or observed in this study: the deployed model and its outputs are used solely to construct a retrospective test bed for the monitoring framework, and no statement in this manuscript should be read as evidence of clinical impact, workflow integration, or effectiveness in real deployment.
+
+CCA itself is not a diagnostic or risk-prediction tool. It is a surveillance layer that observes a deployed model's inputs, outputs, and (once available) true outcomes over time and raises a statistical alert when its monitored statistics move outside a calibrated range (Sec.~\ref{sec:model}). The object of evaluation in this manuscript is CCA's detection behavior, not the deployed risk-prediction models' own diagnostic performance, which is reported only as a fitting-quality check (Sec.~\ref{sec:model}).
+
+\subsection{Data Sources, Cohort, and Preprocessing}\label{sec:cohort}
+
+The MIMIC-IV cohort (database table \texttt{public.paper2\_stays}; 83{,}475 ICU stays, one row per hospital admission, first ICU stay only) reproduces the cohort definition of a prior study using the same deployed-model design \citep{yu2026deferral}. Task prevalences in this cohort are 9.2\% for mortality, 20.4\% for readmission (75{,}767 stays eligible after excluding in-hospital deaths), and 44.1\% for sepsis under the Sepsis-3 definition. Sepsis-3 was used in preference to an administrative (ICD) code because it shows substantial real temporal drift in this cohort (48.4\% to 34.9\% prevalence across the database's de-identification-safe calendar periods, defined below), which the administrative code-based definition does not; this improves the cohort's suitability for the natural-drift analysis in Sec.~\ref{sec:sc08} at the cost of comparability to the prior study's administratively-labeled deployed model.
+
+For each stay, 115 features are extracted from the first 24 hours of the ICU stay: five summary statistics (mean, minimum, maximum, last recorded value, and count) for each of ten vital-sign channels (heart rate; respiratory rate; invasive and non-invasive systolic, diastolic, and mean arterial blood pressure; and temperature recorded in both Fahrenheit and Celsius) and thirteen laboratory values (creatinine, hemoglobin, white blood cell count, platelet count, sodium, potassium, glucose, bicarbonate, blood urea nitrogen, alanine aminotransferase, aspartate aminotransferase, total bilirubin, and lactate).
+
+Two real data-quality properties of this extraction were characterized using aggregate summary statistics only; no row-level (individual-patient) value was inspected, printed, or reported at any stage of this study. First, missingness is genuine and substantial: approximately 28\% per feature on average. Second, a small number of implausible extreme values are present, consistent with chart-recording artifacts rather than genuine physiology: several vital-sign features have a clinically plausible 99.9th-percentile value but a raw maximum many orders of magnitude larger (for example, one blood-pressure-derived feature has a 99.9th percentile of 227 and a raw maximum of 8{,}999{,}090), affecting well under 0.1\% of rows in each affected feature. Both properties are handled entirely within the deployed model's own fitting and scoring procedure (Sec.~\ref{sec:model}), not by excluding or manually correcting affected rows.
+
+Two temporal keys are used, for different purposes, because they are not interchangeable. An admission-timestamp key orders cases \emph{within one patient's own record}; because MIMIC-IV shifts each patient's recorded dates independently as part of de-identification, this key does not support ordering cases \emph{across} different patients and is not used for that purpose. Cross-patient temporal analysis instead uses \texttt{anchor\_year\_group}, a coarser, de-identification-safe three-year calendar bucket that MIMIC-IV provides specifically to support this kind of analysis (used in Sec.~\ref{sec:sc08}).
+
+\subsection{Model and Assurance Workflow}\label{sec:model}
+
+\subsubsection{Deployed Model Fitting}
+
+For each task, a logistic regression model is fit once on an early, fixed training period (the earliest cases in calendar order, comprising a share of the cohort matched to the prior study's own training/deployment split \citep{yu2026deferral}; the exact share used is 53/166 of the task's total 500-case windows, 31.9\%) and then frozen: every subsequent step in this study treats the model as a static, already-deployed artifact that is never refit or updated. Three preprocessing steps precede fitting, each with its parameters fit on the training period only and then applied unchanged to any later cohort the frozen model scores:
+
+\begin{enumerate}
+\item \textbf{Winsorization}. Each feature is clipped to its own 0.1st and 99.9th percentile, computed on the training period only. This targets the rare extreme-value artifacts described in Sec.~\ref{sec:cohort}, whose influence on a downstream sum-of-squared-deviations monitoring statistic (indicator C2, Sec.~\ref{sec:indicators}) would otherwise be disproportionate to their real prevalence. A training-period-only bound falls back to a no-op (unbounded) range for a feature with no non-missing training-period values, so that a later cohort's genuine values in that feature are never altered.
+\item \textbf{Imputation}. A missing value is replaced with that feature's training-period mean, computed after winsorization.
+\item \textbf{Standardization and regularized fitting}. Features are standardized to zero mean and unit variance (parameters fit on the training period), and the model's L2 regularization strength is selected by five-fold cross-validated log loss over a ten-point logarithmic grid from $10^{-4}$ to $10$, rather than fit at a single, fixed regularization strength. Log loss is a model-fit criterion computed independently of any monitoring arm's later detection behavior, so this selection procedure was not chosen or tuned to favor any study outcome. It was adopted after an earlier, unregularized fit was found to produce predicted probabilities as extreme as $1.16\times10^{-135}$ on a small number of real, correlated feature combinations in one task (readmission), which in turn caused a downstream per-window calibration-slope statistic's numerically unstable fitting procedure to diverge and distort a monitoring threshold shared with other indicators.
+\end{enumerate}
+
+The decision threshold is fixed, after fitting, at the value achieving 80\% sensitivity on the training period's own positive cases; this operating point is used identically for every task and is not re-tuned on any later data.
+
+\subsubsection{The CCA Monitoring Architecture}\label{sec:indicators}
+
+CCA scores the deployed model's behavior in fixed-size windows of 500 consecutive cases along thirteen indicators in three families, each indicator standardized against a held-out baseline period of windows and monitored with a one-sided cumulative sum (CUSUM) detector \citep{page1954}, a sequential-monitoring statistic that accumulates evidence of a sustained shift over consecutive observations rather than testing each one in isolation.
+
+\begin{itemize}
+\item \textbf{Performance (P)}, six indicators: sensitivity, specificity, positive and negative predictive value, discrimination measured by the area under the receiver operating characteristic curve (AUROC), a severity-weighted error rate, and a subgroup performance gap. Every P indicator requires the case's true outcome label and is therefore observable only after the outcome-reporting lag.
+\item \textbf{Uncertainty and calibration (U)}, five indicators: expected calibration error, Brier score, calibration slope (estimated per window by Newton's method), a high-confidence error rate, and a confidence-distribution-shift statistic (a Kolmogorov--Smirnov-type two-sample test against a reference sample). The first four require the outcome label; the confidence-distribution-shift indicator does not.
+\item \textbf{Context and state (C)}, two indicators: an input-distribution-shift statistic over the model's own feature space (the sum of squared per-feature deviations of the window mean from the training-period baseline) and an intended-use conformance rate (the observed share of a window's cases judged to be within the model's intended scope of use). Neither requires the outcome label.
+\end{itemize}
+
+Each window's raw indicator value is standardized against the mean and standard deviation of the baseline period and oriented so that a larger standardized value $z_t$ is always worse. The CUSUM state accumulates as $S_t = \max(0, S_{t-1} + z_t - k)$, with reference value $k = 0.5$; an alert fires when $S_t$ exceeds a calibrated threshold $h$ (Sec.~\ref{sec:calibration}), after which the state resets. An alert episode's onset is defined as the first alert window not preceded by another alert within a hysteresis window of $j = 2$ windows.
+
+Seven monitoring arms combine these thirteen indicators differently, representing different monitoring strategies compared in this study. \emph{Conventional} (the six P indicators only) is the baseline arm, representing outcome-dependent performance monitoring as commonly practiced. \emph{Conventional~+~label-free} adds the label-free subset of U and C to the conventional indicators. \emph{Conventional~+~calibration} adds all of U. \emph{CCA (union)} pools every indicator under one shared calibrated threshold. \emph{CCA (component split)} calibrates P, U, and C each to its own threshold under an equal share of the overall false-alarm budget. \emph{CCA (tilted)} uses the same split with an unequal, P-weighted budget share and is reported as an informational sensitivity arm rather than a primary comparison. \emph{Calibration arm} uses the five U indicators alone. Arm definitions, the false-alarm budget (Sec.~\ref{sec:calibration}), and the CUSUM hysteresis parameter $j$ were fixed once, before any real-data run, and were not adjusted after seeing any tier's detection results.
+
+\subsubsection{Real-Data Stream Construction}\label{sec:windowing}
+
+For each task, the cohort is ordered by the task-appropriate temporal key (Sec.~\ref{sec:cohort}) and partitioned into consecutive, non-overlapping windows of 500 cases; a final partial window smaller than 500 cases is discarded. Windows before the deployed model's training cutoff form the calibration baseline period; every subsequent window is monitored. Because a single real dataset cannot be redrawn the way a synthetic data-generating process can, repeated null (no-perturbation) and evaluation streams for the calibration and replicate procedures below are produced by a block-bootstrap resampler \citep{kunsch1989}: contiguous blocks of a fixed number of real windows are drawn independently, with replacement, and concatenated to the requested stream length, using a fixed block length of 8 windows throughout this study.
+
+\subsubsection{Real-Data Perturbation Scenarios}\label{sec:scenarios}
+
+Perturbations are distinguished by whether they touch a real case's true outcome. \emph{Input-only} perturbations act on a case's model inputs, or on the deployed model itself, and never on a real case's recorded label, so injecting them onto an already-observed real cohort never overrides a real outcome. \emph{Outcome-affecting} perturbations, in the form used in the Tier 1 synthetic environment, change the true label-generating process or the population being scored, which on real data would require asserting a counterfactual outcome for a real, already-observed patient -- a step this study does not take. Four scenarios were run on real data: three input-only, realized directly by modifying real cohorts as described below, and one outcome-affecting, realized instead as an observational natural experiment with no data modification at all.
+
+\paragraph{Version regression (model-only drift).} A fraction of the deployed model's weight vector is replaced with a randomly drawn direction orthogonal to the original weights, of equal vector norm, ramped in from a chosen onset window; the model's inputs are never modified. This isolates a scenario with no input-distribution shift: only the model's own decision function changes.
+
+\paragraph{Group missingness (correlated-feature dropout).} A single feature made missing completely at random was tested and found, on real data, to be too diluted across the 115 correlated features to reach even a modest pre-specified harm-scale target (Sec.~\ref{sec:levelsolving}) at any missingness rate up to certainty. This scenario is also motivated by prior work showing that which values are missing can itself carry clinical signal in ICU prediction models \citep{yu2026missingness}, rather than being only noise the deployed model must tolerate. A correlated group of features belonging to one vital-sign channel (its mean, minimum, maximum, last value, and count) made missing \emph{together} -- representing one monitoring device or sensor failing, rather than five independent failures -- is used instead: an affected case's whole feature group is set to the deployed model's own training-period mean for those features, with one shared per-case random mask applied across the group, ramped in from a chosen onset window.
+
+\paragraph{Scope creep (real out-of-scope population).}\label{sec:scopecreep} An increasing share of each monitored window's cases is replaced with real cases drawn from eICU-CRD \citep{pollard2018}, a separate, multi-center critical care database that the MIMIC-IV-trained deployed model has never seen. Each replaced case retains its own real outcome label, subgroup indicator, and feature values; no case's real outcome is altered or invented. The eICU-CRD extraction uses the same 115-feature schema as the MIMIC-IV extraction (heart rate, respiration, and invasive blood pressure from eICU-CRD's periodic vital-sign table; non-invasive blood pressure from its aperiodic vital-sign table; laboratory values matched by name; in-hospital mortality as the outcome label). The eICU-CRD extraction includes every unit stay with a recorded hospital discharge status and no further exclusion, yielding 200{,}859 unit stays (9.0\% in-hospital mortality, consistent with an independent aggregate-only check of the source database), so that the frozen, MIMIC-IV-trained model scores every eICU-CRD case directly, without retraining. This scenario is also the only one in which the C3 (intended-use conformance) indicator receives non-constant input: every replaced case is marked out of scope and every retained case in scope.
+
+\paragraph{Concept drift as an observational natural experiment.}\label{sec:sc08} No data modification exists that injects a change in the true outcome-generating process onto an already-observed real cohort without asserting a counterfactual outcome. Instead, the mortality task's own observed, calendar-verified prevalence change (8.7\% in the earliest de-identification-safe calendar period to 11.1\% in the most recent period, \texttt{anchor\_year\_group} = 2020--2022) is used as an observational natural experiment: the calibrated onset detector and every monitoring arm are run directly on the real, unmodified, chronologically ordered stream, with no injected perturbation. Because the admission-timestamp key is not valid for ordering cases across different patients (Sec.~\ref{sec:cohort}), cases for this scenario are instead ordered by a composite key: primarily by \texttt{anchor\_year\_group}'s chronological rank, so that no 500-case window mixes cases from two different real calendar periods, with the (patient-specific) admission-timestamp key used only to break ties within a period. The deployed model is trained on every case before the most recent calendar period and monitored only within that period. This scenario, uniquely among the four, produces a single observed trajectory rather than a resampled replicate distribution, because only one real calendar history exists to draw on; no bootstrap confidence interval is reported for it (Sec.~\ref{sec:stats}).
+
+\subsubsection{Harm-Scaled Perturbation Levels}\label{sec:levelsolving}
+
+For each input-only scenario, the perturbation's magnitude (missingness probability, replacement share, or regression fraction) is solved, rather than fixed by reuse from the Tier 1 synthetic environment, against a pre-specified target ratio of expected residual harm exposure: a severity-weighted function of a case's true outcome and the deployed model's decision, computed over the model's entire available population (not a single monitoring window) to obtain a low-noise estimate. The magnitude is found by evaluating this ratio on a coarse grid from no effect to a pre-specified permitted maximum and root-finding within the bracket in which the ratio first reaches the target; if even the maximum permitted magnitude does not reach the target ratio, the scenario is reported as unattainable at that target rather than extrapolated beyond the tested range. The target ratio used (the larger of the population-wide ratio and any pre-specified subgroup's own ratio) is set in advance, at the same numeric levels used in the Tier 1 synthetic environment.
+
+\subsection{Evaluation Design, Baselines, and Metrics}\label{sec:calibration}
+
+\subsubsection{Baseline and Comparator Arms}
+
+The \emph{conventional} arm (Sec.~\ref{sec:indicators}) is the baseline against which every other arm's detection speed is compared: it represents outcome-dependent performance monitoring without any label-free or calibration-based component, the closest analogue in this study to monitoring practice that relies on eventual outcome ascertainment alone. The six remaining arms are candidate alternatives; no arm's threshold or definition was chosen to favor a particular comparison outcome (Sec.~\ref{sec:indicators}).
+
+\subsubsection{Matched False-Alarm Calibration}
+
+Every arm's CUSUM threshold is calibrated, before any perturbation is applied, to a common false-alarm budget of 30 alert-episode onsets per 1{,}000 monitored windows. This budget was elicited from two independent clinician raters -- the corresponding author (Y.~Yu, MD, PhD, personal communication, September 2026) and an independent attending physician in internal medicine (J.~Downing, MD, personal communication, September 2026) -- who each estimated their institution's annual tolerance for false alerts from one monitoring tool and the number of similar tools plausibly sharing one governance committee's alert capacity; the two raters' estimates were converted to a common per-1{,}000-window budget and pooled, favoring the more conservative (lower) shared reading. The threshold search is a bisection over $h \in [0.2, 200]$ on a logarithmic scale, evaluated against 300 independent block-bootstrap null streams (Sec.~\ref{sec:windowing}); an independent batch of 300 further null streams is used to confirm the achieved false-alarm rate at the selected threshold. The component-split and tilted arms calibrate each indicator family to its own threshold under its budget share, searching a shared multiplier on those shares so that the family thresholds' union still meets the overall budget. An alert episode's onset uses the hysteresis rule defined in Sec.~\ref{sec:indicators}.
+
+\subsubsection{Ground-Truth Onset Detection}
+
+The true onset of harm on a stream is itself detected by a calibrated procedure rather than a fixed point-in-time threshold test. A window-level harm-ratio series (population-wide, and, where a pre-specified subgroup's share of a window is large enough to be evaluable, subgroup-specific) is standardized against a baseline period and monitored with the same CUSUM-and-calibrated-threshold procedure used for the monitoring arms, calibrated to a stricter false-alarm target of 5 (not 30) alert-episode onsets per 1{,}000 windows, reflecting that a ground-truth onset judgment is intended to be rare and confident rather than a routine alert. An earlier, simpler procedure (a single-window test against a fixed ratio threshold) was evaluated on real null, unperturbed data and found to false-fire on essentially all replicates tested, a multiple-comparisons effect of testing many correlated single windows against a threshold close to real per-window sampling noise; it was replaced with the calibrated procedure described here, which was found to reduce the false-onset rate to the low single digits (percent) at the target above.
+
+\subsubsection{Primary Metric}
+
+The primary outcome for each replicate (Sec.~\ref{sec:stats}) and monitoring arm is time after first detection (TAFD): the number of monitoring windows between the calibrated ground-truth onset window and that arm's first alert-episode window at or after onset. An alert that occurs before the ground-truth onset window (possible under a ramped perturbation) is recorded as TAFD~=~0, not a negative value. If an arm produces no alert, or its first alert after onset falls beyond a fixed detection horizon, that replicate-arm observation is right-censored at the horizon value rather than left as a missing observation.
+
+\subsection{Statistical Analysis}\label{sec:stats}
+
+For each attainable scenario, replicate streams are generated by block-bootstrap resampling the real windows (Sec.~\ref{sec:windowing}), injecting the scenario's perturbation from a randomly drawn monitored onset window, and detecting the calibrated ground-truth onset and each arm's first alert episode on the resulting stream (Sec.~\ref{sec:calibration}). A replicate is dropped entirely, not padded or imputed, if no ground-truth onset is detected on it, or if the detected onset falls too close to the stream's end for a fair detection-lag comparison within the fixed horizon.
+
+Each arm's estimated reduction in detection time relative to the conventional arm is the difference in restricted mean survival time \citep{royston2013}, computed directly as the mean difference in (horizon-censored) TAFD between the two arms' replicate distributions. Uncertainty is quantified by a paired percentile bootstrap: 2{,}000 bootstrap resamples of the replicate index (drawn jointly for both arms being compared, so that paired replicates are preserved), reporting the 2.5th and 97.5th percentiles of the resampled reduction as a 95\% confidence interval \citep{efron1979}. Because six comparator arms are each compared against the conventional baseline within one task and scenario, the bootstrap interval above is treated as a descriptive, per-arm estimate, and a family-wise multiplicity correction is applied on top of it before any arm is described as distinguishable from the conventional baseline. For each task-scenario combination, a two-sided bootstrap $p$-value is computed for each of the six arm-versus-conventional comparisons as $2 \min(\hat{q}, 1-\hat{q})$, where $\hat{q}$ is the proportion of the 2{,}000 paired bootstrap resamples (Sec.~\ref{sec:stats}) with a reduction at or below zero; the six $p$-values within that family are then adjusted by the Holm step-down procedure \citep{holm1979} at a family-wise significance level of 0.05. An arm's reduction is described as statistically distinguishable from no effect only if it survives this correction; the uncorrected bootstrap interval is still reported for every arm, so that a reviewer can see both the descriptive estimate and its multiplicity-corrected significance. Concept drift as a natural experiment (Sec.~\ref{sec:sc08}) produces a single observed trajectory, not a replicate distribution, so no bootstrap interval or multiplicity correction applies to it; any onset detected there is reported descriptively.
+
+\subsection{Privacy, Security, and Ethics}
+
+MIMIC-IV and eICU-CRD are de-identified datasets released for secondary research use under their own, database-specific PhysioNet Credentialed Health Data Use Agreements; this study did not collect data from any patient directly and did not involve any prospective human-subjects contact. Because this study is a secondary analysis of pre-existing, de-identified data released under those agreements, it does not constitute human subjects research requiring institutional review board approval; this determination follows the same basis used throughout the published MIMIC-IV and eICU-CRD secondary-analysis literature. The corresponding author is a PhysioNet-credentialed researcher and accessed both databases under their respective Credentialed Health Data Use Agreements [NEEDS INPUT: PhysioNet credentialing reference/completion date, if your target venue requires it stated explicitly].
+
+Data handling in this study followed a fixed discipline, applied throughout: no row-level (individual-patient) value, of any kind, was printed, displayed, or reported at any stage of data extraction, model fitting, or analysis; every number reported in this manuscript is an aggregate statistic (a count, a rate, a mean, a calibrated threshold, or a confidence interval) computed over at least 500 real cases. No patient identifier (e.g., hospital admission, ICU stay, or patient identifiers used to join database tables during extraction) is retained in any extracted analysis file; identifiers are used only transiently, during extraction, to join tables and are dropped before any file is written to disk. Row-level MIMIC-IV and eICU-CRD data were processed only by locally executing Python code, running under the corresponding author's own control, on the corresponding author's own machine; database queries, feature extraction, model fitting, and all intermediate computation on row-level values took place entirely within that local process. The AI-assistant software used in this study (Sec.~\ref{sec:genai}) directed and reviewed that local code but never received row-level data itself: every value returned from code execution to the AI assistant, and every value the AI assistant in turn produced or reported, was an aggregate statistic (a count, a rate, a mean, a calibrated threshold, or a confidence interval), consistent with the aggregate-only reporting discipline described above. No row-level value was included in any prompt, response, or log exchanged with the AI-assistant service.
+
+\subsection{Reproducibility}
+
+All random number generation in this study uses explicit, seeded pseudo-random number generators, so that every reported procedure is exactly repeatable given the same code and input data. No monitoring-architecture parameter (the false-alarm budget, the CUSUM hysteresis window $j$, the seven arm definitions, or a perturbation scenario's target harm ratio) was adjusted after any tier's detection results were observed; all were fixed in the project's design record before the corresponding real-data run.
+
+Code implementing the monitoring architecture, real-data extraction, and analysis described in this section is available at \url{https://github.com/yuyunguo/continuous-clinical-assurance} [NEEDS INPUT: confirm the final repository name/visibility once ready for the target venue]. Row-level MIMIC-IV and eICU-CRD data are not redistributed by the authors and remain available only to researchers credentialed under each database's own data use agreement. Analysis was performed in Python 3.12.5, using NumPy 2.0.2, pandas 3.0.2, SciPy 1.17.1, and scikit-learn 1.8.0 for the deployed-model fitting and statistical procedures described in this section.
+
+\subsubsection{Use of Generative AI}\label{sec:genai}
+
+Portions of the software implementing the procedures described in this section, and portions of this manuscript's text, were drafted with the assistance of a large language model (Claude, Anthropic), under the corresponding author's direction and review. Every statistical result reported in this study was produced by executing the described code against the described data; no statistical result was generated by the language model itself. The corresponding author reviewed the generated code and text and takes full responsibility for the content of this publication.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+[DRAFT PENDING -- next section per the project's writing-order convention.]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+[DRAFT PENDING.]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
+
+[DRAFT PENDING.]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{6pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\authorcontributions{[TO BE COMPLETED per CRediT taxonomy once all authors are confirmed.]}
+
+\funding{[TO BE COMPLETED.]}
+
+\institutionalreview{Not applicable. This study is a secondary analysis of pre-existing, de-identified data released under the MIMIC-IV and eICU-CRD PhysioNet Credentialed Health Data Use Agreements and does not constitute human subjects research requiring institutional review board approval.}
+
+\informedconsent{Not applicable: this study uses only de-identified, previously collected data released under the MIMIC-IV and eICU data use agreements, which do not require patient-level informed consent for secondary analysis.}
+
+\dataavailability{Row-level MIMIC-IV \citep{johnson2023} and eICU \citep{pollard2018} data are available to credentialed researchers under each database's own data use agreement and are not redistributed by the authors. Code implementing the monitoring architecture, real-data extraction, and analysis described in this manuscript is available at \url{https://github.com/yuyunguo/continuous-clinical-assurance}.}
+
+\acknowledgments{During the preparation of this manuscript, the author used Claude (Anthropic) for software development, data analysis, and manuscript drafting assistance, under the author's direction and review. The author has reviewed and edited the output and takes full responsibility for the content of this publication.}
+
+\conflictsofinterest{[TO BE COMPLETED.]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustwidth}{-\extralength}{0cm}
+
+\reftitle{References}
+\bibliography{references}
+
+\end{adjustwidth}
+\end{document}

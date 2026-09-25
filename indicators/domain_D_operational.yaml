@@ -1,0 +1,167 @@
+- id: O1
+  name: Workflow completion rate
+  domain: D
+  state_component: O
+  matrix_construct: Workflow integrity
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI-initiated workflow episodes that reach their intended endpoint, with task abandonment reported as the complement.
+  formula: "completion = N_completed / N_initiated; abandonment = 1 - completion"
+  data_required: [workflow system event logs]
+  frequency: Weekly
+  baseline: Completion rate at go-live or pilot
+  alert_rule: "Yellow: completion falls below baseline by m_Y. Orange: by m_O. Red: completion failure in a safety-critical workflow step."
+  detection_method: Proportion control chart; process-mining comparison of observed and intended paths
+  governance_action:
+    yellow: Review workflow with operations
+    orange: Workflow redesign or interim manual fallback
+    red: Suspend AI step in the affected workflow
+  clinical_importance: An AI that performs well but disrupts the clinical process still creates delay and risk (RH4).
+  validation: Phase II workflow perturbation (integration failure, step reordering); detection where model-level metrics stay stable
+
+- id: O2
+  name: Escalation failure rate
+  domain: D
+  state_component: O
+  matrix_construct: Workflow integrity
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI-generated escalations that fail to reach the responsible clinician, or reach them after the clinical window.
+  formula: "failure rate = N_failed_or_late_escalations / N_escalations"
+  data_required: [escalation events, delivery and acknowledgment timestamps]
+  frequency: Weekly
+  baseline: Escalation reliability at go-live
+  alert_rule: "Yellow: failure rate above baseline by m_Y. Orange: by m_O. Red: any failed escalation for a highest-severity case."
+  detection_method: Proportion control chart with sentinel rule; end-to-end synthetic test escalations
+  governance_action:
+    yellow: Inspect routing and contact directory
+    orange: Repair routing; add redundant channel
+    red: Suspend AI-dependent escalation; revert to manual
+  clinical_importance: A correct alert that never reaches a clinician has no clinical effect.
+  validation: Phase II synthetic routing failures; detection delay via synthetic test escalations
+
+- id: O3
+  name: Alert burden
+  domain: D
+  state_component: O
+  matrix_construct: Alert burden
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Alert volume per user per unit time, and the proportion of alerts acted on, as indicators of alert fatigue.
+  formula: "burden = alerts / (user * shift); action rate = N_actioned / N_alerts"
+  data_required: [alert logs, user actions]
+  frequency: Weekly
+  baseline: Burden and action rate at go-live
+  alert_rule: "Yellow: burden above baseline by m_Y or action rate below baseline by m_Y. Orange: by m_O. Red: burden above the VOE maximum tolerable level."
+  detection_method: Longitudinal control charts; per-user distribution monitoring
+  governance_action:
+    yellow: Review alert thresholds
+    orange: Threshold redesign; suppress low-value alerts
+    red: Suspend nonessential alerting
+  clinical_importance: Alert fatigue leads clinicians to ignore correct alerts.
+  validation: Phase II alert-volume perturbation; link to H2 and H4
+
+- id: O4
+  name: Turnaround time
+  domain: D
+  state_component: O
+  matrix_construct: Workflow integrity
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Time for the AI-supported process to deliver its result to the point of care, compared with the service-level requirement.
+  formula: "TAT = t_delivered - t_request; median and 95th percentile against the VOE service limit"
+  data_required: [request and delivery timestamps]
+  frequency: Continuous, summarized daily
+  baseline: Validated TAT distribution and service limit in the VOE
+  alert_rule: "Yellow: 95th percentile above baseline by m_Y. Orange: service limit exceeded in more than m_O of cases. Red: delay in a time-critical pathway."
+  detection_method: Quantile control chart
+  governance_action:
+    yellow: Investigate system load and integration
+    orange: Scale or reroute; interim manual pathway
+    red: Suspend AI step and revert to manual pathway
+  clinical_importance: Delay in a time-critical pathway can outweigh the benefit of a correct output.
+  validation: Phase II latency perturbation; detection delay
+
+- id: O5
+  name: Downstream error rate
+  domain: D
+  state_component: O
+  matrix_construct: Workflow integrity
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Rate of errors in later workflow steps (orders, documentation, communication) traceable to an AI output.
+  formula: "downstream error rate = N_errors_traced_to_AI_output / N_AI_influenced_episodes"
+  data_required: [workflow logs, incident and correction records, AI output links]
+  frequency: Monthly
+  baseline: Rate in validation or pilot
+  alert_rule: "Yellow: rate above baseline by m_Y. Orange: by m_O. Red: any downstream error at the highest severity."
+  detection_method: Control chart with trace-based attribution audit
+  governance_action:
+    yellow: Sample and review traced episodes
+    orange: Workflow redesign; add verification step
+    red: Suspend AI influence on the affected step
+  clinical_importance: Harm frequently arises after the AI step, where model-level metrics do not reach.
+  validation: Phase II injected downstream propagation; test attribution accuracy
+
+- id: O6
+  name: Near-miss and sentinel event rate
+  domain: D
+  state_component: O
+  matrix_construct: Safety event rate
+  evidence_level: 5
+  ai_types: [predictive, generative, agentic]
+  definition: Rate of reported near misses and sentinel events in which an AI output contributed, classified by harm severity.
+  formula: "event rate = N_events_AI_contributed / N_AI_influenced_episodes, by severity class"
+  data_required: [safety reporting system, EHR, incident classification]
+  frequency: Continuous reporting; monthly rate
+  baseline: Pre-deployment event rate for the process and the validation-period rate
+  alert_rule: "Yellow: near-miss rate above baseline by m_Y. Orange: by m_O. Red: any sentinel event with AI contribution."
+  detection_method: Sentinel rule for sentinel events; count-based control chart for near misses; under-reporting audit
+  governance_action:
+    yellow: Safety review of near misses
+    orange: Restrict use; formal investigation
+    red: Suspend and initiate serious-event review
+  clinical_importance: It is the closest direct measure of clinical harm, but it is sparse and under-reported, so it cannot serve as the only detector.
+  validation: Phase III retrospective linkage between earlier alerts and later events; time-to-detection versus outcome-based detection
+
+- id: G4
+  name: Action policy-violation rate
+  domain: D
+  state_component: O
+  matrix_construct: Action compliance
+  evidence_level: 4
+  ai_types: [agentic]
+  definition: Rate at which agent actions (orders, scheduling, messages to patients) violate clinical policy or safety rules, whether or not within granted permissions.
+  formula: "violation rate = N_actions_violating_policy / N_actions, by action class and severity"
+  data_required: [agent action logs, policy rule set, adjudicated review]
+  frequency: Continuous with weekly audit
+  baseline: Validated violation rate in simulated and pilot use
+  alert_rule: "Yellow: rate above baseline by m_Y. Orange: by m_O. Red: any violation with patient-facing or irreversible effect."
+  detection_method: Rule-based policy check with audit sampling; sentinel rule for high-severity actions
+  governance_action:
+    yellow: Review agent behavior for the action class
+    orange: Require human approval for the action class
+    red: Halt the agent and escalate
+  clinical_importance: An agent that acts can cause harm without any human seeing the output first.
+  validation: Follow-on generative or agentic study (outside Phase II) of agent simulation with seeded unsafe actions; sensitivity of rule checks and audit sampling
+
+- id: G5
+  name: Trajectory failure and recovery
+  domain: D
+  state_component: O
+  matrix_construct: Trajectory integrity
+  evidence_level: 4
+  ai_types: [agentic]
+  definition: Rate of failed reasoning or tool-use steps within an agent trajectory (input, retrieval, planning, tool use, action, observation) and the rate at which the agent recovers or escalates appropriately.
+  formula: "failed step rate = N_failed_steps / N_steps; recovery rate = N_recovered_or_escalated / N_failed_steps; trace tau = (I, R, P, X, A, O) for input, retrieval, planning, tool execution, action, observation"
+  data_required: [step-level agent trajectory logs, tool error codes]
+  frequency: Continuous, summarized weekly
+  baseline: Step-level failure and recovery profile in validation
+  alert_rule: "Yellow: failed step rate above baseline by m_Y or recovery rate below baseline by m_Y. Orange: by m_O. Red: unrecovered failure at a critical step (action or patient communication)."
+  detection_method: Step-level monitoring with control charts; trajectory reconstruction on sampled episodes
+  governance_action:
+    yellow: Review failing step type
+    orange: Reduce autonomy; add checkpoint approval
+    red: Halt trajectory and escalate to a human
+  clinical_importance: Multi-step failures compound, and an early step error can invalidate a later correct-looking action.
+  validation: Follow-on generative or agentic study (outside Phase II) of perturbation of tool reliability and retrieval; detection of compounding failure

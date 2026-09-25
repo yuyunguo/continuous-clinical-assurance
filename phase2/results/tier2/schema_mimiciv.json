@@ -1,0 +1,3243 @@
+{
+ "mimiciv": {
+  "discharge_summary_templates.finetune_annotations": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "context_type",
+     "type": "text"
+    },
+    {
+     "name": "name_type",
+     "type": "text"
+    },
+    {
+     "name": "split",
+     "type": "text"
+    },
+    {
+     "name": "note_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "template_placeholder",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 26516
+  },
+  "discharge_summary_templates.finetune_context": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "context_type",
+     "type": "text"
+    },
+    {
+     "name": "split",
+     "type": "text"
+    },
+    {
+     "name": "template_text",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 2200
+  },
+  "discharge_summary_templates.finetune_names": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "name_type",
+     "type": "text"
+    },
+    {
+     "name": "category",
+     "type": "text"
+    },
+    {
+     "name": "name",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 760
+  },
+  "discharge_summary_templates.finetune_outputs": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "context_type",
+     "type": "text"
+    },
+    {
+     "name": "name_type",
+     "type": "text"
+    },
+    {
+     "name": "method",
+     "type": "text"
+    },
+    {
+     "name": "seed",
+     "type": "integer"
+    },
+    {
+     "name": "subject_idx",
+     "type": "integer"
+    },
+    {
+     "name": "template_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "confidence",
+     "type": "real"
+    }
+   ],
+   "estimated_rows": 419246
+  },
+  "discharge_summary_templates.finetune_test_annotations": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "template_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_set_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_combo_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "template_placeholder",
+     "type": "text"
+    },
+    {
+     "name": "phi_type",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 11616
+  },
+  "discharge_summary_templates.first_names": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "set_id",
+     "type": "integer"
+    },
+    {
+     "name": "gender",
+     "type": "text"
+    },
+    {
+     "name": "race",
+     "type": "text"
+    },
+    {
+     "name": "popularity",
+     "type": "text"
+    },
+    {
+     "name": "decade",
+     "type": "text"
+    },
+    {
+     "name": "name",
+     "type": "text"
+    },
+    {
+     "name": "rank",
+     "type": "integer"
+    },
+    {
+     "name": "count",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 320
+  },
+  "discharge_summary_templates.general_annotations": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "template_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_set_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_combo_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "template_placeholder",
+     "type": "text"
+    },
+    {
+     "name": "phi_type",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 116160
+  },
+  "discharge_summary_templates.general_outputs": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "method",
+     "type": "text"
+    },
+    {
+     "name": "template_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_set_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_combo_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "confidence",
+     "type": "real"
+    }
+   ],
+   "estimated_rows": 1510222
+  },
+  "discharge_summary_templates.last_names": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "set_id",
+     "type": "integer"
+    },
+    {
+     "name": "gender",
+     "type": "text"
+    },
+    {
+     "name": "race",
+     "type": "text"
+    },
+    {
+     "name": "popularity",
+     "type": "text"
+    },
+    {
+     "name": "decade",
+     "type": "text"
+    },
+    {
+     "name": "last",
+     "type": "text"
+    },
+    {
+     "name": "rank",
+     "type": "integer"
+    },
+    {
+     "name": "count",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 120
+  },
+  "discharge_summary_templates.name_sets": {
+   "columns": [
+    {
+     "name": "set_id",
+     "type": "integer"
+    },
+    {
+     "name": "gender",
+     "type": "text"
+    },
+    {
+     "name": "race",
+     "type": "text"
+    },
+    {
+     "name": "popularity",
+     "type": "text"
+    },
+    {
+     "name": "decade",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 16
+  },
+  "discharge_summary_templates.notes_base": {
+   "columns": [
+    {
+     "name": "note_id",
+     "type": "text"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "note_type",
+     "type": "text"
+    },
+    {
+     "name": "note_seq",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "text"
+    },
+    {
+     "name": "storetime",
+     "type": "text"
+    },
+    {
+     "name": "text",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 100
+  },
+  "discharge_summary_templates.polysemy_annotations": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "template_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_set_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_combo_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "template_placeholder",
+     "type": "text"
+    },
+    {
+     "name": "phi_type",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 2178
+  },
+  "discharge_summary_templates.polysemy_outputs": {
+   "columns": [
+    {
+     "name": "id",
+     "type": "integer"
+    },
+    {
+     "name": "method",
+     "type": "text"
+    },
+    {
+     "name": "template_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_set_idx",
+     "type": "integer"
+    },
+    {
+     "name": "name_combo_idx",
+     "type": "integer"
+    },
+    {
+     "name": "position_start",
+     "type": "integer"
+    },
+    {
+     "name": "position_end",
+     "type": "integer"
+    },
+    {
+     "name": "name_text",
+     "type": "text"
+    },
+    {
+     "name": "confidence",
+     "type": "real"
+    }
+   ],
+   "estimated_rows": 26667
+  },
+  "mimic_core.admissions": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "admittime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "dischtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "deathtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "admission_type",
+     "type": "character varying"
+    },
+    {
+     "name": "admit_provider_id",
+     "type": "character varying"
+    },
+    {
+     "name": "admission_location",
+     "type": "character varying"
+    },
+    {
+     "name": "discharge_location",
+     "type": "character varying"
+    },
+    {
+     "name": "insurance",
+     "type": "character varying"
+    },
+    {
+     "name": "language",
+     "type": "character varying"
+    },
+    {
+     "name": "marital_status",
+     "type": "character varying"
+    },
+    {
+     "name": "race",
+     "type": "character varying"
+    },
+    {
+     "name": "edregtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "edouttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "hospital_expire_flag",
+     "type": "smallint"
+    }
+   ],
+   "estimated_rows": 546028
+  },
+  "mimic_core.patients": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "gender",
+     "type": "character"
+    },
+    {
+     "name": "anchor_age",
+     "type": "smallint"
+    },
+    {
+     "name": "anchor_year",
+     "type": "smallint"
+    },
+    {
+     "name": "anchor_year_group",
+     "type": "character varying"
+    },
+    {
+     "name": "dod",
+     "type": "date"
+    }
+   ],
+   "estimated_rows": 364627
+  },
+  "mimic_core.transfers": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "transfer_id",
+     "type": "integer"
+    },
+    {
+     "name": "eventtype",
+     "type": "character varying"
+    },
+    {
+     "name": "careunit",
+     "type": "character varying"
+    },
+    {
+     "name": "intime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "outtime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 2413581
+  },
+  "mimic_derived.antibiotic": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "antibiotic",
+     "type": "character varying"
+    },
+    {
+     "name": "route",
+     "type": "character varying"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "stoptime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 949901
+  },
+  "mimic_derived.bg": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "specimen",
+     "type": "text"
+    },
+    {
+     "name": "so2",
+     "type": "double precision"
+    },
+    {
+     "name": "po2",
+     "type": "double precision"
+    },
+    {
+     "name": "pco2",
+     "type": "double precision"
+    },
+    {
+     "name": "fio2_chartevents",
+     "type": "double precision"
+    },
+    {
+     "name": "fio2",
+     "type": "double precision"
+    },
+    {
+     "name": "aado2",
+     "type": "double precision"
+    },
+    {
+     "name": "aado2_calc",
+     "type": "numeric"
+    },
+    {
+     "name": "pao2fio2ratio",
+     "type": "double precision"
+    },
+    {
+     "name": "ph",
+     "type": "double precision"
+    },
+    {
+     "name": "baseexcess",
+     "type": "double precision"
+    },
+    {
+     "name": "bicarbonate",
+     "type": "double precision"
+    },
+    {
+     "name": "totalco2",
+     "type": "double precision"
+    },
+    {
+     "name": "hematocrit",
+     "type": "double precision"
+    },
+    {
+     "name": "hemoglobin",
+     "type": "double precision"
+    },
+    {
+     "name": "carboxyhemoglobin",
+     "type": "double precision"
+    },
+    {
+     "name": "methemoglobin",
+     "type": "double precision"
+    },
+    {
+     "name": "chloride",
+     "type": "double precision"
+    },
+    {
+     "name": "calcium",
+     "type": "double precision"
+    },
+    {
+     "name": "temperature",
+     "type": "double precision"
+    },
+    {
+     "name": "potassium",
+     "type": "double precision"
+    },
+    {
+     "name": "sodium",
+     "type": "double precision"
+    },
+    {
+     "name": "lactate",
+     "type": "double precision"
+    },
+    {
+     "name": "glucose",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 698099
+  },
+  "mimic_derived.chemistry": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "specimen_id",
+     "type": "integer"
+    },
+    {
+     "name": "albumin",
+     "type": "double precision"
+    },
+    {
+     "name": "globulin",
+     "type": "double precision"
+    },
+    {
+     "name": "total_protein",
+     "type": "double precision"
+    },
+    {
+     "name": "aniongap",
+     "type": "double precision"
+    },
+    {
+     "name": "bicarbonate",
+     "type": "double precision"
+    },
+    {
+     "name": "bun",
+     "type": "double precision"
+    },
+    {
+     "name": "calcium",
+     "type": "double precision"
+    },
+    {
+     "name": "chloride",
+     "type": "double precision"
+    },
+    {
+     "name": "creatinine",
+     "type": "double precision"
+    },
+    {
+     "name": "glucose",
+     "type": "double precision"
+    },
+    {
+     "name": "sodium",
+     "type": "double precision"
+    },
+    {
+     "name": "potassium",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 4976209
+  },
+  "mimic_derived.complete_blood_count": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "specimen_id",
+     "type": "integer"
+    },
+    {
+     "name": "hematocrit",
+     "type": "double precision"
+    },
+    {
+     "name": "hemoglobin",
+     "type": "double precision"
+    },
+    {
+     "name": "mch",
+     "type": "double precision"
+    },
+    {
+     "name": "mchc",
+     "type": "double precision"
+    },
+    {
+     "name": "mcv",
+     "type": "double precision"
+    },
+    {
+     "name": "platelet",
+     "type": "double precision"
+    },
+    {
+     "name": "rbc",
+     "type": "double precision"
+    },
+    {
+     "name": "rdw",
+     "type": "double precision"
+    },
+    {
+     "name": "rdwsd",
+     "type": "double precision"
+    },
+    {
+     "name": "wbc",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 4377552
+  },
+  "mimic_derived.dobutamine": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "vaso_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "vaso_amount",
+     "type": "double precision"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 10264
+  },
+  "mimic_derived.dopamine": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "vaso_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "vaso_amount",
+     "type": "double precision"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 18085
+  },
+  "mimic_derived.enzyme": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "specimen_id",
+     "type": "integer"
+    },
+    {
+     "name": "alt",
+     "type": "double precision"
+    },
+    {
+     "name": "alp",
+     "type": "double precision"
+    },
+    {
+     "name": "ast",
+     "type": "double precision"
+    },
+    {
+     "name": "amylase",
+     "type": "double precision"
+    },
+    {
+     "name": "bilirubin_total",
+     "type": "double precision"
+    },
+    {
+     "name": "bilirubin_direct",
+     "type": "double precision"
+    },
+    {
+     "name": "bilirubin_indirect",
+     "type": "double precision"
+    },
+    {
+     "name": "ck_cpk",
+     "type": "double precision"
+    },
+    {
+     "name": "ck_mb",
+     "type": "double precision"
+    },
+    {
+     "name": "ggt",
+     "type": "double precision"
+    },
+    {
+     "name": "ld_ldh",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 2187060
+  },
+  "mimic_derived.epinephrine": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "vaso_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "vaso_amount",
+     "type": "double precision"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 31495
+  },
+  "mimic_derived.gcs": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "gcs",
+     "type": "double precision"
+    },
+    {
+     "name": "gcs_motor",
+     "type": "double precision"
+    },
+    {
+     "name": "gcs_verbal",
+     "type": "double precision"
+    },
+    {
+     "name": "gcs_eyes",
+     "type": "double precision"
+    },
+    {
+     "name": "gcs_unable",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 2217787
+  },
+  "mimic_derived.icustay_hourly": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "hr",
+     "type": "bigint"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 10482014
+  },
+  "mimic_derived.icustay_times": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "intime_hr",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "outtime_hr",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 94458
+  },
+  "mimic_derived.norepinephrine": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "vaso_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "vaso_amount",
+     "type": "double precision"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 459800
+  },
+  "mimic_derived.oxygen_delivery": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "o2_flow",
+     "type": "double precision"
+    },
+    {
+     "name": "o2_flow_additional",
+     "type": "double precision"
+    },
+    {
+     "name": "o2_delivery_device_1",
+     "type": "text"
+    },
+    {
+     "name": "o2_delivery_device_2",
+     "type": "text"
+    },
+    {
+     "name": "o2_delivery_device_3",
+     "type": "text"
+    },
+    {
+     "name": "o2_delivery_device_4",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 794232
+  },
+  "mimic_derived.sepsis3": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "antibiotic_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "culture_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "suspected_infection_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "sofa_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "sofa_score",
+     "type": "integer"
+    },
+    {
+     "name": "respiration",
+     "type": "integer"
+    },
+    {
+     "name": "coagulation",
+     "type": "integer"
+    },
+    {
+     "name": "liver",
+     "type": "integer"
+    },
+    {
+     "name": "cardiovascular",
+     "type": "integer"
+    },
+    {
+     "name": "cns",
+     "type": "integer"
+    },
+    {
+     "name": "renal",
+     "type": "integer"
+    },
+    {
+     "name": "sepsis3",
+     "type": "boolean"
+    }
+   ],
+   "estimated_rows": 41296
+  },
+  "mimic_derived.sofa": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "hr",
+     "type": "bigint"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "pao2fio2ratio_novent",
+     "type": "double precision"
+    },
+    {
+     "name": "pao2fio2ratio_vent",
+     "type": "double precision"
+    },
+    {
+     "name": "rate_epinephrine",
+     "type": "double precision"
+    },
+    {
+     "name": "rate_norepinephrine",
+     "type": "double precision"
+    },
+    {
+     "name": "rate_dopamine",
+     "type": "double precision"
+    },
+    {
+     "name": "rate_dobutamine",
+     "type": "double precision"
+    },
+    {
+     "name": "meanbp_min",
+     "type": "double precision"
+    },
+    {
+     "name": "gcs_min",
+     "type": "double precision"
+    },
+    {
+     "name": "uo_24hr",
+     "type": "double precision"
+    },
+    {
+     "name": "bilirubin_max",
+     "type": "double precision"
+    },
+    {
+     "name": "creatinine_max",
+     "type": "double precision"
+    },
+    {
+     "name": "platelet_min",
+     "type": "double precision"
+    },
+    {
+     "name": "respiration",
+     "type": "integer"
+    },
+    {
+     "name": "coagulation",
+     "type": "integer"
+    },
+    {
+     "name": "liver",
+     "type": "integer"
+    },
+    {
+     "name": "cardiovascular",
+     "type": "integer"
+    },
+    {
+     "name": "cns",
+     "type": "integer"
+    },
+    {
+     "name": "renal",
+     "type": "integer"
+    },
+    {
+     "name": "respiration_24hours",
+     "type": "integer"
+    },
+    {
+     "name": "coagulation_24hours",
+     "type": "integer"
+    },
+    {
+     "name": "liver_24hours",
+     "type": "integer"
+    },
+    {
+     "name": "cardiovascular_24hours",
+     "type": "integer"
+    },
+    {
+     "name": "cns_24hours",
+     "type": "integer"
+    },
+    {
+     "name": "renal_24hours",
+     "type": "integer"
+    },
+    {
+     "name": "sofa_24hours",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 8215784
+  },
+  "mimic_derived.suspicion_of_infection": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "ab_id",
+     "type": "bigint"
+    },
+    {
+     "name": "antibiotic",
+     "type": "character varying"
+    },
+    {
+     "name": "antibiotic_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "suspected_infection",
+     "type": "integer"
+    },
+    {
+     "name": "suspected_infection_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "culture_time",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "specimen",
+     "type": "text"
+    },
+    {
+     "name": "positive_culture",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 946930
+  },
+  "mimic_derived.urine_output": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "urineoutput",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 4127634
+  },
+  "mimic_derived.urine_output_rate": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "weight",
+     "type": "numeric"
+    },
+    {
+     "name": "uo",
+     "type": "double precision"
+    },
+    {
+     "name": "urineoutput_6hr",
+     "type": "double precision"
+    },
+    {
+     "name": "urineoutput_12hr",
+     "type": "double precision"
+    },
+    {
+     "name": "urineoutput_24hr",
+     "type": "double precision"
+    },
+    {
+     "name": "uo_mlkghr_6hr",
+     "type": "numeric"
+    },
+    {
+     "name": "uo_mlkghr_12hr",
+     "type": "numeric"
+    },
+    {
+     "name": "uo_mlkghr_24hr",
+     "type": "numeric"
+    },
+    {
+     "name": "uo_tm_6hr",
+     "type": "numeric"
+    },
+    {
+     "name": "uo_tm_12hr",
+     "type": "numeric"
+    },
+    {
+     "name": "uo_tm_24hr",
+     "type": "numeric"
+    }
+   ],
+   "estimated_rows": 4126671
+  },
+  "mimic_derived.ventilation": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "ventilation_status",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 145117
+  },
+  "mimic_derived.ventilator_setting": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "respiratory_rate_set",
+     "type": "double precision"
+    },
+    {
+     "name": "respiratory_rate_total",
+     "type": "double precision"
+    },
+    {
+     "name": "respiratory_rate_spontaneous",
+     "type": "double precision"
+    },
+    {
+     "name": "minute_volume",
+     "type": "double precision"
+    },
+    {
+     "name": "tidal_volume_set",
+     "type": "double precision"
+    },
+    {
+     "name": "tidal_volume_observed",
+     "type": "double precision"
+    },
+    {
+     "name": "tidal_volume_spontaneous",
+     "type": "double precision"
+    },
+    {
+     "name": "plateau_pressure",
+     "type": "double precision"
+    },
+    {
+     "name": "peep",
+     "type": "double precision"
+    },
+    {
+     "name": "fio2",
+     "type": "double precision"
+    },
+    {
+     "name": "flow_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "ventilator_mode",
+     "type": "text"
+    },
+    {
+     "name": "ventilator_mode_hamilton",
+     "type": "text"
+    },
+    {
+     "name": "ventilator_type",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 1377514
+  },
+  "mimic_derived.vitalsign": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "heart_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "sbp",
+     "type": "double precision"
+    },
+    {
+     "name": "dbp",
+     "type": "double precision"
+    },
+    {
+     "name": "mbp",
+     "type": "double precision"
+    },
+    {
+     "name": "sbp_ni",
+     "type": "double precision"
+    },
+    {
+     "name": "dbp_ni",
+     "type": "double precision"
+    },
+    {
+     "name": "mbp_ni",
+     "type": "double precision"
+    },
+    {
+     "name": "resp_rate",
+     "type": "double precision"
+    },
+    {
+     "name": "temperature",
+     "type": "numeric"
+    },
+    {
+     "name": "temperature_site",
+     "type": "text"
+    },
+    {
+     "name": "spo2",
+     "type": "double precision"
+    },
+    {
+     "name": "glucose",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 13522209
+  },
+  "mimic_derived.weight_durations": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "weight",
+     "type": "numeric"
+    },
+    {
+     "name": "weight_type",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 401848
+  },
+  "mimic_hosp.d_hcpcs": {
+   "columns": [
+    {
+     "name": "code",
+     "type": "character"
+    },
+    {
+     "name": "category",
+     "type": "smallint"
+    },
+    {
+     "name": "long_description",
+     "type": "text"
+    },
+    {
+     "name": "short_description",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 89208
+  },
+  "mimic_hosp.d_icd_diagnoses": {
+   "columns": [
+    {
+     "name": "icd_code",
+     "type": "character"
+    },
+    {
+     "name": "icd_version",
+     "type": "smallint"
+    },
+    {
+     "name": "long_title",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 112107
+  },
+  "mimic_hosp.d_icd_procedures": {
+   "columns": [
+    {
+     "name": "icd_code",
+     "type": "character"
+    },
+    {
+     "name": "icd_version",
+     "type": "smallint"
+    },
+    {
+     "name": "long_title",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 86423
+  },
+  "mimic_hosp.d_labitems": {
+   "columns": [
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "label",
+     "type": "character varying"
+    },
+    {
+     "name": "fluid",
+     "type": "character varying"
+    },
+    {
+     "name": "category",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 1650
+  },
+  "mimic_hosp.diagnoses_icd": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "seq_num",
+     "type": "integer"
+    },
+    {
+     "name": "icd_code",
+     "type": "character"
+    },
+    {
+     "name": "icd_version",
+     "type": "smallint"
+    }
+   ],
+   "estimated_rows": 6364341
+  },
+  "mimic_hosp.drgcodes": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "drg_type",
+     "type": "character varying"
+    },
+    {
+     "name": "drg_code",
+     "type": "character varying"
+    },
+    {
+     "name": "description",
+     "type": "character varying"
+    },
+    {
+     "name": "drg_severity",
+     "type": "smallint"
+    },
+    {
+     "name": "drg_mortality",
+     "type": "smallint"
+    }
+   ],
+   "estimated_rows": 761856
+  },
+  "mimic_hosp.emar": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "emar_id",
+     "type": "character varying"
+    },
+    {
+     "name": "emar_seq",
+     "type": "integer"
+    },
+    {
+     "name": "poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "pharmacy_id",
+     "type": "integer"
+    },
+    {
+     "name": "enter_provider_id",
+     "type": "character varying"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "medication",
+     "type": "text"
+    },
+    {
+     "name": "event_txt",
+     "type": "character varying"
+    },
+    {
+     "name": "scheduletime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    }
+   ],
+   "estimated_rows": 42812400
+  },
+  "mimic_hosp.emar_detail": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "emar_id",
+     "type": "character varying"
+    },
+    {
+     "name": "emar_seq",
+     "type": "integer"
+    },
+    {
+     "name": "parent_field_ordinal",
+     "type": "numeric"
+    },
+    {
+     "name": "administration_type",
+     "type": "character varying"
+    },
+    {
+     "name": "pharmacy_id",
+     "type": "integer"
+    },
+    {
+     "name": "barcode_type",
+     "type": "character varying"
+    },
+    {
+     "name": "reason_for_no_barcode",
+     "type": "text"
+    },
+    {
+     "name": "complete_dose_not_given",
+     "type": "character varying"
+    },
+    {
+     "name": "dose_due",
+     "type": "character varying"
+    },
+    {
+     "name": "dose_due_unit",
+     "type": "character varying"
+    },
+    {
+     "name": "dose_given",
+     "type": "character varying"
+    },
+    {
+     "name": "dose_given_unit",
+     "type": "character varying"
+    },
+    {
+     "name": "will_remainder_of_dose_be_given",
+     "type": "character varying"
+    },
+    {
+     "name": "product_amount_given",
+     "type": "character varying"
+    },
+    {
+     "name": "product_unit",
+     "type": "character varying"
+    },
+    {
+     "name": "product_code",
+     "type": "character varying"
+    },
+    {
+     "name": "product_description",
+     "type": "character varying"
+    },
+    {
+     "name": "product_description_other",
+     "type": "character varying"
+    },
+    {
+     "name": "prior_infusion_rate",
+     "type": "character varying"
+    },
+    {
+     "name": "infusion_rate",
+     "type": "character varying"
+    },
+    {
+     "name": "infusion_rate_adjustment",
+     "type": "character varying"
+    },
+    {
+     "name": "infusion_rate_adjustment_amount",
+     "type": "character varying"
+    },
+    {
+     "name": "infusion_rate_unit",
+     "type": "character varying"
+    },
+    {
+     "name": "route",
+     "type": "character varying"
+    },
+    {
+     "name": "infusion_complete",
+     "type": "character varying"
+    },
+    {
+     "name": "completion_interval",
+     "type": "character varying"
+    },
+    {
+     "name": "new_iv_bag_hung",
+     "type": "character varying"
+    },
+    {
+     "name": "continued_infusion_in_other_location",
+     "type": "character varying"
+    },
+    {
+     "name": "restart_interval",
+     "type": "character varying"
+    },
+    {
+     "name": "side",
+     "type": "character varying"
+    },
+    {
+     "name": "site",
+     "type": "character varying"
+    },
+    {
+     "name": "non_formulary_visual_verification",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 87361224
+  },
+  "mimic_hosp.hcpcsevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "chartdate",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "hcpcs_cd",
+     "type": "character"
+    },
+    {
+     "name": "seq_num",
+     "type": "integer"
+    },
+    {
+     "name": "short_description",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 186074
+  },
+  "mimic_hosp.labevents": {
+   "columns": [
+    {
+     "name": "labevent_id",
+     "type": "integer"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "specimen_id",
+     "type": "integer"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "order_provider_id",
+     "type": "character varying"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "value",
+     "type": "character varying"
+    },
+    {
+     "name": "valuenum",
+     "type": "double precision"
+    },
+    {
+     "name": "valueuom",
+     "type": "character varying"
+    },
+    {
+     "name": "ref_range_lower",
+     "type": "double precision"
+    },
+    {
+     "name": "ref_range_upper",
+     "type": "double precision"
+    },
+    {
+     "name": "flag",
+     "type": "character varying"
+    },
+    {
+     "name": "priority",
+     "type": "character varying"
+    },
+    {
+     "name": "comments",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 158381120
+  },
+  "mimic_hosp.microbiologyevents": {
+   "columns": [
+    {
+     "name": "microevent_id",
+     "type": "integer"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "micro_specimen_id",
+     "type": "integer"
+    },
+    {
+     "name": "order_provider_id",
+     "type": "character varying"
+    },
+    {
+     "name": "chartdate",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "spec_itemid",
+     "type": "integer"
+    },
+    {
+     "name": "spec_type_desc",
+     "type": "character varying"
+    },
+    {
+     "name": "test_seq",
+     "type": "integer"
+    },
+    {
+     "name": "storedate",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "test_itemid",
+     "type": "integer"
+    },
+    {
+     "name": "test_name",
+     "type": "character varying"
+    },
+    {
+     "name": "org_itemid",
+     "type": "integer"
+    },
+    {
+     "name": "org_name",
+     "type": "character varying"
+    },
+    {
+     "name": "isolate_num",
+     "type": "smallint"
+    },
+    {
+     "name": "quantity",
+     "type": "character varying"
+    },
+    {
+     "name": "ab_itemid",
+     "type": "integer"
+    },
+    {
+     "name": "ab_name",
+     "type": "character varying"
+    },
+    {
+     "name": "dilution_text",
+     "type": "character varying"
+    },
+    {
+     "name": "dilution_comparison",
+     "type": "character varying"
+    },
+    {
+     "name": "dilution_value",
+     "type": "double precision"
+    },
+    {
+     "name": "interpretation",
+     "type": "character varying"
+    },
+    {
+     "name": "comments",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 3994179
+  },
+  "mimic_hosp.omr": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "chartdate",
+     "type": "date"
+    },
+    {
+     "name": "seq_num",
+     "type": "integer"
+    },
+    {
+     "name": "result_name",
+     "type": "character varying"
+    },
+    {
+     "name": "result_value",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 7752929
+  },
+  "mimic_hosp.pharmacy": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "pharmacy_id",
+     "type": "integer"
+    },
+    {
+     "name": "poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "stoptime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "medication",
+     "type": "text"
+    },
+    {
+     "name": "proc_type",
+     "type": "character varying"
+    },
+    {
+     "name": "status",
+     "type": "character varying"
+    },
+    {
+     "name": "entertime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "verifiedtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "route",
+     "type": "character varying"
+    },
+    {
+     "name": "frequency",
+     "type": "character varying"
+    },
+    {
+     "name": "disp_sched",
+     "type": "character varying"
+    },
+    {
+     "name": "infusion_type",
+     "type": "character varying"
+    },
+    {
+     "name": "sliding_scale",
+     "type": "character varying"
+    },
+    {
+     "name": "lockout_interval",
+     "type": "character varying"
+    },
+    {
+     "name": "basal_rate",
+     "type": "real"
+    },
+    {
+     "name": "one_hr_max",
+     "type": "character varying"
+    },
+    {
+     "name": "doses_per_24_hrs",
+     "type": "real"
+    },
+    {
+     "name": "duration",
+     "type": "real"
+    },
+    {
+     "name": "duration_interval",
+     "type": "character varying"
+    },
+    {
+     "name": "expiration_value",
+     "type": "integer"
+    },
+    {
+     "name": "expiration_unit",
+     "type": "character varying"
+    },
+    {
+     "name": "expirationdate",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "dispensation",
+     "type": "character varying"
+    },
+    {
+     "name": "fill_quantity",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 17845590
+  },
+  "mimic_hosp.poe": {
+   "columns": [
+    {
+     "name": "poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "poe_seq",
+     "type": "integer"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "ordertime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "order_type",
+     "type": "character varying"
+    },
+    {
+     "name": "order_subtype",
+     "type": "character varying"
+    },
+    {
+     "name": "transaction_type",
+     "type": "character varying"
+    },
+    {
+     "name": "discontinue_of_poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "discontinued_by_poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "order_provider_id",
+     "type": "character varying"
+    },
+    {
+     "name": "order_status",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 52218796
+  },
+  "mimic_hosp.poe_detail": {
+   "columns": [
+    {
+     "name": "poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "poe_seq",
+     "type": "integer"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "field_name",
+     "type": "character varying"
+    },
+    {
+     "name": "field_value",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 8505496
+  },
+  "mimic_hosp.prescriptions": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "pharmacy_id",
+     "type": "integer"
+    },
+    {
+     "name": "poe_id",
+     "type": "character varying"
+    },
+    {
+     "name": "poe_seq",
+     "type": "integer"
+    },
+    {
+     "name": "order_provider_id",
+     "type": "character varying"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "stoptime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "drug_type",
+     "type": "character varying"
+    },
+    {
+     "name": "drug",
+     "type": "character varying"
+    },
+    {
+     "name": "formulary_drug_cd",
+     "type": "character varying"
+    },
+    {
+     "name": "gsn",
+     "type": "character varying"
+    },
+    {
+     "name": "ndc",
+     "type": "character varying"
+    },
+    {
+     "name": "prod_strength",
+     "type": "character varying"
+    },
+    {
+     "name": "form_rx",
+     "type": "character varying"
+    },
+    {
+     "name": "dose_val_rx",
+     "type": "character varying"
+    },
+    {
+     "name": "dose_unit_rx",
+     "type": "character varying"
+    },
+    {
+     "name": "form_val_disp",
+     "type": "character varying"
+    },
+    {
+     "name": "form_unit_disp",
+     "type": "character varying"
+    },
+    {
+     "name": "doses_per_24_hrs",
+     "type": "real"
+    },
+    {
+     "name": "route",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 20295188
+  },
+  "mimic_hosp.procedures_icd": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "seq_num",
+     "type": "integer"
+    },
+    {
+     "name": "chartdate",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "icd_code",
+     "type": "character varying"
+    },
+    {
+     "name": "icd_version",
+     "type": "smallint"
+    }
+   ],
+   "estimated_rows": 859655
+  },
+  "mimic_hosp.provider": {
+   "columns": [
+    {
+     "name": "provider_id",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 42244
+  },
+  "mimic_hosp.services": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "transfertime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "prev_service",
+     "type": "character varying"
+    },
+    {
+     "name": "curr_service",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 593071
+  },
+  "mimic_icu.caregiver": {
+   "columns": [
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 17984
+  },
+  "mimic_icu.chartevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "value",
+     "type": "character varying"
+    },
+    {
+     "name": "valuenum",
+     "type": "double precision"
+    },
+    {
+     "name": "valueuom",
+     "type": "character varying"
+    },
+    {
+     "name": "warning",
+     "type": "smallint"
+    }
+   ],
+   "estimated_rows": 433057500
+  },
+  "mimic_icu.d_items": {
+   "columns": [
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "label",
+     "type": "character varying"
+    },
+    {
+     "name": "abbreviation",
+     "type": "character varying"
+    },
+    {
+     "name": "linksto",
+     "type": "character varying"
+    },
+    {
+     "name": "category",
+     "type": "character varying"
+    },
+    {
+     "name": "unitname",
+     "type": "character varying"
+    },
+    {
+     "name": "param_type",
+     "type": "character varying"
+    },
+    {
+     "name": "lownormalvalue",
+     "type": "double precision"
+    },
+    {
+     "name": "highnormalvalue",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 4095
+  },
+  "mimic_icu.datetimeevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "value",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "valueuom",
+     "type": "character varying"
+    },
+    {
+     "name": "warning",
+     "type": "smallint"
+    }
+   ],
+   "estimated_rows": 9979370
+  },
+  "mimic_icu.icustays": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "first_careunit",
+     "type": "character varying"
+    },
+    {
+     "name": "last_careunit",
+     "type": "character varying"
+    },
+    {
+     "name": "intime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "outtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "los",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 94458
+  },
+  "mimic_icu.ingredientevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "amount",
+     "type": "double precision"
+    },
+    {
+     "name": "amountuom",
+     "type": "character varying"
+    },
+    {
+     "name": "rate",
+     "type": "double precision"
+    },
+    {
+     "name": "rateuom",
+     "type": "character varying"
+    },
+    {
+     "name": "orderid",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "statusdescription",
+     "type": "character varying"
+    },
+    {
+     "name": "originalamount",
+     "type": "double precision"
+    },
+    {
+     "name": "originalrate",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 14252879
+  },
+  "mimic_icu.inputevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "amount",
+     "type": "double precision"
+    },
+    {
+     "name": "amountuom",
+     "type": "character varying"
+    },
+    {
+     "name": "rate",
+     "type": "double precision"
+    },
+    {
+     "name": "rateuom",
+     "type": "character varying"
+    },
+    {
+     "name": "orderid",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "ordercategoryname",
+     "type": "character varying"
+    },
+    {
+     "name": "secondaryordercategoryname",
+     "type": "character varying"
+    },
+    {
+     "name": "ordercomponenttypedescription",
+     "type": "character varying"
+    },
+    {
+     "name": "ordercategorydescription",
+     "type": "character varying"
+    },
+    {
+     "name": "patientweight",
+     "type": "double precision"
+    },
+    {
+     "name": "totalamount",
+     "type": "double precision"
+    },
+    {
+     "name": "totalamountuom",
+     "type": "character varying"
+    },
+    {
+     "name": "isopenbag",
+     "type": "smallint"
+    },
+    {
+     "name": "continueinnextdept",
+     "type": "smallint"
+    },
+    {
+     "name": "statusdescription",
+     "type": "character varying"
+    },
+    {
+     "name": "originalamount",
+     "type": "double precision"
+    },
+    {
+     "name": "originalrate",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 10952105
+  },
+  "mimic_icu.outputevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "value",
+     "type": "double precision"
+    },
+    {
+     "name": "valueuom",
+     "type": "character varying"
+    }
+   ],
+   "estimated_rows": 5358885
+  },
+  "mimic_icu.procedureevents": {
+   "columns": [
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "caregiver_id",
+     "type": "integer"
+    },
+    {
+     "name": "starttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "endtime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "itemid",
+     "type": "integer"
+    },
+    {
+     "name": "value",
+     "type": "double precision"
+    },
+    {
+     "name": "valueuom",
+     "type": "character varying"
+    },
+    {
+     "name": "location",
+     "type": "character varying"
+    },
+    {
+     "name": "locationcategory",
+     "type": "character varying"
+    },
+    {
+     "name": "orderid",
+     "type": "integer"
+    },
+    {
+     "name": "linkorderid",
+     "type": "integer"
+    },
+    {
+     "name": "ordercategoryname",
+     "type": "character varying"
+    },
+    {
+     "name": "ordercategorydescription",
+     "type": "character varying"
+    },
+    {
+     "name": "patientweight",
+     "type": "double precision"
+    },
+    {
+     "name": "isopenbag",
+     "type": "smallint"
+    },
+    {
+     "name": "continueinnextdept",
+     "type": "smallint"
+    },
+    {
+     "name": "statusdescription",
+     "type": "character varying"
+    },
+    {
+     "name": "originalamount",
+     "type": "double precision"
+    },
+    {
+     "name": "originalrate",
+     "type": "double precision"
+    }
+   ],
+   "estimated_rows": 808706
+  },
+  "mimiciv_note.discharge": {
+   "columns": [
+    {
+     "name": "note_id",
+     "type": "text"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "note_type",
+     "type": "character varying"
+    },
+    {
+     "name": "note_seq",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "text",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 331793
+  },
+  "mimiciv_note.discharge_detail": {
+   "columns": [
+    {
+     "name": "note_id",
+     "type": "text"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "field_name",
+     "type": "character varying"
+    },
+    {
+     "name": "field_value",
+     "type": "text"
+    },
+    {
+     "name": "field_ordinal",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 186138
+  },
+  "mimiciv_note.radiology": {
+   "columns": [
+    {
+     "name": "note_id",
+     "type": "text"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "note_type",
+     "type": "character varying"
+    },
+    {
+     "name": "note_seq",
+     "type": "integer"
+    },
+    {
+     "name": "charttime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "storetime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "text",
+     "type": "text"
+    }
+   ],
+   "estimated_rows": 2324517
+  },
+  "mimiciv_note.radiology_detail": {
+   "columns": [
+    {
+     "name": "note_id",
+     "type": "text"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "field_name",
+     "type": "character varying"
+    },
+    {
+     "name": "field_value",
+     "type": "text"
+    },
+    {
+     "name": "field_ordinal",
+     "type": "integer"
+    }
+   ],
+   "estimated_rows": 6044308
+  },
+  "public.paper2_stays": {
+   "columns": [
+    {
+     "name": "stay_id",
+     "type": "integer"
+    },
+    {
+     "name": "hadm_id",
+     "type": "integer"
+    },
+    {
+     "name": "subject_id",
+     "type": "integer"
+    },
+    {
+     "name": "first_careunit",
+     "type": "character varying"
+    },
+    {
+     "name": "icu_intime",
+     "type": "timestamp without time zone"
+    },
+    {
+     "name": "mortality",
+     "type": "smallint"
+    },
+    {
+     "name": "age",
+     "type": "integer"
+    },
+    {
+     "name": "gender",
+     "type": "character"
+    },
+    {
+     "name": "anchor_year_group",
+     "type": "character varying"
+    },
+    {
+     "name": "rn",
+     "type": "bigint"
+    }
+   ],
+   "estimated_rows": 83475
+  }
+ }
+}

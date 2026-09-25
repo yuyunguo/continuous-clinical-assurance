@@ -1,0 +1,104 @@
+- id: C1
+  name: Population and case-mix drift
+  domain: A
+  state_component: C
+  matrix_construct: Context validity
+  evidence_level: 1
+  ai_types: [predictive, generative, agentic]
+  definition: Divergence between the current patient population (age, sex, condition mix, care setting, outcome prevalence) and the validation population defined in the VOE.
+  formula: "PSI = sum_k (p_k - q_k) * ln(p_k / q_k) per stratified covariate, where p is the current and q the validation proportion in bin k; prevalence shift = |pi_t - pi_0|"
+  data_required: [EHR demographics, encounter type, diagnosis codes, outcome prevalence]
+  frequency: Weekly windows, rolling
+  baseline: Validation-cohort covariate and prevalence distribution recorded in the VOE
+  alert_rule: "Yellow: PSI or prevalence shift exceeds m_Y for any VOE-listed covariate. Orange: exceeds m_O. Red: exceeds m_R or any covariate falls outside its VOE range."
+  detection_method: Windowed PSI/standardized mean difference with permutation-based confidence bounds; sequential change-point test on the drift statistic
+  governance_action:
+    yellow: Increase monitoring frequency; review affected subgroups
+    orange: Restrict use to in-envelope population; initiate revalidation
+    red: Suspend use for out-of-envelope population
+  clinical_importance: A model applied to patients unlike its validation cohort has unknown reliability, and errors concentrate in the unrepresented group.
+  validation: Phase II perturbation with controlled case-mix shift; measure detection delay and false-alarm rate against injected shift time
+
+- id: C2
+  name: Input distribution shift
+  domain: A
+  state_component: C
+  matrix_construct: Robustness
+  evidence_level: 1
+  ai_types: [predictive, generative, agentic]
+  definition: Multivariate shift in model inputs (features, embeddings, or prompt content) relative to the validation inputs.
+  formula: "MMD^2(P_t, P_0) with a fixed kernel, or per-feature two-sample KS statistic with multiplicity correction"
+  data_required: [model input logs, validation input sample]
+  frequency: Daily windows
+  baseline: Reference input sample stored with the validated model version
+  alert_rule: "Yellow: statistic exceeds m_Y with corrected p below the VOE alpha. Orange: exceeds m_O on any VOE-critical input. Red: exceeds m_R and coincides with a performance or calibration alert."
+  detection_method: Two-sample tests with false-discovery-rate control; embedding-space drift for text inputs
+  governance_action:
+    yellow: Log and review contributing inputs
+    orange: Restrict use to inputs within reference support; investigate upstream change
+    red: Suspend affected pathway pending investigation
+  clinical_importance: Input shift is often the earliest observable precursor of degraded output quality, before outcomes are available.
+  validation: Phase II injected covariate and temporal shifts; compare lead time against outcome-based performance monitoring
+
+- id: C3
+  name: Intended-use conformance rate
+  domain: A
+  state_component: C
+  matrix_construct: Context validity
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI invocations that occur within the indication, user role, care setting, and workflow step specified in the VOE.
+  formula: "conformance = N_in_scope / N_total invocations"
+  data_required: [invocation logs with user role, order/encounter context, workflow step]
+  frequency: Weekly
+  baseline: Intended-use specification in the VOE; expected conformance set at go-live
+  alert_rule: "Yellow: conformance falls below 1 - m_Y. Orange: below 1 - m_O. Red: any use in a VOE-prohibited context."
+  detection_method: Rule-based classification of each invocation with proportion control chart
+  governance_action:
+    yellow: Notify service owner; review access and training
+    orange: Restrict access by role and setting
+    red: Block prohibited invocation paths
+  clinical_importance: Off-label use extends the model beyond any evidence of safety.
+  validation: Phase II simulated scope creep; measure detection of out-of-scope invocation share
+
+- id: C4
+  name: Input missingness rate
+  domain: A
+  state_component: C
+  matrix_construct: Input integrity
+  evidence_level: 1
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of required model inputs that are missing or defaulted at inference time, overall and per variable.
+  formula: "m_j = N_missing_j / N_invocations for each required variable j; overall = mean_j m_j"
+  data_required: [inference-time input records, required-variable list from VOE]
+  frequency: Daily
+  baseline: Missingness observed in validation, per variable
+  alert_rule: "Yellow: m_j exceeds baseline by m_Y for any VOE-critical variable. Orange: by m_O. Red: critical variable missing above m_R or systematically absent in a subgroup."
+  detection_method: EWMA or CUSUM on per-variable missingness; subgroup stratification
+  governance_action:
+    yellow: Flag data owner; check upstream feed
+    orange: Route affected cases to human review; correct data pipeline
+    red: Suspend inference for cases missing critical inputs
+  clinical_importance: Silent imputation can hide degraded input quality behind normal-looking outputs.
+  validation: Phase II injected missingness (random and informative); measure detection delay and downstream calibration effect
+
+- id: C5
+  name: Data quality and freshness violations
+  domain: A
+  state_component: C
+  matrix_construct: Input integrity
+  evidence_level: 1
+  ai_types: [predictive, generative, agentic]
+  definition: Rate of schema violations, out-of-range values, unit changes, duplicate records, and stale data (latency beyond the VOE limit) in model inputs.
+  formula: "violation rate = N_violations / N_records; staleness = fraction of records older than the VOE freshness limit"
+  data_required: [pipeline logs, schema definitions, measurement ranges, timestamps]
+  frequency: Continuous, summarized daily
+  baseline: Violation and latency profile during validation
+  alert_rule: "Yellow: violation rate above m_Y. Orange: above m_O or any schema change. Red: unit or coding change affecting a critical variable."
+  detection_method: Rule-based validation with control chart on violation rate; schema-diff monitoring
+  governance_action:
+    yellow: Notify data owner
+    orange: Quarantine affected records; correct pipeline
+    red: Suspend affected workflow until data integrity is restored
+  clinical_importance: Corrupted or outdated inputs produce confident but wrong outputs.
+  validation: Phase II injected unit change, schema drift, and latency; measure detection delay by violation type

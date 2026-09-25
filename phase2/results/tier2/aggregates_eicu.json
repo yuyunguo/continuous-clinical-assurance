@@ -1,0 +1,84 @@
+{
+ "min_cell": 10,
+ "results": {
+  "stays_by_discharge_year": [
+   {
+    "year": 2014,
+    "n": 95513,
+    "deaths": 8470
+   },
+   {
+    "year": 2015,
+    "n": 105346,
+    "deaths": 9534
+   }
+  ],
+  "hospital_size_bins": [
+   {
+    "size_bin": "under 100",
+    "hospitals": 33,
+    "stays": "1284"
+   },
+   {
+    "size_bin": "100 to 499",
+    "hospitals": 66,
+    "stays": "19441"
+   },
+   {
+    "size_bin": "500 to 999",
+    "hospitals": 45,
+    "stays": "31846"
+   },
+   {
+    "size_bin": "1000 to 1999",
+    "hospitals": 35,
+    "stays": "49995"
+   },
+   {
+    "size_bin": "2000 or more",
+    "hospitals": 29,
+    "stays": "98293"
+   }
+  ],
+  "unit_types": [
+   {
+    "unit_type": "Med-Surg ICU",
+    "n": 113222
+   },
+   {
+    "unit_type": "MICU",
+    "n": 17465
+   },
+   {
+    "unit_type": "CCU-CTICU",
+    "n": 15290
+   },
+   {
+    "unit_type": "Neuro ICU",
+    "n": 14451
+   },
+   {
+    "unit_type": "Cardiac ICU",
+    "n": 12467
+   },
+   {
+    "unit_type": "SICU",
+    "n": 12181
+   },
+   {
+    "unit_type": "CSICU",
+    "n": 9625
+   },
+   {
+    "unit_type": "CTICU",
+    "n": 6158
+   }
+  ],
+  "apache_predicted_mortality_available": [
+   {
+    "n": 297064,
+    "with_prediction": 297064
+   }
+  ]
+ }
+}

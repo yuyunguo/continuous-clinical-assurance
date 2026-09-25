@@ -1,0 +1,68 @@
+# Phase II protocol parameters. Proposed defaults for decisions D2 to D7 in
+# phase2/Phase-II-Simulation-Design.md. All are placeholders until the user confirms them.
+# The m1_bands block was fixed on 2026-09-19 BEFORE milestone M1 was first run.
+seed: 20260919
+generator:
+  n_features: 6
+  prevalence: 0.15
+  separation: 1.19            # Mahalanobis distance between class means; optimal AUROC = Phi(separation / sqrt(2)), about 0.80
+  feature_weights: [0.50, 0.40, 0.35, 0.30, 0.25, 0.20]   # relative contribution of each feature to the separation
+  subgroup_share: 0.10
+  subgroup_separation_scale: 0.85
+  train_size: 20000
+  target_sensitivity: 0.75    # sets the deployed decision threshold on the training sample
+stream:
+  cases_per_window: 500
+  baseline_windows: 52
+  monitored_windows: 104
+  label_lag: 2
+  horizon: 40
+  s0_low: 20
+  s0_high_abrupt: 60
+  s0_high_ramped: 40
+  ramp_windows: 20
+harm:
+  severity_cutoff: 2                       # EHOR only: errors of this class or higher 'require human detection' (D3)
+  weights: [1.0, 7.1, 100.0]               # RHE weight of severity classes 1, 2, 3 for an unneeded alert (D3). Geometric mean of two raters' class ratios: (5, 10) and (10, 20) give 7.1 and 14.1
+  fn_factor: 2.4                           # a missed deterioration counts this much more than an unneeded alert of the same class: geometric mean of 3 (range 2 to 5) and 2 (range 1.5 to 3)
+  severity_probs_positive: [0.50, 0.35, 0.15]
+  severity_probs_negative: [0.85, 0.12, 0.03]
+  kappa: 0.25                              # (D4) onset when expected RHE reaches (1 + kappa) times baseline
+  min_subgroup_share: 0.05                 # (D18) a predefined subgroup counts for onset only if it is at least this share of cases
+reviewer:                                   # assumption, not measured (design section 11)
+  coverage: 1.0
+  beta0: 1.0
+  beta_confidence: 2.0
+  beta_severity: 0.5
+budget:
+  false_alarms_per_1000_windows: 30.0       # D2 primary: a tool's share of a committee's capacity, from two raters (section 16.18). The curve 1 to 150 is reported beside it
+routing:
+  persistence_k: 2                          # D7
+  hysteresis_j: 2
+  corroboration: true
+m1_bands:                                   # acceptance for M1, on 100 seeds
+  seeds: 100
+  ece_max: 0.03
+  auroc_min: 0.77
+  auroc_max: 0.83
+  sensitivity_tolerance: 0.03
+tolerances:                                 # population-level property tests (M2), large-sample Monte Carlo
+  population_cases: 400000
+  rate_abs: 0.01
+  auroc_abs: 0.005
+  input_mean_abs: 0.01
+workflow:                                   # assumption, not measured (design section 11)
+  p_deliver: 0.98
+  tat_median: 1.0
+  tat_sigma: 0.5
+  tat_limit: 4.0
+  time_critical_share: 0.2
+  completion: 0.98
+  abandon_after_failed_escalation: 0.5
+  verify: 0.5
+  sentinel_severity: 3
+  action_base: 0.7
+  fatigue: 0.15
+  fatigue_bias: 0.0                          # off in the primary; a sensitivity for SC15
+context:                                    # assumption, not measured (design section 11)
+  baseline_out_of_scope: 0.02               # off-indication invocations at baseline (C3 needs a baseline with some noise)

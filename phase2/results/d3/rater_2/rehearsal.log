@@ -1,0 +1,22 @@
+INFO: Seeds set to 20260920
+/Users/yyu/.pyenv/versions/3.12.5/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:1170: UserWarning: Setting penalty=None will ignore the C and l1_ratio parameters
+  warnings.warn(
+INFO: all-testable CCA, lag 0: 30.31 alert episodes per 1,000 windows on independent null streams (budget 30.0)
+INFO: all-testable CCA, lag 2: 30.32 alert episodes per 1,000 windows on independent null streams (budget 30.0)
+INFO: all-testable CCA, lag 8: 30.31 alert episodes per 1,000 windows on independent null streams (budget 30.0)
+INFO: cell SC07 medium abrupt: 200 replicates
+INFO: cell SC07 high abrupt: 200 replicates
+INFO: cell SC08 medium abrupt: 200 replicates
+INFO: cell SC08 high abrupt: 200 replicates
+INFO: cell SC08 high gradual: 200 replicates
+INFO: cell SC09 medium abrupt: 200 replicates
+INFO: cell SC09 high abrupt: 200 replicates
+INFO: cell SC09 high gradual: 200 replicates
+INFO: cell SC17 medium abrupt: 200 replicates
+INFO: cell SC17 high abrupt: 200 replicates
+INFO: cell SC19 medium gradual: 200 replicates
+INFO: cell SC19 high gradual: 200 replicates
+INFO: cell SC25 medium abrupt: 200 replicates
+INFO: cell SC25 high abrupt: 200 replicates
+INFO: cell SC25 high gradual: 200 replicates
+INFO: Wrote /Users/yyu/workspace/Continuous-Clinical-Assurance/phase2/results/d3/rater_2/m5_rehearsal.npz ({'python': '3.12.5', 'numpy': '2.0.2', 'scipy': '1.17.1', 'scikit-learn': '1.8.0', 'platform': 'macOS-26.6.2-arm64-arm-64bit'})

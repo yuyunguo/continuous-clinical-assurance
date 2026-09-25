@@ -1,0 +1,125 @@
+- id: L1
+  name: Version-change impact
+  domain: E
+  state_component: L
+  matrix_construct: Change impact
+  evidence_level: 2
+  ai_types: [predictive, generative, agentic]
+  definition: Change in performance, calibration, and error profile attributable to a model version update, measured against the prior version on the same cases.
+  formula: "delta_M = M(v_new) - M(v_old) on a shared case set, for M in {Se, Sp, AUROC, ECE, SWER}, with paired CI"
+  data_required: [version registry, paired outputs, outcomes or reference labels]
+  frequency: At each release and for a defined post-release window
+  baseline: Prior validated version within the VOE
+  alert_rule: "Yellow: any delta_M beyond m_Y. Orange: beyond m_O. Red: beyond m_R or regression in a VOE-critical subgroup."
+  detection_method: Paired comparison and shadow-mode evaluation; post-release sequential monitoring
+  governance_action:
+    yellow: Extend shadow mode; staged rollout
+    orange: Hold release; revalidate
+    red: Roll back to the prior validated version
+  clinical_importance: Updates are a common route by which validated safety is silently lost.
+  validation: Phase II simulated updates with known regressions; detection delay and rollback effectiveness in Phase III
+
+- id: L2
+  name: Prompt, configuration, and corpus change events
+  domain: E
+  state_component: L
+  matrix_construct: Change impact
+  evidence_level: 1
+  ai_types: [generative, agentic]
+  definition: Count and classification of changes to prompts, system configuration, tools, retrieval corpora, and model settings, and their linkage to post-change monitoring results.
+  formula: "change events per period by class; fraction followed by a completed regression check within the VOE window"
+  data_required: [configuration and prompt versioning system, corpus index logs, tool registry]
+  frequency: Continuous
+  baseline: VOE inventory of approved system components and versions
+  alert_rule: "Yellow: any change without a linked regression check within m_Y days. Orange: unapproved change to a VOE-controlled component. Red: change to a safety-critical component deployed without approval."
+  detection_method: Automated diff of configuration against the approved VOE inventory; audit of change tickets
+  governance_action:
+    yellow: Complete regression check
+    orange: Revert unapproved change; retrospective review
+    red: Roll back and suspend until change-control review
+  clinical_importance: For generative and agentic systems, behavior changes through prompts, tools, and knowledge sources even when model weights are fixed.
+  validation: Follow-on generative or agentic study (outside Phase II) of prompt and corpus perturbations; detection of unapproved changes and downstream effect on G1-G3
+
+- id: L3
+  name: Trace completeness
+  domain: E
+  state_component: L
+  matrix_construct: Decision traceability
+  evidence_level: 1
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI decisions for which the full trace (input, version, prompt, retrieval, tool use, output, reviewer action) can be reconstructed.
+  formula: "completeness = N_fully_traceable / N_decisions; per-element completeness reported"
+  data_required: [system logs, audit sample]
+  frequency: Weekly audit sample
+  baseline: VOE minimum required trace elements
+  alert_rule: "Yellow: completeness below 1 - m_Y. Orange: below 1 - m_O. Red: missing trace for any safety event."
+  detection_method: Audit sampling with proportion control chart; reconstruction test on sampled decisions
+  governance_action:
+    yellow: Logging remediation ticket
+    orange: Fix logging before further release
+    red: Suspend affected function until traceability is restored
+  clinical_importance: Without a trace, an adverse event cannot be investigated and no other indicator can be audited.
+  validation: Phase II log-degradation injection; reconstruction success rate
+
+- id: L4
+  name: Change-control compliance
+  domain: E
+  state_component: L
+  matrix_construct: Change impact
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI system changes that passed the required governance steps (risk classification, validation evidence, approval, staged release, rollback plan) before deployment.
+  formula: "compliance = N_changes_with_all_required_steps / N_changes"
+  data_required: [change records, approval logs, governance checklist]
+  frequency: Per change; summarized quarterly
+  baseline: Change-control policy in the VOE
+  alert_rule: "Yellow: any required step missing. Orange: compliance below 1 - m_O. Red: deployed change with no approval or no rollback plan."
+  detection_method: Governance audit of change records
+  governance_action:
+    yellow: Complete missing step
+    orange: Freeze non-urgent releases; audit process
+    red: Roll back the unapproved change
+  clinical_importance: Controlled release and rollback are the interventions that make lifecycle governance effective.
+  validation: Phase III compare outcomes with and without predefined rollback triggers (RH5)
+
+- id: L5
+  name: Accountability completeness
+  domain: E
+  state_component: L
+  matrix_construct: Accountability completeness
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of the accountability elements the VOE requires (named owner, escalation path, decision authority, and a reachable on-call contact) that are assigned, current, and reachable for the deployed system.
+  formula: "completeness = N_elements_current_and_reachable / N_elements_required"
+  data_required: [governance records]
+  frequency: Monthly and at each change of personnel
+  baseline: Accountability elements recorded in the VOE at go-live
+  alert_rule: "Yellow: any required element older than its review interval m_Y. Orange: any element unassigned or unreachable. Red: no named owner or no decision authority while the system is in use."
+  detection_method: Governance audit of the records with reachability tests of the escalation contacts
+  governance_action:
+    yellow: Confirm and refresh the record
+    orange: Assign the missing role and log an interim owner
+    red: Suspend the affected function until an accountable owner is named
+  clinical_importance: Every escalation and intervention in the trigger ladder depends on a named person who can decide, so a lapse turns an alert into an unowned message.
+  validation: Phase II governance-record perturbation (SC24), reported as a process deviation with its detection delay
+
+- id: G6
+  name: Autonomy-boundary breach rate
+  domain: E
+  state_component: L
+  matrix_construct: Action compliance
+  evidence_level: 1
+  ai_types: [agentic]
+  definition: Rate at which an agent acts outside the permissions, tools, or autonomy level granted in the VOE (including attempts blocked by guardrails).
+  formula: "breach rate = N_breaches / N_actions; blocked attempts and executed breaches reported separately"
+  data_required: [agent action logs, permission registry]
+  frequency: Continuous
+  baseline: VOE permission and autonomy-level specification
+  alert_rule: "Yellow: any blocked attempt above rate m_Y. Orange: any executed out-of-scope action. Red: executed action with patient-facing or irreversible effect outside permissions."
+  detection_method: Rule-based policy enforcement with alerting; trend analysis of blocked attempts
+  governance_action:
+    yellow: Review agent behavior and prompt
+    orange: Reduce autonomy level; require human approval for the action class
+    red: Halt the agent and escalate
+  clinical_importance: Action authorization is the primary control on agentic clinical AI, and breaches indicate that the envelope is not holding.
+  validation: Follow-on generative or agentic study (outside Phase II) of simulated tool-permission drift in agent environments; detection of executed versus blocked breaches

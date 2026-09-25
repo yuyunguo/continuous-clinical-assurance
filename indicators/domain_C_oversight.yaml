@@ -1,0 +1,146 @@
+- id: H1
+  name: Review coverage
+  domain: C
+  state_component: H
+  matrix_construct: Effective human oversight
+  evidence_level: 3
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI outputs that require human review under the VOE and are actually reviewed before use.
+  formula: "coverage = N_reviewed_required / N_required_review"
+  data_required: [AI outputs, review-required flag, review event logs]
+  frequency: Weekly
+  baseline: Required review policy in the VOE; coverage at go-live
+  alert_rule: "Yellow: coverage below 1 - m_Y. Orange: below 1 - m_O. Red: unreviewed outputs in a category the VOE marks as mandatory review."
+  detection_method: Proportion control chart; cross-check of review logs against output logs
+  governance_action:
+    yellow: Notify supervisors; check reviewer workload
+    orange: Enforce hard-stop review for the affected category
+    red: Block use of unreviewed outputs
+  clinical_importance: Documented human oversight means nothing when review is bypassed. Coverage is also the exposure denominator for interpreting H5.
+  validation: Phase II simulated review bypass; detection delay and effect on H5
+
+- id: H2
+  name: Override rate
+  domain: C
+  state_component: H
+  matrix_construct: Appropriate acceptance
+  evidence_level: 3
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of reviewed AI outputs that the human changes or rejects.
+  formula: "override rate = N_overridden / N_reviewed"
+  data_required: [review decisions, final decisions]
+  frequency: Weekly
+  baseline: Override rate observed during validation or pilot
+  alert_rule: "Yellow: rate departs from baseline by m_Y in either direction. Orange: by m_O. Red: sustained rate near zero when the error rate is nonzero, or an abrupt rise above m_R."
+  detection_method: Two-sided control chart; interpret jointly with H3 and H4
+  governance_action:
+    yellow: Review the pattern by reviewer and case type
+    orange: Investigate rubber-stamping or distrust; retrain reviewers
+    red: Enforce independent verification
+  clinical_importance: A falling override rate can indicate automation bias, a rising one loss of trust or model degradation. Neither direction is interpretable without H3.
+  validation: Phase II simulated reviewer-behavior models (bias, fatigue); joint interpretation with H3/H4
+
+- id: H3
+  name: Appropriate override rate
+  domain: C
+  state_component: H
+  matrix_construct: Appropriate acceptance
+  evidence_level: 3
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of overrides that corrected an AI error, among all overrides.
+  formula: "AOR = N_overrides_correcting_error / N_overrides"
+  data_required: [override events, adjudicated ground truth]
+  frequency: Monthly
+  baseline: AOR observed during validation or pilot
+  alert_rule: "Yellow: AOR below baseline by m_Y. Orange: by m_O. Red: AOR below m_R, meaning most overrides introduce error."
+  detection_method: Binomial control chart with adjudication-coverage reporting
+  governance_action:
+    yellow: Review inappropriate overrides
+    orange: Reviewer training; decision-support redesign
+    red: Restrict reviewer discretion pending review
+  clinical_importance: Overrides that replace a correct AI output with a wrong human one are a harm the AI did not cause.
+  validation: Phase II simulated reviewer accuracy; agreement with adjudicated ground truth
+
+- id: H4
+  name: Inappropriate acceptance rate
+  domain: C
+  state_component: H
+  matrix_construct: Appropriate acceptance
+  evidence_level: 3
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI errors that the human accepted, among reviewed AI errors (an automation-bias measure).
+  formula: "IAR = N_errors_accepted / N_errors_reviewed"
+  data_required: [AI outputs, adjudicated errors, final decisions]
+  frequency: Monthly
+  baseline: IAR observed during validation or pilot
+  alert_rule: "Yellow: IAR above baseline by m_Y. Orange: by m_O. Red: IAR above m_R, or acceptance of any highest-severity error."
+  detection_method: Binomial control chart; stratify by confidence level and severity
+  governance_action:
+    yellow: Increase spot checks of accepted high-confidence outputs
+    orange: Mandatory independent verification for the affected case type
+    red: Suspend automated acceptance pathways
+  clinical_importance: It measures directly how often AI errors reach patients through unchallenged acceptance.
+  validation: Phase II simulated overconfidence and automation bias; link to U4
+
+- id: H5
+  name: Effective Human Oversight Rate (EHOR)
+  domain: C
+  state_component: H
+  matrix_construct: Effective human oversight
+  evidence_level: 3
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of AI errors requiring human detection (adjudicated severity at or above the VOE cutoff s*, judged blind to reviewer action) that the reviewer intercepted before the workflow's point of no return. Errors that bypassed review or were reviewed too late stay in the denominator. It is estimated from an independent probability-sample audit and is always reported with the inappropriate-intervention rate (IIR), so that indiscriminate rejection cannot inflate it.
+  formula: "EHOR = sum_i w_i*I_i / sum_i w_i*R_i over audited outputs, with w_i = 1/pi_i (audit inclusion probability), R_i = 1 for an error of severity >= s*, and I_i = 1 only if R_i = 1 and the reviewer acted before the point of no return. IIR = sum_i w_i*Z_i / sum_i w_i*V_i, where V_i = 1 for a correct output that was reviewed and Z_i = 1 if it was wrongly rejected or changed. Decomposition: EHOR = Cov_R * EHOR_c, with Cov_R = P(reviewed in time | R=1) and EHOR_c = P(intercepted | R=1, reviewed in time). EHOR_c is the conditional variant and must be labeled as such."
+  data_required: [AI outputs, independent adjudication of a probability sample of outputs blind to reviewer action, audit inclusion probabilities, review logs with timestamps, final decisions, point-of-no-return definition per workflow, count of sampled outputs not adjudicated]
+  frequency: Monthly
+  baseline: EHOR and IIR from a validation reader study with seeded or adjudicated errors, stratified by severity; audit design and s* fixed in the VOE
+  alert_rule: "Yellow: lower CI bound of EHOR below baseline by m_Y at unchanged IIR. Orange: by m_O. Red: EHOR below m_R in the highest-severity stratum. A rise in EHOR accompanied by an IIR rise beyond m_Y is flagged as indiscriminate rejection, not improvement."
+  detection_method: Design-weighted proportion with bootstrap CI by severity stratum; sequential monitoring of the weighted estimate; bounds that treat sampled but unadjudicated outputs as all intercepted (upper) or all missed (lower), reported with the unadjudicated fraction
+  governance_action:
+    yellow: Additional supervision or training
+    orange: Workflow intervention; second reviewer for the affected stratum
+    red: Restrict or suspend the affected AI function
+  clinical_importance: It answers whether the human in the loop actually catches the errors that matter (RH3).
+  validation: Phase II/III reader simulation with seeded errors; test whether EHOR adds information beyond documented review presence and H1; compare the design-weighted estimator with a naive estimator that counts only errors found through review, to quantify ascertainment bias
+
+- id: H6
+  name: Intervention latency
+  domain: C
+  state_component: H
+  matrix_construct: Intervention latency
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Time from AI output (or alert) to human review and, where needed, corrective intervention.
+  formula: "latency = t_review - t_output; report median and 95th percentile against the clinical time window"
+  data_required: [output timestamps, review and action timestamps]
+  frequency: Continuous, summarized weekly
+  baseline: Validated latency distribution and clinical time windows in the VOE
+  alert_rule: "Yellow: 95th percentile exceeds baseline by m_Y. Orange: exceeds the clinical window in more than m_O of cases. Red: time-critical output unreviewed beyond its window."
+  detection_method: Quantile control chart; survival analysis of time to review
+  governance_action:
+    yellow: Review staffing and routing
+    orange: Escalation and reallocation of reviewers
+    red: Automatic escalation and interim safe default
+  clinical_importance: An intervention that arrives after the clinical window cannot prevent harm.
+  validation: Phase II queue and staffing perturbations; measure effect on H5
+
+- id: H7
+  name: Escalation compliance
+  domain: C
+  state_component: H
+  matrix_construct: Workflow integrity
+  evidence_level: 4
+  ai_types: [predictive, generative, agentic]
+  definition: Proportion of cases meeting VOE escalation criteria (high risk, low confidence, disagreement) that were escalated to the designated senior reviewer.
+  formula: "compliance = N_escalated_required / N_escalation_required"
+  data_required: [escalation criteria flags, escalation logs]
+  frequency: Weekly
+  baseline: Escalation policy in the VOE; compliance at go-live
+  alert_rule: "Yellow: compliance below 1 - m_Y. Orange: below 1 - m_O. Red: missed escalation of a highest-severity case."
+  detection_method: Proportion control chart with sentinel rule on top-severity misses
+  governance_action:
+    yellow: Notify service owner
+    orange: Automate escalation routing; audit
+    red: Suspend affected function until escalation path is restored
+  clinical_importance: Escalation is how uncertain or high-risk cases reach the person with authority to act.
+  validation: Phase III intervention experiment; effect of automated escalation on missed-risk events

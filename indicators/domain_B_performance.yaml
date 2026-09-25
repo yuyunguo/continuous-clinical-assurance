@@ -1,0 +1,125 @@
+- id: P1
+  name: Sensitivity
+  domain: B
+  state_component: P
+  matrix_construct: Predictive performance
+  evidence_level: 2
+  ai_types: [predictive]
+  definition: Proportion of true-positive cases correctly identified by the AI output at the deployed decision threshold.
+  formula: "Se = TP / (TP + FN) in each monitoring window"
+  data_required: [predictions, adjudicated outcomes]
+  frequency: Monthly, or per fixed case count when outcomes lag
+  baseline: Validated sensitivity with confidence interval in the VOE
+  alert_rule: "Yellow: lower confidence bound of Se falls below baseline by m_Y. Orange: by m_O. Red: below the VOE minimum acceptable sensitivity."
+  detection_method: Sequential probability ratio test or CUSUM on the binomial proportion; outcome-lag adjustment
+  governance_action:
+    yellow: Increase human review of negative outputs
+    orange: Revalidate; consider threshold recalibration
+    red: Restrict or suspend for the affected use
+  clinical_importance: Missed true cases translate directly into delayed diagnosis or treatment.
+  validation: Phase II label-shift and concept-drift injection; detection delay versus injected onset
+
+- id: P2
+  name: Specificity
+  domain: B
+  state_component: P
+  matrix_construct: Predictive performance
+  evidence_level: 2
+  ai_types: [predictive]
+  definition: Proportion of true-negative cases correctly cleared at the deployed threshold.
+  formula: "Sp = TN / (TN + FP)"
+  data_required: [predictions, adjudicated outcomes]
+  frequency: Monthly, or per fixed case count
+  baseline: Validated specificity with confidence interval in the VOE
+  alert_rule: "Yellow: upper deterioration bound exceeds m_Y. Orange: m_O. Red: below VOE minimum acceptable specificity."
+  detection_method: Sequential test on the binomial proportion; paired monitoring with P1
+  governance_action:
+    yellow: Review alert burden and downstream workload
+    orange: Revalidate; adjust operating threshold
+    red: Restrict use where false positives cause harm
+  clinical_importance: False positives drive unnecessary testing, treatment, and alert fatigue.
+  validation: Phase II injected FP-rate change; measure detection delay and false-alarm rate
+
+- id: P3
+  name: Positive and negative predictive value
+  domain: B
+  state_component: P
+  matrix_construct: Predictive performance
+  evidence_level: 2
+  ai_types: [predictive]
+  definition: Probability that a positive (negative) output is correct in the current population, which varies with prevalence.
+  formula: "PPV = TP / (TP + FP); NPV = TN / (TN + FN)"
+  data_required: [predictions, adjudicated outcomes, prevalence]
+  frequency: Monthly
+  baseline: Validated PPV and NPV at the VOE prevalence
+  alert_rule: "Yellow: PPV or NPV falls below baseline by m_Y after prevalence adjustment. Orange: m_O. Red: below VOE minimum."
+  detection_method: Sequential test with prevalence-standardized comparison; report raw and standardized values
+  governance_action:
+    yellow: Interpret against prevalence shift (link to C1)
+    orange: Revalidate for the current prevalence
+    red: Restrict use
+  clinical_importance: Predictive values determine what a clinician can conclude from an output at the bedside.
+  validation: Phase II prevalence shift with fixed Se/Sp; confirm that PPV/NPV change is attributed to C1 and not to model degradation
+
+- id: P4
+  name: Discrimination (AUROC)
+  domain: B
+  state_component: P
+  matrix_construct: Predictive performance
+  evidence_level: 2
+  ai_types: [predictive]
+  definition: Ability of model scores to rank cases with the outcome above cases without it.
+  formula: "AUROC = P(s_i > s_j | y_i = 1, y_j = 0); bootstrap CI per window"
+  data_required: [scores, adjudicated outcomes]
+  frequency: Monthly
+  baseline: Validated AUROC and CI in the VOE
+  alert_rule: "Yellow: lower CI bound below baseline by m_Y. Orange: by m_O. Red: below VOE minimum discrimination."
+  detection_method: Bootstrap CI monitoring; DeLong-type comparison to baseline; CUSUM on windowed estimates
+  governance_action:
+    yellow: Increase monitoring; check inputs (C2)
+    orange: Revalidate or retrain
+    red: Suspend use
+  clinical_importance: Loss of ranking ability means the model no longer separates high-risk from low-risk patients. It serves as the comparator for calibration-based early warning (RH2).
+  validation: Phase II tests RH2 directly, comparing calibration drift with stable AUROC against AUROC drift, and detection delay across the two
+
+- id: P5
+  name: Severity-weighted error rate
+  domain: B
+  state_component: P
+  matrix_construct: Safety event rate
+  evidence_level: 5
+  ai_types: [predictive, generative, agentic]
+  definition: Error rate weighted by adjudicated potential or actual clinical severity, so that a rare severe error outweighs many minor ones.
+  formula: "SWER = sum_e w(sev_e) / N_cases, with weights w defined in the VOE"
+  data_required: [adjudicated errors with severity grade, case counts]
+  frequency: Monthly, with immediate reporting of top-severity errors
+  baseline: SWER during validation and the VOE severity weights
+  alert_rule: "Yellow: SWER above baseline by m_Y. Orange: by m_O. Red: any error at the highest severity grade or SWER above m_R."
+  detection_method: Control chart on weighted rate; count-based sentinel rule for top-severity errors
+  governance_action:
+    yellow: Review error cases with clinical safety officer
+    orange: Restrict use; root-cause analysis
+    red: Suspend pending investigation
+  clinical_importance: Aggregate accuracy hides the errors that harm patients most.
+  validation: Phase II severity-labeled synthetic errors; compare detection of severe-error rise against aggregate error rate
+
+- id: P6
+  name: Subgroup performance gap
+  domain: B
+  state_component: P
+  matrix_construct: Subgroup reliability
+  evidence_level: 2
+  ai_types: [predictive, generative, agentic]
+  definition: Difference in performance (sensitivity, calibration, or error rate) between predefined subgroups, such as sex, age band, ethnicity, and site.
+  formula: "gap_g = M_g - M_ref for metric M and subgroup g; report max |gap| across subgroups with CI"
+  data_required: [predictions, outcomes, subgroup attributes]
+  frequency: Monthly
+  baseline: Validated subgroup gaps in the VOE
+  alert_rule: "Yellow: any gap exceeds baseline by m_Y. Orange: by m_O. Red: gap exceeds the VOE maximum acceptable disparity."
+  detection_method: Stratified monitoring with multiplicity control; interaction test for gap change over time
+  governance_action:
+    yellow: Increase monitoring for the affected subgroup
+    orange: Revalidate within subgroup; mitigation plan
+    red: Restrict use in the affected subgroup
+  clinical_importance: Overall performance can remain stable while one group is harmed.
+  validation: Phase II subgroup-specific drift; measure detection delay for a subgroup versus the pooled metric

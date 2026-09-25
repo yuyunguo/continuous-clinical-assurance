@@ -1,0 +1,31 @@
+# Row-level clinical data extracted from MIMIC-IV/eICU -- de-identified but still row-level, and redistribution is
+# prohibited by the PhysioNet Credentialed Health Data Use Agreement. Never commit these.
+phase2/results/tier2/features/*.parquet
+
+# Secrets / credentials (never stored on disk this session, but excluded defensively)
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+
+# Python
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# LaTeX build artifacts (kept: main.tex, main.pdf, references.bib)
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.synctex.gz
+manuscript/*.fls
+manuscript/*.fdb_latexmk
+
+# OS
+.DS_Store

@@ -1,0 +1,111 @@
+# Milestone M0: which simulator output supplies each `data_required` element of the 34 predictive-applicable indicators.
+# status: implemented = produced by the current data and model layer. planned = needs a layer not yet built
+# (stream, reviewer, workflow, lifecycle, or safety). A planned output means indicators that need it cannot be tested yet.
+outputs:
+  features: {module: sim_module.generator, status: implemented, description: True input features per case}
+  model_inputs: {module: sim_module.model, status: implemented, description: Inputs as the deployed model sees them, after missingness and rescaling}
+  subgroup: {module: sim_module.generator, status: implemented, description: Subgroup attribute per case}
+  outcome_label: {module: sim_module.generator, status: implemented, description: True outcome per case (labels arrive after the label lag in the monitors)}
+  severity_grade: {module: sim_module.generator, status: implemented, description: Severity class of each case}
+  model_probability: {module: sim_module.model, status: implemented, description: Predicted and displayed probability (confidence)}
+  decision: {module: sim_module.model, status: implemented, description: Thresholded model decision}
+  reference_input_sample: {module: sim_module.generator, status: implemented, description: Fixed baseline input sample}
+  case_counts: {module: sim_module.generator, status: implemented, description: Cases per window}
+  case_mix_attributes: {module: sim_module.generator, status: planned, description: Categorical case-mix covariates such as age band, encounter type, and diagnosis group}
+  schema_and_ranges: {module: sim_module.config, status: planned, description: Variable schema, required-variable list, and measurement ranges from the VOE}
+  output_time: {module: monitor_module.review_layer, status: implemented, description: Time zero of each review latency (latencies are simulated directly; absolute clock times are not)}
+  case_time: {module: stream, status: planned, description: Arrival and output timestamps per case}
+  abstain_flag: {module: sim_module.model, status: planned, description: Abstention or deferral flag from an uncertainty estimator}
+  paired_version_outputs: {module: lifecycle, status: planned, description: Outputs of two model versions on the same cases}
+  review_log: {module: monitor_module.review_layer, status: implemented, description: Review events with timestamps}
+  review_required_flag: {module: monitor_module.review_layer, status: implemented, description: Whether the VOE requires review for a case}
+  review_decision: {module: monitor_module.review_layer, status: implemented, description: Reviewer's decision on the AI output}
+  override_event: {module: monitor_module.review_layer, status: implemented, description: Override events}
+  final_decision: {module: monitor_module.review_layer, status: implemented, description: Decision after review}
+  review_timestamps: {module: monitor_module.review_layer, status: implemented, description: Review and action times}
+  adjudication_sample: {module: monitor_module.review_layer, status: implemented, description: Probability-sample audit with inclusion probabilities and the count not adjudicated}
+  point_of_no_return: {module: monitor_module.review_layer, status: implemented, description: Workflow point-of-no-return definition}
+  workflow_event_log: {module: monitor_module.workflow_layer, status: implemented, description: Workflow episode events}
+  alert_log: {module: monitor_module.workflow_layer, status: implemented, description: Alerts generated}
+  user_action_log: {module: monitor_module.workflow_layer, status: implemented, description: User responses to alerts (a fatigue model sets the action rate; no per-user detail)}
+  escalation_event_log: {module: monitor_module.workflow_layer, status: implemented, description: Escalations with delivery and acknowledgment}
+  escalation_criteria_flags: {module: monitor_module.workflow_layer, status: implemented, description: Cases meeting VOE escalation criteria}
+  delivery_timestamps: {module: monitor_module.workflow_layer, status: implemented, description: Escalation delivery and acknowledgment times}
+  request_delivery_timestamps: {module: monitor_module.workflow_layer, status: implemented, description: Request and result delivery times}
+  invocation_log: {module: sim_module.perturbations.scope, status: implemented, description: Invocations with an in-scope flag (baseline off-indication use plus scope creep). User role, order context, and workflow step are not simulated separately}
+  change_records: {module: lifecycle, status: planned, description: Change tickets}
+  approval_log: {module: lifecycle, status: planned, description: Change approvals}
+  governance_checklist: {module: lifecycle, status: planned, description: Required governance steps per change}
+  version_registry: {module: lifecycle, status: planned, description: Model versions}
+  pipeline_log: {module: lifecycle, status: planned, description: Data pipeline logs}
+  system_log_trace: {module: lifecycle, status: planned, description: System logs and reconstructable decision traces}
+  governance_records: {module: lifecycle, status: planned, description: Accountability elements (named owner, escalation path, decision authority, on-call contact) with review dates}
+  safety_event_log: {module: monitor_module.workflow_layer, status: implemented, description: Near-miss and sentinel events from a reporting system}
+  incident_classification: {module: monitor_module.workflow_layer, status: implemented, description: Severity class of reported events}
+  incident_correction_records: {module: monitor_module.workflow_layer, status: implemented, description: Downstream incident and correction records}
+  ai_output_links: {module: monitor_module.workflow_layer, status: implemented, description: Links from downstream records to AI outputs}
+elements:
+  AI output links: ai_output_links
+  AI outputs: model_probability
+  EHR: safety_event_log
+  EHR demographics: case_mix_attributes
+  adjudicated errors: decision
+  adjudicated errors with severity grade: severity_grade
+  adjudicated ground truth: outcome_label
+  adjudicated outcomes: outcome_label
+  alert logs: alert_log
+  approval logs: approval_log
+  audit inclusion probabilities: adjudication_sample
+  audit sample: system_log_trace
+  case counts: case_counts
+  change records: change_records
+  confidence scores: model_probability
+  count of sampled outputs not adjudicated: adjudication_sample
+  delivery and acknowledgment timestamps: delivery_timestamps
+  diagnosis codes: case_mix_attributes
+  encounter type: case_mix_attributes
+  escalation criteria flags: escalation_criteria_flags
+  escalation events: escalation_event_log
+  escalation logs: escalation_event_log
+  final decisions: final_decision
+  governance checklist: governance_checklist
+  governance records: governance_records
+  incident and correction records: incident_correction_records
+  incident classification: incident_classification
+  independent adjudication of a probability sample of outputs blind to reviewer action: adjudication_sample
+  inference-time input records: model_inputs
+  invocation logs with user role: invocation_log
+  measurement ranges: schema_and_ranges
+  model input logs: model_inputs
+  order/encounter context: invocation_log
+  outcome prevalence: outcome_label
+  outcomes: outcome_label
+  outcomes or reference labels: outcome_label
+  output timestamps: output_time
+  outputs with abstain flag: abstain_flag
+  override events: override_event
+  paired outputs: paired_version_outputs
+  pipeline logs: pipeline_log
+  point-of-no-return definition per workflow: point_of_no_return
+  predicted probabilities: model_probability
+  predictions: decision
+  prevalence: outcome_label
+  request and delivery timestamps: request_delivery_timestamps
+  required-variable list from VOE: schema_and_ranges
+  review and action timestamps: review_timestamps
+  review decisions: review_decision
+  review event logs: review_log
+  review logs with timestamps: review_log
+  review-required flag: review_required_flag
+  safety reporting system: safety_event_log
+  schema definitions: schema_and_ranges
+  scores: model_probability
+  subgroup attributes: subgroup
+  system logs: system_log_trace
+  timestamps: case_time
+  user actions: user_action_log
+  validation input sample: reference_input_sample
+  version registry: version_registry
+  workflow logs: workflow_event_log
+  workflow step: invocation_log
+  workflow system event logs: workflow_event_log

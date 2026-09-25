@@ -1,0 +1,188 @@
+- id: U1
+  name: Expected calibration error
+  domain: B
+  state_component: U
+  matrix_construct: Calibration
+  evidence_level: 2
+  ai_types: [predictive, generative]
+  definition: Average gap between stated confidence and observed correctness across confidence bins.
+  formula: "ECE = sum_b (n_b / N) * |acc_b - conf_b| over B bins; report the binning scheme and a bootstrap CI"
+  data_required: [confidence scores, adjudicated outcomes]
+  frequency: Monthly, or per fixed case count
+  baseline: Validated ECE with CI in the VOE (recalibrated model if a recalibration layer is deployed)
+  alert_rule: "Yellow: lower CI bound of ECE exceeds baseline by m_Y. Orange: by m_O. Red: exceeds m_R with a concurrent U4 or P5 alert."
+  detection_method: Windowed ECE with bootstrap CI; CUSUM on the ECE series; binning sensitivity check
+  governance_action:
+    yellow: Increase human review of high-confidence outputs
+    orange: Recalibrate; revalidate
+    red: Restrict or suspend the affected use case
+  clinical_importance: Clinicians calibrate trust to stated confidence, so overconfidence converts model error into accepted error.
+  validation: Phase II calibration-drift injection at stable AUROC (tests RH2); compare detection delay with P4 and P1/P2
+
+- id: U2
+  name: Brier score
+  domain: B
+  state_component: U
+  matrix_construct: Calibration
+  evidence_level: 2
+  ai_types: [predictive]
+  definition: Mean squared difference between predicted probability and observed outcome, combining calibration and refinement.
+  formula: "BS = (1/N) * sum_i (p_i - y_i)^2; decompose into reliability, resolution, and uncertainty"
+  data_required: [predicted probabilities, outcomes]
+  frequency: Monthly
+  baseline: Validated Brier score and decomposition in the VOE
+  alert_rule: "Yellow: BS above baseline by m_Y with reliability term driving the change. Orange: by m_O. Red: above VOE maximum."
+  detection_method: Windowed BS with bootstrap CI; monitor the reliability component separately
+  governance_action:
+    yellow: Investigate reliability versus resolution change
+    orange: Recalibrate or revalidate
+    red: Restrict use
+  clinical_importance: A proper scoring rule that penalizes confident errors, so it complements ECE without depending on binning.
+  validation: Phase II comparison of detection delay and false-alarm rate against ECE
+
+- id: U3
+  name: Calibration slope and intercept
+  domain: B
+  state_component: U
+  matrix_construct: Calibration
+  evidence_level: 2
+  ai_types: [predictive]
+  definition: Parameters of a logistic recalibration of outcomes on the model's logit score, showing systematic over- or underestimation and over- or under-dispersion.
+  formula: "logit(P(y=1)) = a + b * logit(p); ideal a = 0, b = 1"
+  data_required: [predicted probabilities, outcomes]
+  frequency: Monthly
+  baseline: Validated intercept and slope with CI in the VOE
+  alert_rule: "Yellow: CI of slope or intercept excludes the VOE band by m_Y. Orange: by m_O. Red: slope below m_R (severe overconfidence) or intercept beyond the VOE bound."
+  detection_method: Logistic recalibration per window with CI; sequential monitoring of both parameters
+  governance_action:
+    yellow: Flag for recalibration review
+    orange: Apply recalibration update under change control
+    red: Restrict use until revalidated
+  clinical_importance: Slope below 1 signals overconfident risk estimates, a direct safety concern for threshold-based decisions.
+  validation: Phase II injected slope and intercept drift; verify that recalibration restores the VOE band
+
+- id: U4
+  name: High-confidence error rate
+  domain: B
+  state_component: U
+  matrix_construct: Uncertainty reliability
+  evidence_level: 2
+  ai_types: [predictive, generative]
+  definition: Proportion of errors that occur at confidence above a VOE-defined high-confidence cutoff.
+  formula: "HCER = N(error and conf >= tau) / N(conf >= tau)"
+  data_required: [confidence scores, adjudicated outcomes]
+  frequency: Monthly
+  baseline: Validated HCER in the VOE
+  alert_rule: "Yellow: HCER above baseline by m_Y. Orange: by m_O. Red: above VOE maximum or any high-severity error in the high-confidence region."
+  detection_method: Binomial control chart within the high-confidence stratum
+  governance_action:
+    yellow: Route high-confidence outputs for spot review
+    orange: Mandatory verification of high-confidence outputs
+    red: Suspend automated acceptance
+  clinical_importance: Errors made with high confidence are the least likely to be challenged by clinicians.
+  validation: Phase II overconfidence injection; measure detection delay and link to H4 inappropriate acceptance
+
+- id: U5
+  name: Confidence distribution shift
+  domain: B
+  state_component: U
+  matrix_construct: Uncertainty reliability
+  evidence_level: 1
+  ai_types: [predictive, generative]
+  definition: Change in the distribution of model confidence, which can shift before outcomes are available.
+  formula: "Wasserstein or KS distance between current and reference confidence distributions; mean and dispersion change"
+  data_required: [confidence scores]
+  frequency: Daily windows
+  baseline: Reference confidence distribution from validation
+  alert_rule: "Yellow: distance above m_Y. Orange: above m_O. Red: above m_R together with a C2 alert."
+  detection_method: Two-sample distance test with FDR control; requires no outcome labels, so it is usable when outcomes lag
+  governance_action:
+    yellow: Increase calibration monitoring and sampling for adjudication
+    orange: Prioritize outcome adjudication; investigate inputs
+    red: Restrict use pending calibration check
+  clinical_importance: It is a label-free early signal that calibration may be deteriorating.
+  validation: Phase II lead time of U5 alerts over U1 alerts under injected drift, and false-alarm rate
+
+- id: U6
+  name: Abstention and selective risk
+  domain: B
+  state_component: U
+  matrix_construct: Uncertainty reliability
+  evidence_level: 2
+  ai_types: [predictive, generative, agentic]
+  definition: Rate at which the system defers or abstains, and the error rate on the cases it answers (selective risk).
+  formula: "abstention = N_abstain / N_total; selective risk = errors among answered / N_answered"
+  data_required: [outputs with abstain flag, outcomes]
+  frequency: Weekly
+  baseline: Validated coverage and selective-risk curve in the VOE
+  alert_rule: "Yellow: abstention or selective risk moves from baseline by m_Y. Orange: by m_O. Red: selective risk above VOE maximum at current coverage."
+  detection_method: Control charts on both quantities; risk-coverage curve comparison
+  governance_action:
+    yellow: Review abstention rule and workload
+    orange: Adjust deferral threshold under change control
+    red: Suspend automated answers; route all to human review
+  clinical_importance: Abstention that stops working removes the safety net for uncertain cases.
+  validation: Phase II uncertainty-estimator degradation; measure change in selective risk and detection delay
+
+- id: G1
+  name: Groundedness
+  domain: B
+  state_component: P
+  matrix_construct: Groundedness
+  evidence_level: 2
+  ai_types: [generative, agentic]
+  definition: Proportion of generated clinical statements that are supported by the retrieved or provided source record.
+  formula: "groundedness = N_supported_claims / N_claims, judged by sampled clinician or validated automated audit"
+  data_required: [outputs, retrieved sources, audit labels]
+  frequency: Weekly sampled audit
+  baseline: Validated groundedness with CI in the VOE
+  alert_rule: "Yellow: lower CI bound below baseline by m_Y. Orange: by m_O. Red: below VOE minimum or any unsupported high-risk claim."
+  detection_method: Stratified sampling audit with control chart on the supported proportion; audit-method agreement check
+  governance_action:
+    yellow: Increase audit sampling
+    orange: Require human verification of claims; correct retrieval
+    red: Suspend generation for the affected task
+  clinical_importance: Unsupported statements in a clinical note or recommendation can propagate into decisions.
+  validation: Follow-on generative or agentic study (outside Phase II) of injected retrieval degradation and prompt change; detection delay and audit-agreement analysis, including a check for evaluator dependence when the audit is automated
+
+- id: G2
+  name: Unsupported-claim rate
+  domain: B
+  state_component: P
+  matrix_construct: Groundedness
+  evidence_level: 2
+  ai_types: [generative, agentic]
+  definition: Rate of generated claims that are contradicted by, or absent from, the source record and are clinically material, weighted by severity.
+  formula: "UCR = N_unsupported_material_claims / N_outputs, with severity-weighted variant"
+  data_required: [outputs, source records, severity grades]
+  frequency: Weekly sampled audit
+  baseline: Validated UCR in the VOE
+  alert_rule: "Yellow: UCR above baseline by m_Y. Orange: by m_O. Red: any unsupported claim at the highest severity."
+  detection_method: Count and rate control chart; sentinel rule for top-severity claims
+  governance_action:
+    yellow: Increase audit sampling
+    orange: Human verification of all outputs in the affected task
+    red: Suspend generation pending investigation
+  clinical_importance: Hallucinated clinical content is a distinct failure mode with no analogue in accuracy metrics.
+  validation: Follow-on generative or agentic study (outside Phase II) of seeded unsupported-claim injection; measure sensitivity of the audit sampling plan, including a check for evaluator dependence when the audit is automated
+
+- id: G3
+  name: Retrieval relevance
+  domain: B
+  state_component: P
+  matrix_construct: Groundedness
+  evidence_level: 1
+  ai_types: [generative, agentic]
+  definition: Relevance and sufficiency of retrieved passages for the query, at the ranks the generator uses.
+  formula: "precision@k and recall@k against adjudicated relevant sources for a sampled query set"
+  data_required: [queries, retrieved passages, relevance judgments]
+  frequency: Weekly on a fixed probe set plus sampled live queries
+  baseline: Probe-set retrieval metrics at validation
+  alert_rule: "Yellow: precision@k or recall@k below baseline by m_Y. Orange: by m_O. Red: below VOE minimum on a safety-critical query class."
+  detection_method: Fixed probe-set regression test; control chart on sampled live queries
+  governance_action:
+    yellow: Review corpus and index changes
+    orange: Correct retrieval or corpus; require human verification
+    red: Suspend retrieval-dependent generation
+  clinical_importance: Degraded retrieval is a leading cause of ungrounded output and precedes G1 and G2 deterioration.
+  validation: Follow-on generative or agentic study (outside Phase II) of corpus and index perturbation; lead time of G3 over G1/G2 alerts

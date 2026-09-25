@@ -1,5 +1,6 @@
-% VALID: vancalster2019 (crossref, openalex)
-@article{vancalster2019, title={Calibration: the Achilles heel of predictive analytics}, volume={17}, ISSN={1741-7015}, url={http://dx.doi.org/10.1186/s12916-019-1466-7}, DOI={10.1186/s12916-019-1466-7}, number={1}, journal={BMC Medicine}, publisher={Springer Science and Business Media LLC}, author={ and Van Calster, Ben and McLernon, David J. and van Smeden, Maarten and Wynants, Laure and Steyerberg, Ewout W.}, year={2019}, month=Dec }
+% VALID: vancalster2019 (crossref, openalex). Author field had a stray leading "and " before the first author
+% (a metadata-export artifact -- apacite rendered it as a phantom author, "and Van Calster, B., ..."); removed.
+@article{vancalster2019, title={Calibration: the Achilles heel of predictive analytics}, volume={17}, ISSN={1741-7015}, url={http://dx.doi.org/10.1186/s12916-019-1466-7}, DOI={10.1186/s12916-019-1466-7}, number={1}, journal={BMC Medicine}, publisher={Springer Science and Business Media LLC}, author={Van Calster, Ben and McLernon, David J. and van Smeden, Maarten and Wynants, Laure and Steyerberg, Ewout W.}, year={2019}, month=Dec }
 
 % VALID: finlayson2021 (crossref, openalex)
 @article{finlayson2021, title={The Clinician and Dataset Shift in Artificial Intelligence}, volume={385}, ISSN={1533-4406}, url={http://dx.doi.org/10.1056/nejmc2104626}, DOI={10.1056/nejmc2104626}, number={3}, journal={New England Journal of Medicine}, publisher={Massachusetts Medical Society}, author={Finlayson, Samuel G. and Subbaswamy, Adarsh and Singh, Karandeep and Bowers, John and Kupke, Annabel and Zittrain, Jonathan and Kohane, Isaac S. and Saria, Suchi}, year={2021}, month=July, pages={283–286} }
@@ -122,7 +123,7 @@
 @article{johnson2023, title={MIMIC-IV, a freely accessible electronic health record dataset}, volume={10}, ISSN={2052-4463}, url={http://dx.doi.org/10.1038/s41597-022-01899-x}, DOI={10.1038/s41597-022-01899-x}, number={1}, journal={Scientific Data}, publisher={Springer Science and Business Media LLC}, author={Johnson, Alistair E. W. and Bulgarelli, Lucas and Shen, Lu and Gayles, Alvin and Shammout, Ayad and Horng, Steven and Pollard, Tom J. and Hao, Sicheng and Moody, Benjamin and Gow, Brian and Lehman, Li-wei H. and Celi, Leo A. and Mark, Roger G.}, year={2023}, month=Jan }
 
 % VALID: nist2023 (crossref, openalex)
-@book{nist2023, title={Artificial Intelligence Risk Management Framework (AI RMF 1.0)}, url={http://dx.doi.org/10.6028/NIST.AI.100-1}, DOI={10.6028/nist.ai.100-1}, institution={National Institute of Standards and Technology (U.S.)}, author={Tabassi, Elham}, year={2023}, month=Jan }
+@book{nist2023, title={Artificial Intelligence Risk Management Framework ({AI RMF} 1.0)}, url={http://dx.doi.org/10.6028/NIST.AI.100-1}, DOI={10.6028/nist.ai.100-1}, institution={National Institute of Standards and Technology (U.S.)}, author={Tabassi, Elham}, year={2023}, month=Jan }
 
 % VALID: pollard2018 (crossref, openalex)
 @article{pollard2018, title={The eICU Collaborative Research Database, a freely available multi-center database for critical care research}, volume={5}, ISSN={2052-4463}, url={http://dx.doi.org/10.1038/sdata.2018.178}, DOI={10.1038/sdata.2018.178}, number={1}, journal={Scientific Data}, publisher={Springer Science and Business Media LLC}, author={Pollard, Tom J. and Johnson, Alistair E. W. and Raffa, Jesse D. and Celi, Leo A. and Mark, Roger G. and Badawi, Omar}, year={2018}, month=Sept }
@@ -146,13 +147,15 @@
   copyright = {Creative Commons Attribution 4.0 International}
 }
 
-% WARNING: yu2026monitoring (datacite)
+% WARNING: yu2026monitoring (datacite). Author field corrected from the source's {{Yunguo Yu}} (double-braced,
+% which forces apacite to print it as one literal string instead of parsing surname/given-name for "Yu, Y."-style
+% abbreviation, unlike every other entry in this file) to the standard Lastname, Firstname form.
 @misc{yu2026monitoring,
   doi = {10.17605/OSF.IO/5TDUJ},
   url = {https://osf.io/5tduj/},
-  author = {{Yunguo Yu}},
+  author = {Yu, Yunguo},
   keywords = {Physical Sciences and Mathematics, Public Health, Medicine and Health Sciences, Community Health and Preventive Medicine, Computer Sciences, Artificial Intelligence and Robotics, Aritificial Intelligence, Clinical AI Monitoring, Healthcare},
-  title = {From Monitoring to Action: A Scoping Review of Post-Deployment Clinical AI Surveillance, Risk Assessment, and Lifecycle Management},
+  title = {From Monitoring to Action: A Scoping Review of Post-Deployment Clinical {AI} Surveillance, Risk Assessment, and Lifecycle Management},
   publisher = {OSF Registries},
   year = {2026},
   copyright = {Creative Commons Zero v1.0 Universal}

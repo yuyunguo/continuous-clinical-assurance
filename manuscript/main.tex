@@ -1,5 +1,5 @@
 %=================================================================
-\documentclass[apajournal,article,submit,moreauthors]{Definitions/mdpi}
+\documentclass[apajournal,article,submit,oneauthor]{Definitions/mdpi}
 
 %=================================================================
 % MDPI internal commands - do not modify
@@ -18,8 +18,9 @@
 \datepublished{ }
 
 %=================================================================
-% Full title of the paper (Capitalized) -- DRAFT, written last per the project's own writing-order convention
-% (CLAUDE.md Sec. 03); placeholder until Results/Discussion are drafted.
+% Full title of the paper (Capitalized). Written last per the project's own writing-order convention (CLAUDE.md
+% Sec. 03), after Results and Discussion; chosen to state the study's actual scenario-dependent finding rather
+% than a general claim (see manuscript/main.tex commit history for the earlier, broader draft title).
 \Title{Continuous Clinical Assurance: Label-Free Monitoring Detects Real Input Shift but Not Model-Only Drift in Deployed Clinical AI}
 
 % Author ORCID
@@ -35,7 +36,7 @@ $^{1}$ \quad Center for Digital Health, Mayo Clinic; yuyunguo@gmail.com}
 \corres{Correspondence: yuyunguo@gmail.com}
 
 % Abstract -- written LAST per the project's writing-order convention (CLAUDE.md Sec. 03: Methods, Results,
-% Discussion, Introduction, Conclusions, Title/Abstract). Placeholder retained intentionally.
+% Discussion, Introduction, Conclusions, Title/Abstract).
 \abstract{Deployed clinical prediction models are typically validated once before use, but their behavior can change as populations, practices, or the model change after deployment. This study evaluated Continuous Clinical Assurance (CCA), a post-deployment monitoring architecture combining label-free, calibration-based, and conventional outcome-dependent indicators under a matched false-alarm budget, using real, not synthetic, patient data. CCA was evaluated retrospectively across three clinical prediction tasks -- sepsis, 30-day readmission, and in-hospital mortality -- on 83{,}475 MIMIC-IV stays and, for one scenario, 200{,}859 eICU-CRD stays, against four real perturbation scenarios realized without fabricating patient outcomes: model-only version regression, correlated-feature dropout, scope creep into a different care population, and an observed natural drift in mortality prevalence. Detection-time reductions relative to conventional monitoring were assessed with a paired bootstrap confidence interval and a Holm-Bonferroni-corrected significance test per task-scenario family. A significant reduction in detection time for label-free or calibration-based monitoring occurred only under the two scenarios altering the model's real inputs, on tasks where each was attainable, with no advantage under the scenario confined to the model's decision function; the observed natural drift produced no detected onset. These findings indicate that label-free monitoring's real-data advantage over conventional monitoring is conditional on the shift mechanism rather than uniform, evidence that should inform, but does not establish, the clinical readiness of post-deployment AI monitoring.}
 
 \keyword{clinical AI monitoring; continuous assurance; dataset shift; label-free indicators; post-deployment surveillance; MIMIC-IV; eICU}
@@ -68,7 +69,7 @@ To our knowledge, this is the first study to evaluate label-free and calibration
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
 
-This section reports only procedures that were actually specified and executed for this study, as recorded in the project's implementation and validation record. Where a detail needed for independent reproduction is not present in that record, it is marked [NEEDS INPUT] rather than assumed; every [NEEDS INPUT] marker in this section is repeated in a consolidated list at the end of the manuscript's working draft for the corresponding author to resolve.
+This section reports only procedures that were actually specified and executed for this study, as recorded in the project's implementation and validation record. Where a detail needed for independent reproduction is not present in that record, it is marked [NEEDS INPUT] rather than assumed, for the corresponding author to resolve before submission.
 
 \subsection{Research Design and Setting}
 
@@ -178,7 +179,7 @@ Data handling in this study followed a fixed discipline, applied throughout: no 
 
 All random number generation in this study uses explicit, seeded pseudo-random number generators, so that every reported procedure is exactly repeatable given the same code and input data. No monitoring-architecture parameter (the false-alarm budget, the CUSUM hysteresis window $j$, the seven arm definitions, or a perturbation scenario's target harm ratio) was adjusted after any tier's detection results were observed; all were fixed in the project's design record before the corresponding real-data run.
 
-Code implementing the monitoring architecture, real-data extraction, and analysis described in this section is available at \url{https://github.com/yuyunguo/continuous-clinical-assurance} [NEEDS INPUT: confirm the final repository name/visibility once ready for the target venue]. Row-level MIMIC-IV and eICU-CRD data are not redistributed by the authors and remain available only to researchers credentialed under each database's own data use agreement. Analysis was performed in Python 3.12.5, using NumPy 2.0.2, pandas 3.0.2, SciPy 1.17.1, and scikit-learn 1.8.0 for the deployed-model fitting and statistical procedures described in this section.
+Code implementing the monitoring architecture, real-data extraction, and analysis described in this section is available at \url{https://github.com/yuyunguo/continuous-clinical-assurance} [NEEDS INPUT: this repository is currently private; confirm whether it should be made public before or upon submission, per the target venue's code-availability requirements]. Row-level MIMIC-IV and eICU-CRD data are not redistributed by the authors and remain available only to researchers credentialed under each database's own data use agreement. Analysis was performed in Python 3.12.5, using NumPy 2.0.2, pandas 3.0.2, SciPy 1.17.1, and scikit-learn 1.8.0 for the deployed-model fitting and statistical procedures described in this section.
 
 \subsubsection{Use of Generative AI}\label{sec:genai}
 
@@ -189,7 +190,7 @@ Portions of the software implementing the procedures described in this section, 
 
 Results are organized by real-data scenario (Sec.~\ref{sec:scenarios}), each evaluated on up to three clinical prediction tasks (sepsis, mortality, readmission). Every reduction reported below is the arm's mean-TAFD reduction relative to the conventional arm, with a 95\% percentile-bootstrap confidence interval and a Holm-Bonferroni-corrected significance decision within that task-scenario's family of six arm comparisons (Sec.~\ref{sec:stats}); an asterisk marks a reduction that survives the correction.
 
-\subsection{Deployed Model Fitting Quality}
+\subsection{Deployed Model Fitting Quality}\label{sec:results-fitting}
 
 The frozen deployed model's discrimination on held-out monitored windows, reported only as a fitting-quality check and not as a primary result (Sec.~\ref{sec:model}), was AUROC 0.779 (sensitivity 0.796 at the fixed operating threshold) for sepsis, AUROC 0.818 (sensitivity 0.783) for mortality, and AUROC 0.589 (sensitivity 0.804) for readmission. Readmission's near-chance discrimination is consistent with every subsequent scenario's finding that its deployed model is largely unresponsive to the perturbations tested (Secs.~\ref{sec:results-missingness}--\ref{sec:results-scopecreep}).
 
@@ -336,7 +337,7 @@ A monitoring architecture that surfaces its own calibration and drift status on 
 
 Operationally, the false-alarm budget used throughout this study was elicited from two clinician raters and pooled toward the more conservative estimate (Sec.~\ref{sec:calibration}); the CCA architecture's seven monitoring arms, three indicator families, and multiplicity-corrected significance testing represent a substantially more complex governance artifact than a single performance dashboard, and the staffing, review, and escalation capacity such a system would require in routine operation was not measured in this study. Technically, the winsorization fix required to make the C2 input-distribution-shift statistic behave correctly on real, heterogeneously scaled EHR features (Sec.~\ref{sec:model}) is itself an implication worth stating plainly for anyone implementing a similar architecture: a multivariate drift statistic validated on unit-scale synthetic features cannot be assumed to transfer directly to real clinical feature scales, and doing so risked silently distorting a threshold shared across every monitoring arm in this study before the issue was identified and corrected.
 
-None of these findings establish that faster statistical detection of input shift translates into improved patient outcomes, reduced clinical harm, or any other downstream clinical benefit. This study measures time to detection on retrospective, already-observed data; it does not model, and cannot support a causal claim about, what a clinical team would do with an earlier alert, whether that action would occur in time to matter, or whether it would improve a patient-level outcome. Readmission's near-chance deployed model (Sec.~\ref{sec:results-sc17}) was correspondingly unresponsive to every real perturbation tested, illustrating that a monitoring architecture's apparent advantage or disadvantage is also conditional on the underlying deployed model's own predictive validity for the task at hand, not solely on the monitoring architecture itself.
+None of these findings establish that faster statistical detection of input shift translates into improved patient outcomes, reduced clinical harm, or any other downstream clinical benefit. This study measures time to detection on retrospective, already-observed data; it does not model, and cannot support a causal claim about, what a clinical team would do with an earlier alert, whether that action would occur in time to matter, or whether it would improve a patient-level outcome. Readmission's near-chance deployed model (AUROC 0.589; Sec.~\ref{sec:results-fitting}) was correspondingly unresponsive to every real perturbation tested, illustrating that a monitoring architecture's apparent advantage or disadvantage is also conditional on the underlying deployed model's own predictive validity for the task at hand, not solely on the monitoring architecture itself.
 
 \subsection{Strengths and Limitations}\label{sec:disc-limitations}
 
@@ -361,7 +362,7 @@ Evaluated on real MIMIC-IV and eICU-CRD intensive care data across three clinica
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \authorcontributions{Conceptualization, Y.Y.; methodology, Y.Y.; software, Y.Y.; validation, Y.Y.; formal analysis, Y.Y.; investigation, Y.Y.; resources, Y.Y.; data curation, Y.Y.; writing---original draft preparation, Y.Y.; writing---review and editing, Y.Y.; visualization, Y.Y.; supervision, Y.Y.; project administration, Y.Y. The author has read and agreed to the published version of the manuscript.}
 
-\funding{[TO BE COMPLETED.]}
+\funding{This research received no external funding.}
 
 \institutionalreview{Not applicable. This study is a secondary analysis of pre-existing, de-identified data released under the MIMIC-IV and eICU-CRD PhysioNet Credentialed Health Data Use Agreements and does not constitute human subjects research requiring institutional review board approval.}
 

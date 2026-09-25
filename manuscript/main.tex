@@ -124,7 +124,9 @@ Perturbations are distinguished by whether they touch a real case's true outcome
 
 \subsubsection{Harm-Scaled Perturbation Levels}\label{sec:levelsolving}
 
-For each input-only scenario, the perturbation's magnitude (missingness probability, replacement share, or regression fraction) is solved, rather than fixed by reuse from the Tier 1 synthetic environment, against a pre-specified target ratio of expected residual harm exposure: a severity-weighted function of a case's true outcome and the deployed model's decision, computed over the model's entire available population (not a single monitoring window) to obtain a low-noise estimate. The magnitude is found by evaluating this ratio on a coarse grid from no effect to a pre-specified permitted maximum and root-finding within the bracket in which the ratio first reaches the target; if even the maximum permitted magnitude does not reach the target ratio, the scenario is reported as unattainable at that target rather than extrapolated beyond the tested range. The target ratio used (the larger of the population-wide ratio and any pre-specified subgroup's own ratio) is set in advance, at the same numeric levels used in the Tier 1 synthetic environment.
+For each input-only scenario, the perturbation's magnitude (missingness probability, replacement share, or regression fraction) is solved, rather than fixed by reuse from the Tier 1 synthetic environment, against a pre-specified target ratio of expected residual harm exposure: a severity-weighted function of a case's true outcome and the deployed model's decision, computed over the model's entire available population (not a single monitoring window) to obtain a low-noise estimate. This ratio -- the larger of the population-wide ratio and any pre-specified subgroup's own ratio, each relative to its own baseline; termed decision D18 in the study's internal design record and referred to by that label in Secs.~\ref{sec:results-sc17}--\ref{sec:results-scopecreep} -- is the same harm-ratio construction used to define onset in the Tier 1 synthetic environment. The magnitude is found by evaluating this ratio on a coarse grid from no effect to a pre-specified permitted maximum and root-finding within the bracket in which the ratio first reaches the target; if even the maximum permitted magnitude does not reach the target ratio, the scenario is reported as unattainable at that target rather than extrapolated beyond the tested range.
+
+For version regression and scope creep, the target ratio used is one of the fixed low/medium/high levels pre-specified for that perturbation type in the Tier 1 synthetic environment (version regression: 1.15/1.35/1.74; scope creep: 1.15/1.35/1.5), not a value chosen for this study; when a task could not reach the higher pre-specified level, the next lower pre-specified level was used instead and is reported explicitly alongside that task's result rather than silently substituted (Sec.~\ref{sec:results-sc17}). Group missingness has no pre-specified harm target in the Tier 1 catalog, because the single-feature missingness scenario it generalizes produces no meaningful harm at any tested level in the synthetic environment (Sec.~\ref{sec:scenarios}); for this scenario only, a target ratio of 1.15, matching the low level used for the other scenarios, was adopted as a default, with one further task-specific reduction to 1.10 for sepsis, where the winsorization step (Sec.~\ref{sec:model}) itself lowers the attainable ceiling of this particular harm-ratio evaluation below 1.15 (Sec.~\ref{sec:results-missingness}).
 
 \subsection{Evaluation Design, Baselines, and Metrics}\label{sec:calibration}
 
@@ -220,7 +222,7 @@ No arm's reduction is both positive and statistically significant after correcti
 A single feature going missing was confirmed unattainable at any rate up to certainty for all three tasks (Sec.~\ref{sec:scenarios}); the correlated five-feature group scenario reached its target D18 ratio at a solved missingness probability of 0.732 for sepsis (ratio 1.100 against target 1.10) and 0.911 for mortality (ratio 1.150 against target 1.15), and was unattainable for readmission at any probability up to certainty in either of two feature groups tested (heart rate, creatinine; maximum ratio reached: 1.000 in both).
 
 \begin{table}[H]
-\caption{Group missingness: reduction in detection time (windows) versus the conventional arm.\label{tab:missingness}}
+\caption{Group missingness: reduction in detection time (windows) versus the conventional arm, by task and monitoring arm. CI = 95\% percentile bootstrap interval; $p$ = two-sided bootstrap $p$-value; * = survives Holm-Bonferroni correction within the task's six-arm family at $\alpha=0.05$.\label{tab:missingness}}
 \begin{tabularx}{\textwidth}{lCCCC}
 \toprule
 \textbf{Arm} & \textbf{Reduction [95\% CI]} & \textbf{$p$} & \textbf{Task} & \\
@@ -249,7 +251,7 @@ Every arm is significantly faster than conventional monitoring on both attainabl
 The eICU-CRD out-of-scope pool comprised 200{,}859 real unit stays (9.0\% in-hospital mortality). The solved replacement share to reach the target D18 ratio of 1.15 was 0.793 for sepsis (ratio 1.155) and 0.203 for mortality (ratio 1.149); readmission was unattainable at any share up to certainty (maximum ratio reached: 1.000), the same pattern shown under every other scenario in this study.
 
 \begin{table}[H]
-\caption{Scope creep: reduction in detection time (windows) versus the conventional arm.\label{tab:scopecreep}}
+\caption{Scope creep: reduction in detection time (windows) versus the conventional arm, by task and monitoring arm. CI = 95\% percentile bootstrap interval; $p$ = two-sided bootstrap $p$-value; * = survives Holm-Bonferroni correction within the task's six-arm family at $\alpha=0.05$.\label{tab:scopecreep}}
 \begin{tabularx}{\textwidth}{lCCCC}
 \toprule
 \textbf{Arm} & \textbf{Reduction [95\% CI]} & \textbf{$p$} & \textbf{Task} & \\
@@ -271,7 +273,7 @@ Calibration arm        & $-0.30$ [$-0.51$, $-0.10$]  & 0.001* &  & \\
 \end{tabularx}
 \end{table}
 
-Label-free and every CCA arm are significantly faster than conventional on both tasks (Table~\ref{tab:scopecreep}); the pure calibration-only arm shows no significant advantage on sepsis and a significant \emph{disadvantage} on mortality, the opposite pattern from group missingness (Sec.~\ref{sec:results-missingness}), where the calibration-only arm was among the strongest performers.
+Label-free and every CCA arm are significantly faster than conventional on both tasks (Table~\ref{tab:scopecreep}); the calibration arm shows no significant advantage on sepsis and a significant \emph{disadvantage} on mortality, the opposite pattern from group missingness (Sec.~\ref{sec:results-missingness}), where the calibration arm was among the strongest performers.
 
 \subsection{Concept Drift as an Observational Natural Experiment}
 
@@ -281,7 +283,7 @@ The mortality task's real, calendar-verified mortality prevalence by \texttt{anc
 
 Across the three input-affecting scenarios tested (Table~\ref{tab:sc17}--\ref{tab:scopecreep}), a Holm-corrected, statistically significant reduction in detection time for a label-free or CCA arm appears only under the two scenarios that genuinely shift the model's real input distribution (group missingness, scope creep), on the two tasks (sepsis, mortality) where the scenario is attainable at all -- never under version regression, a scenario that changes only the deployed model's own decision function with no input-distribution shift whatsoever. Readmission's near-chance deployed model (AUROC 0.589) showed no significant positive reduction under any scenario tested, and two of the three input-affecting scenarios (group missingness, scope creep) were not attainable for it at any tested level. The fourth scenario, a real, calendar-verified natural drift in mortality prevalence, produced no detected onset at all, and therefore no arm comparison.
 
-Within the two scenarios that did show a significant advantage, which specific arms carried it differed: group missingness's advantage held for every one of the six comparator arms, including the pure label-free and calibration-only arms; scope creep's advantage held for the label-free and CCA arms (union, component split, tilted) but not for the pure calibration-only arm, whose reduction was small, near zero, or significantly negative on both tasks.
+Within the two scenarios that did show a significant advantage, which specific arms carried it differed: group missingness's advantage held for every one of the six comparator arms, including the label-free and calibration arms; scope creep's advantage held for the label-free and CCA arms (union, component split, tilted) but not for the calibration arm, whose reduction was small, near zero, or significantly negative on both tasks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}

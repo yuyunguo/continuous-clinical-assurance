@@ -169,7 +169,119 @@ Portions of the software implementing the procedures described in this section, 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
-[DRAFT PENDING -- next section per the project's writing-order convention.]
+Results are organized by real-data scenario (Sec.~\ref{sec:scenarios}), each evaluated on up to three clinical prediction tasks (sepsis, mortality, readmission). Every reduction reported below is the arm's mean-TAFD reduction relative to the conventional arm, with a 95\% percentile-bootstrap confidence interval and a Holm-Bonferroni-corrected significance decision within that task-scenario's family of six arm comparisons (Sec.~\ref{sec:stats}); an asterisk marks a reduction that survives the correction.
+
+\subsection{Deployed Model Fitting Quality}
+
+The frozen deployed model's discrimination on held-out monitored windows, reported only as a fitting-quality check and not as a primary result (Sec.~\ref{sec:model}), was AUROC 0.779 (sensitivity 0.796 at the fixed operating threshold) for sepsis, AUROC 0.818 (sensitivity 0.783) for mortality, and AUROC 0.589 (sensitivity 0.804) for readmission. Readmission's near-chance discrimination is consistent with every subsequent scenario's finding that its deployed model is largely unresponsive to the perturbations tested (Secs.~\ref{sec:results-missingness}--\ref{sec:results-scopecreep}).
+
+\subsection{Matched False-Alarm Calibration}
+
+Every arm's calibrated threshold achieved a rate close to the 30-per-1{,}000-window target on an independent evaluation batch of null streams: 29.8--38.3 per 1{,}000 windows across all seven arms and three tasks (e.g., sepsis: conventional 32.85, CCA union 32.78, calibration arm 38.33; mortality: conventional 32.15, CCA union 30.00; readmission: conventional 34.10, CCA union 31.04). The component-split and tilted arms' own C-component thresholds ranged 11.99--17.93 across all three tasks, confirming that the winsorization fix (Sec.~\ref{sec:model}) resolved the calibration-search ceiling observed in earlier, unwinsorized model fits: no C threshold approached the search range's upper bound in any task.
+
+\subsection{Version Regression (Model-Only Drift)}\label{sec:results-sc17}
+
+The solved fraction of the deployed model's weight vector replaced to reach the target D18 harm ratio was 0.589 (sepsis, ratio 1.352 against target 1.35), 0.361 (mortality, ratio 1.350), and 0.728 (readmission, ratio 1.149 against the attainable target 1.15). Replicate survival was markedly lower for readmission (15 of 150 replicates used) than sepsis (73 of 150) or mortality (56 of 150), consistent with its near-chance deployed model producing fewer detectable real onsets under this scenario.
+
+\begin{table}[H]
+\caption{Version regression (SC17): reduction in detection time (windows) versus the conventional arm, by task and monitoring arm. CI = 95\% percentile bootstrap interval; $p$ = two-sided bootstrap $p$-value; * = survives Holm-Bonferroni correction within the task's six-arm family at $\alpha=0.05$.\label{tab:sc17}}
+\begin{tabularx}{\textwidth}{lCCCC}
+\toprule
+\textbf{Arm} & \textbf{Reduction [95\% CI]} & \textbf{$p$} & \textbf{Task} & \\
+\midrule
+Conv.\ + label-free    & $+0.07$ [$-0.03$, $+0.18$]  & 0.224 &   & \\
+Conv.\ + calibration   & $-0.03$ [$-0.07$, $+0.00$]  & $<$0.0001* &  & \\
+CCA (union)            & $+0.05$ [$-0.04$, $+0.15$]  & 0.342 &  & \\
+CCA (component split)  & $+0.05$ [$-0.04$, $+0.16$]  & 0.335 & Sepsis (n=73) & \\
+CCA (tilted)            & $+0.00$ [$-0.05$, $+0.05$]  & 0.812 &  & \\
+Calibration arm        & $-0.03$ [$-0.08$, $+0.00$]  & $<$0.0001* &  & \\
+\midrule
+Conv.\ + label-free    & $-0.27$ [$-0.52$, $-0.04$]  & 0.014 &   & \\
+Conv.\ + calibration   & $+0.04$ [$-0.07$, $+0.14$]  & 0.650 &  & \\
+CCA (union)            & $-0.21$ [$-0.46$, $+0.04$]  & 0.067 &  & \\
+CCA (component split)  & $-0.36$ [$-0.61$, $-0.12$]  & $<$0.0001* & Mortality (n=56) & \\
+CCA (tilted)            & $-0.11$ [$-0.23$, $+0.02$]  & 0.091 &  & \\
+Calibration arm        & $-0.07$ [$-0.23$, $+0.11$]  & 0.355 &  & \\
+\midrule
+Conv.\ + label-free    & $-0.07$ [$-0.67$, $+0.47$]  & 0.754 &   & \\
+Conv.\ + calibration   & $-0.27$ [$-0.47$, $-0.07$]  & $<$0.0001* &  & \\
+CCA (union)            & $-0.27$ [$-1.13$, $+0.40$]  & 0.462 &  & \\
+CCA (component split)  & $-0.53$ [$-1.47$, $+0.13$]  & 0.134 & Readmission (n=15) & \\
+CCA (tilted)            & $-0.33$ [$-0.73$, $+0.00$]  & $<$0.0001* &  & \\
+Calibration arm        & $-0.67$ [$-1.20$, $-0.27$]  & $<$0.0001* &  & \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+No arm's reduction is both positive and statistically significant after correction on any task (Table~\ref{tab:sc17}): the label-free and CCA-union arms are not distinguishable from no effect on any task once corrected (sepsis $p=0.224$--$0.812$; mortality $p=0.067$--$0.650$; readmission $p=0.462$--$0.754$), and every significant reduction that does survive correction is negative (conventional~+~calibration and calibration arm on sepsis; CCA component split on mortality; four of six arms on readmission). Mortality's conventional~+~label-free arm shows a CI excluding zero ($-0.27$, $[-0.52,-0.04]$) that does \emph{not} survive Holm correction ($p=0.014$ against a rank-dependent threshold), illustrating why the family-wise correction (Sec.~\ref{sec:stats}) was applied rather than relying on CI exclusion alone.
+
+\subsection{Group Missingness (Correlated-Feature Dropout)}\label{sec:results-missingness}
+
+A single feature going missing was confirmed unattainable at any rate up to certainty for all three tasks (Sec.~\ref{sec:scenarios}); the correlated five-feature group scenario reached its target D18 ratio at a solved missingness probability of 0.732 for sepsis (ratio 1.100 against target 1.10) and 0.911 for mortality (ratio 1.150 against target 1.15), and was unattainable for readmission at any probability up to certainty in either of two feature groups tested (heart rate, creatinine; maximum ratio reached: 1.000 in both).
+
+\begin{table}[H]
+\caption{Group missingness: reduction in detection time (windows) versus the conventional arm.\label{tab:missingness}}
+\begin{tabularx}{\textwidth}{lCCCC}
+\toprule
+\textbf{Arm} & \textbf{Reduction [95\% CI]} & \textbf{$p$} & \textbf{Task} & \\
+\midrule
+Conv.\ + label-free    & $+3.78$ [$+2.18$, $+5.60$]  & $<$0.0001* &   & \\
+Conv.\ + calibration   & $+3.93$ [$+2.69$, $+5.41$]  & $<$0.0001* &  & \\
+CCA (union)            & $+4.05$ [$+2.62$, $+5.58$]  & $<$0.0001* &  & \\
+CCA (component split)  & $+4.11$ [$+2.56$, $+5.61$]  & $<$0.0001* & Sepsis (n=80) & \\
+CCA (tilted)            & $+3.74$ [$+2.32$, $+5.31$]  & $<$0.0001* &  & \\
+Calibration arm        & $+4.39$ [$+2.91$, $+6.01$]  & $<$0.0001* &  & \\
+\midrule
+Conv.\ + label-free    & $+2.03$ [$+1.04$, $+3.18$]  & $<$0.0001* &   & \\
+Conv.\ + calibration   & $+1.61$ [$+0.79$, $+2.65$]  & $<$0.0001* &  & \\
+CCA (union)            & $+2.03$ [$+1.03$, $+3.11$]  & $<$0.0001* &  & \\
+CCA (component split)  & $+1.86$ [$+0.89$, $+2.99$]  & $<$0.0001* & Mortality (n=72) & \\
+CCA (tilted)            & $+1.53$ [$+0.58$, $+2.63$]  & 0.001* &  & \\
+Calibration arm        & $+1.74$ [$+0.85$, $+2.79$]  & $<$0.0001* &  & \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Every arm is significantly faster than conventional monitoring on both attainable tasks (Table~\ref{tab:missingness}), surviving Holm correction in every case -- the cleanest positive result across all three scenarios (Sec.~\ref{sec:synthesis}). Readmission's near-chance deployed model was not moved by group missingness in either feature group tested, consistent with its behavior under every scenario in this study.
+
+\subsection{Scope Creep (Real Out-of-Scope Population)}\label{sec:results-scopecreep}
+
+The eICU-CRD out-of-scope pool comprised 200{,}859 real unit stays (9.0\% in-hospital mortality). The solved replacement share to reach the target D18 ratio of 1.15 was 0.793 for sepsis (ratio 1.155) and 0.203 for mortality (ratio 1.149); readmission was unattainable at any share up to certainty (maximum ratio reached: 1.000), the same pattern shown under every other scenario in this study.
+
+\begin{table}[H]
+\caption{Scope creep: reduction in detection time (windows) versus the conventional arm.\label{tab:scopecreep}}
+\begin{tabularx}{\textwidth}{lCCCC}
+\toprule
+\textbf{Arm} & \textbf{Reduction [95\% CI]} & \textbf{$p$} & \textbf{Task} & \\
+\midrule
+Conv.\ + label-free    & $+0.53$ [$+0.36$, $+0.71$]  & $<$0.0001* &   & \\
+Conv.\ + calibration   & $-0.04$ [$-0.11$, $+0.00$]  & $<$0.0001* &  & \\
+CCA (union)            & $+0.53$ [$+0.36$, $+0.71$]  & $<$0.0001* &  & \\
+CCA (component split)  & $+0.53$ [$+0.37$, $+0.71$]  & $<$0.0001* & Sepsis (n=95) & \\
+CCA (tilted)            & $+0.53$ [$+0.36$, $+0.69$]  & $<$0.0001* &  & \\
+Calibration arm        & $-0.06$ [$-0.15$, $+0.00$]  & $<$0.0001* &  & \\
+\midrule
+Conv.\ + label-free    & $+0.32$ [$+0.16$, $+0.51$]  & $<$0.0001* &   & \\
+Conv.\ + calibration   & $-0.01$ [$-0.10$, $+0.07$]  & 0.618 &  & \\
+CCA (union)            & $+0.71$ [$+0.46$, $+0.99$]  & $<$0.0001* &  & \\
+CCA (component split)  & $+0.71$ [$+0.45$, $+0.99$]  & $<$0.0001* & Mortality (n=69) & \\
+CCA (tilted)            & $+0.71$ [$+0.46$, $+1.00$]  & $<$0.0001* &  & \\
+Calibration arm        & $-0.30$ [$-0.51$, $-0.10$]  & 0.001* &  & \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Label-free and every CCA arm are significantly faster than conventional on both tasks (Table~\ref{tab:scopecreep}); the pure calibration-only arm shows no significant advantage on sepsis and a significant \emph{disadvantage} on mortality, the opposite pattern from group missingness (Sec.~\ref{sec:results-missingness}), where the calibration-only arm was among the strongest performers.
+
+\subsection{Concept Drift as an Observational Natural Experiment}
+
+The mortality task's real, calendar-verified mortality prevalence by \texttt{anchor\_year\_group} period was 8.7\% (2008--2010, 26{,}669 stays), 9.0\% (2011--2013, 17{,}280 stays), 9.3\% (2014--2016, 16{,}008 stays), 9.1\% (2017--2019, 14{,}157 stays), and 11.1\% (2020--2022, 9{,}361 stays) -- confirming a genuine, if modest and concentrated-in-the-most-recent-period, real drift. With training restricted to every stay before 2020 (148 windows) and monitoring restricted to the 2020--2022 period (18 windows), the calibrated onset detector (threshold 9.25 at the target 5-per-1{,}000-window false-onset rate) did not detect an onset on this real, unmodified stream. No arm comparison is possible without a detected onset; this scenario is reported as a genuine null result rather than omitted (Sec.~\ref{sec:sc08}).
+
+\subsection{Synthesis Across Scenarios}\label{sec:synthesis}
+
+Across the three input-affecting scenarios tested (Table~\ref{tab:sc17}--\ref{tab:scopecreep}), a Holm-corrected, statistically significant reduction in detection time for a label-free or CCA arm appears only under the two scenarios that genuinely shift the model's real input distribution (group missingness, scope creep), on the two tasks (sepsis, mortality) where the scenario is attainable at all -- never under version regression, a scenario that changes only the deployed model's own decision function with no input-distribution shift whatsoever. Readmission's near-chance deployed model (AUROC 0.589) showed no significant positive reduction under any scenario tested, and two of the three input-affecting scenarios (group missingness, scope creep) were not attainable for it at any tested level. The fourth scenario, a real, calendar-verified natural drift in mortality prevalence, produced no detected onset at all, and therefore no arm comparison.
+
+Within the two scenarios that did show a significant advantage, which specific arms carried it differed: group missingness's advantage held for every one of the six comparator arms, including the pure label-free and calibration-only arms; scope creep's advantage held for the label-free and CCA arms (union, component split, tilted) but not for the pure calibration-only arm, whose reduction was small, near zero, or significantly negative on both tasks.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
@@ -185,7 +297,7 @@ Portions of the software implementing the procedures described in this section, 
 \vspace{6pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\authorcontributions{[TO BE COMPLETED per CRediT taxonomy once all authors are confirmed.]}
+\authorcontributions{Conceptualization, Y.Y.; methodology, Y.Y.; software, Y.Y.; validation, Y.Y.; formal analysis, Y.Y.; investigation, Y.Y.; resources, Y.Y.; data curation, Y.Y.; writing---original draft preparation, Y.Y.; writing---review and editing, Y.Y.; visualization, Y.Y.; supervision, Y.Y.; project administration, Y.Y. The author has read and agreed to the published version of the manuscript.}
 
 \funding{[TO BE COMPLETED.]}
 
@@ -197,7 +309,7 @@ Portions of the software implementing the procedures described in this section, 
 
 \acknowledgments{During the preparation of this manuscript, the author used Claude (Anthropic) for software development, data analysis, and manuscript drafting assistance, under the author's direction and review. The author has reviewed and edited the output and takes full responsibility for the content of this publication.}
 
-\conflictsofinterest{[TO BE COMPLETED.]}
+\conflictsofinterest{The author declares no conflicts of interest.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{adjustwidth}{-\extralength}{0cm}

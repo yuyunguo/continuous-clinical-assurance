@@ -36,7 +36,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from scripts.m4_pilot import ARM_ORDER  # noqa: E402
 from scripts.tier2_extract_features import NON_FEATURE_COLUMNS  # noqa: E402
-from src.eval_module.tafd import bootstrap_difference, rmst_difference  # noqa: E402
+from src.eval_module.tafd import arm_reductions_with_holm_correction  # noqa: E402
 from src.monitor_module import INDICATOR_ORDER, alert_rate, calibrate_threshold, indicator_indices  # noqa: E402
 from src.sim_module.config import false_alarm_budget, load_config  # noqa: E402
 from src.tier2_module import (RealDeployedModel, Tier2StreamConfig, assign_windows, tier2_calibrate_arms,  # noqa: E402
@@ -139,13 +139,15 @@ def main() -> int:
     used = len(tafd["conventional"])
     logger.info("Real-data replicate run (SC17 version regression, fraction=%.4f): %d of 150 replicates used", fraction, used)
     if used >= 5:
-        rng_boot = np.random.default_rng(7)
-        for name in ARM_ORDER:
-            if name == "conventional":
-                continue
-            reduction = rmst_difference(tafd["conventional"], tafd[name])
-            lo, hi = bootstrap_difference(tafd["conventional"], tafd[name], rng_boot)
-            logger.info("Reduction vs conventional, %-28s %+.2f windows [%+.2f, %+.2f] (95%% CI)", name, reduction, lo, hi)
+        # ci_rng=default_rng(7) matches every prior real-data run's own CI computation exactly (bit-identical, not
+        # just statistically equivalent); p_rng is a separate, independent bootstrap draw used only for the
+        # Holm-Bonferroni significance decision (manuscript Methods Sec. 2.6) -- it does not affect the CI at all.
+        results = arm_reductions_with_holm_correction(tafd, ARM_ORDER, "conventional",
+                                                       ci_rng=np.random.default_rng(7), p_rng=np.random.default_rng(701))
+        for name, r in results.items():
+            sig = "*" if r["significant"] else " "
+            logger.info("Reduction vs conventional, %-28s %+.2f windows [%+.2f, %+.2f] (95%% CI) p=%.4f%s", name,
+                       r["reduction"], r["lo"], r["hi"], r["p"], sig)
     else:
         logger.warning("too few replicates survived (%d) for a meaningful comparison", used)
     return 0
